@@ -9,6 +9,7 @@ export default {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
         krona: ["Krona One", "sans-serif"],
+        manrope: ["Manrope", "sans-serif"],
       },
     },
   },
