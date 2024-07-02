@@ -4,27 +4,42 @@ import resume from '../../public/images/resume.png'
 
 function Herobanner() {
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-900 text-white">
-      <div className="max-w-md mx-auto text-center ml-60">
-        <h1 className="text-3xl font-bold mb-4">
-          <span className="text-white mr-1">Best</span>
-          <span className="text-green-500" style={{ color: 'rgba(102, 169, 71, 1)' }}>Resume</span>
-        </h1>
-        <h2 className="text-2xl font-semibold mb-8">Everything</h2>
-        <p className="text-lg mb-12">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-        <div className="flex justify-center gap-4">
-          <button className="border border-green-500 hover:bg-green-700 text-white-500 hover:text-white font-bold py-2 px-4 rounded">
-            Check your score
-          </button>
-          <button style={{ backgroundColor: 'rgba(102, 169, 71, 1)' }} className="hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Build your resume
-          </button>
+   <div className="h-screen flex bg-gray-900 text-white">
+      <div className="flex-1 flex justify-center items-center">
+        <div className="max-w-md mx-auto text-center">
+          <h1 className="text-3xl font-bold mb-4">
+            <span style={{ color: 'white', fontSize: '3rem', fontWeight: 'normal', fontFamily: "'Krona One'" }}>
+              Best 
+            </span>
+            <span style={{ color: '#84CC16', fontSize: '3rem', fontWeight: 'normal', fontFamily: "'Krona One'" }}>
+              Resume
+            </span>
+          </h1>
+          <span style={{ color: 'white', fontSize: '3rem', fontWeight: 'normal', fontFamily: "'Krona One'" }}>
+            Everything<br />
+          </span>
+          <span style={{ color: 'white', fontSize: '1.5rem', fontWeight: 'normal', fontFamily: "'Krona One'" }}>
+            <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </span>
+          <br />
+          <br />
+          <div style={{ display: 'inline-flex', gap: '10px' }}>
+            <div style={{ width: '286px', height: '71px', padding: '15px', background: 'rgba(66, 133, 244, 0)', borderRadius: '20px', border: '5px solid #66A947', justifyContent: 'center', alignItems: 'center', display: 'flex', transition: 'background-color 0.3s' }}>
+              <div style={{ color: 'white', fontSize: '25.82px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
+                Check your score
+              </div>
+            </div>
+            <div style={{ width: '286px', height: '71px', padding: '15px', background: '#66A947', borderRadius: '20px', border: '1px solid black', position: 'relative' }}>
+              <div style={{ left: '27px', top: '16px', position: 'absolute', color: 'white', fontSize: '25.82px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
+                Build your resume
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="hidden md:block md:w-1/2 ml-20">
-        <img src={resume} alt="Resume" style={{ boxShadow: '0 4px 6px rgba(102, 169, 71, 0.5)' }} className="rounded-lg overflow-hidden" />
+      <div className="flex-1 flex justify-center items-center">
+        <img src="/images/resume.png" alt="Resume" style={{ boxShadow: '0 4px 6px rgba(102, 169, 71, 0.5)' }} className="rounded-lg overflow-hidden" />
       </div>
     </div>
   );
