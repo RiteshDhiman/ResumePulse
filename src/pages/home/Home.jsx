@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Navbar from '../../components/navbar/Navbar'
-import Signup from '../../components/Signup'
+import Signup from '../../components/SignUp/Signup'
 import Herobanner from '../../components/Herobanner';
 
 const Home = () => {

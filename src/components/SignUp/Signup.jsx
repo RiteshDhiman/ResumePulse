@@ -1,10 +1,10 @@
 import React from 'react'
-import '../components/signup.scss'
-import profile from '../../public/images/dummy_profile.png'
-import fb from '../../public/images/fb.png'
-import apple from '../../public/images/apple.png'
-import google from '../../public/images/google.png'
-import close from '../../public/images/close.png'
+import '../SignUp/signup.scss'
+import profile from '../../../public/images/dummy_profile.png'
+import fb from '../../../public/images/fb.png'
+import apple from '../../../public/images/apple.png'
+import google from '../../../public/images/google.png'
+import close from '../../../public/images/close.png'
 
 const Signup = ({loginClose, loginOrNot, signUp}) => {
   return (
