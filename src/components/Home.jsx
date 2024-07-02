@@ -14,7 +14,7 @@ function Home() {
           <button className="border border-green-500 hover:bg-green-700 text-white-500 hover:text-white font-bold py-2 px-4 rounded">
             Check your score
           </button>
-          <button className="bg-custom-green hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+          <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
             Build your resume
           </button>
         </div>
