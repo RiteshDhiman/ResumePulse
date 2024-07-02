@@ -11,8 +11,8 @@ export default {
         krona: ["Krona One", "sans-serif"],
         manrope: ["Manrope", "sans-serif"],
       },
-    },
-  },
-  plugins: [],
+      plugins: [],
+    }
+  }
 }
 
