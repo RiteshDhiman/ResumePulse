@@ -23,7 +23,7 @@ function Review(props) {
   //     [
   //         "Dream job at Microsoft !",
   //         "I used Resume builder to get suggestions on my resume and it helped me land my dream job at Google! With its expert guidance, I was able to enhance my resume and showcase my skills in the best possible way",
-  //         "Ritesh Dhaman",
+  //         "Ritesh Dhiman",
   //         5
   //     ]
   // ]
