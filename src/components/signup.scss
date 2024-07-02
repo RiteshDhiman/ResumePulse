@@ -1,0 +1,10 @@
+.centering{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bgImg{
+    background-image: url('../assets/green.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
