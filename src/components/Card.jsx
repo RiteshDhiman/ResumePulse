@@ -1,11 +1,11 @@
 import React from 'react'
-import Frame from '../assets/Frame.png'
-import Profile_icon from '../assets/profile-icon.png'
-import Stars from '../assets/stars.png'
+import Frame from '/images/Frame.png'
+import Profile_icon from '/images/profile-icon.png'
+import Stars from '/images/stars.png'
 
 function Card(props) {
   return (
-    <div className='bg-[#66A947] w-full  h-60 rounded-xl flex justify-between items-center overflow-hidden '>
+    <div className='bg-[#66A947] font-manrope w-full h-60 rounded-xl flex justify-between items-center overflow-hidden '>
                 <div className='profile-icon relative w-1/4 h-full'>
                     <div className=' left-0 bottom-0 absolute w-full'><img src={Frame} /></div>
                     <div className=' left-3 bottom-1 absolute w-44'><img src={Profile_icon} /></div>
