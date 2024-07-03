@@ -30,10 +30,12 @@ function Herobanner() {
                 Check your score
               </div>
             </div>
-            <div style={{ width: '286px', height: '71px', padding: '15px', background: '#66A947', borderRadius: '20px', border: '1px solid black', position: 'relative' }}>
-              <div style={{ left: '27px', top: '16px', position: 'absolute', color: 'white', fontSize: '25.82px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
+            <div style={{ width: '286px', height: '71px', padding: '15px', background: '#66A947', borderRadius: '20px', border: '1px solid black' }}>
+              <a href="build">
+              <div style={{ left: '27px', top: '16px', color: 'white', fontSize: '25.82px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
                 Build your resume
               </div>
+              </a>
             </div>
           </div>
         </div>
