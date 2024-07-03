@@ -49,7 +49,7 @@ function Form() {
 
 
     return (
-        <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] w-screen h-screen flex justify-center items-center'>
+        <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] h-screen flex justify-center items-center'>
             <div className=' bg-transparent w-1/2 h-full flex flex-col justify-start items-center'>
                 <div className='text-2xl text-white font-krona m-10'>Build your Resume</div>
 
