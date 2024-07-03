@@ -6,7 +6,6 @@ function TemplatesPage() {
   return (
     
     <>
-      <Navbar/>
       <div className='h-full w-full flex-col flex justify-between gap-10 items-center bg-[#000726] p-10'>
       <div className='text-white font-krona text-4xl w-1/4'>
         Top Choices

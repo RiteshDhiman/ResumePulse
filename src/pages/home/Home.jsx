@@ -3,20 +3,9 @@ import Navbar from '../../components/navbar/Navbar'
 import Signup from '../../components/SignUp/Signup'
 import Herobanner from '../../components/Herobanner';
 import Review from '../../components/reviews/Review'
+import SignUpCopy from '../../components/SignUp/SignUpCopy';
 
 const Home = () => {
-
-  const [show, setShow] = useState(false);
-  const [login, setLogin] = useState(false)
-
-  const whetherLogin = () => {
-    setLogin(!login);
-  }
-
-  const toggleLogin = () => {
-    setShow(!show);
-  }
-
 
   const reviews = [
     {
@@ -69,8 +58,6 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar loginClick={toggleLogin} whetherLogin={whetherLogin} />
-      {show && <Signup loginClose={toggleLogin} loginOrNot={login} signUp={whetherLogin} />}
       <Herobanner />
       <div className='flex-col justify-center items-center '>
         <Review reviewsArray={reviews} direction={1} />
