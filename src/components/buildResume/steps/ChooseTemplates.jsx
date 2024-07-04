@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
-
+import { easeInOut, motion } from "framer-motion"
 
 function ChooseTemplates() {
   const {data, setData} = useContext(StepBarContext);
@@ -11,10 +11,13 @@ function ChooseTemplates() {
 
 
   return (
-    <div className='text-white h-full'>
+    <motion.div
+    initial={{ x: 200, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.5, ease: "easeInOut" }} className='text-white h-full'>
       HEH templates
       
-    </div>
+    </motion.div>
   )
 }
 

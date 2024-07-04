@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
+import { motion } from 'framer-motion';
+
 
 function Education() {
   const { data, setData } = useContext(StepBarContext);
   const [eduArray, setEduArray] = useState([]);
 
-  useEffect(()=>{
-    
+  useEffect(() => {
+
     console.log(eduArray);
 
   }, [eduArray])
@@ -28,7 +30,7 @@ function Education() {
     let year = data.year;
 
 
-    if (degree==undefined && school_college==undefined && percentage_cgpa==undefined && year==undefined) {
+    if (degree == undefined && school_college == undefined && percentage_cgpa == undefined && year == undefined) {
       alert("Input fields are empty !")
     } else {
       setEduArray([
@@ -40,13 +42,17 @@ function Education() {
         }
       ])
     }
-    
+
 
   }
 
   return (
 
-    <div className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
+    <motion.div
+      initial={{ x: 200, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
       <div className="row w-full gap-20 mb-5 justify-start flex ">
         <div className='left p-6 pb-0 w-3/5 '>
           <div className='heading text-white underline text-2xl '>Education</div>
@@ -130,28 +136,28 @@ function Education() {
       </div>
 
       {
-      eduArray.map((edu, index) => {
-        return (
-          <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-            <div className="my-4 text-white ">
-              {edu.degree}
+        eduArray.map((edu, index) => {
+          return (
+            <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
+              <div className="my-4 text-white ">
+                {edu.degree}
+              </div>
+              <div className="my-4 text-white ">
+                {edu.school_college}
+              </div>
+              <div className="my-4 text-white ">
+                {edu.percentage_cgpa}
+              </div>
+              <div className="my-4 text-white ">
+                {edu.year}
+              </div>
             </div>
-            <div className="my-4 text-white ">
-              {edu.school_college}
-            </div>
-            <div className="my-4 text-white ">
-              {edu.percentage_cgpa}
-            </div>
-            <div className="my-4 text-white ">
-              {edu.year}
-            </div>
-          </div>
-        );
-      })
-    }
+          );
+        })
+      }
 
 
-    </div>
+    </motion.div>
 
   )
 }

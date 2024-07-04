@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
-
+import { easeInOut, motion } from "framer-motion"
 
 function PersonalDetails() {
   const { data, setData } = useContext(StepBarContext);
@@ -11,7 +11,10 @@ function PersonalDetails() {
 
   return (
 
-    <div className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
+    <motion.div
+    initial={{ x: 200, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ duration: 0.5, ease: "easeInOut" }} className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
       <div className="row w-full gap-20 mb-5 justify-start flex ">
         <div className='left p-6 w-3/5 flex flex-col justify-start items-start'>
           <div className='heading text-white underline text-2xl '>Personal Details</div>
@@ -118,7 +121,7 @@ function PersonalDetails() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
 
   )
 }

@@ -48,7 +48,7 @@ function Templates() {
   ]
 
   return (
-    <div className='box flex relative justify-between items-center h-[500px]'>
+    <div className='box flex relative justify-between items-center h-[40vw] w-[40vw]'>
       <div><button className="button button--left" onClick={() => roll('left')}><IoIosArrowDropleft color='white' size={28} /></button></div>
       <div className='absolute left-1/3 top-16'>
         <ul className="carousel">
