@@ -3,8 +3,8 @@ import './App.css'
 import Home from './pages/home/Home'
 import Signup from './components/SignUp/Signup'
 import About from './pages/about/About'
-import BuildResume from './pages/form/BuildResume'
-
+// import BuildResume from './pages/form/BuildResume'
+import Form from './components/buildResume/Form'
 import TemplatesPage from './pages/templates/TemplatesPage'
 import Navbar from './components/navbar/Navbar'
 import { useState } from 'react'
@@ -34,8 +34,8 @@ function App() {
         <Route path='/' element = {<Home/>}/>
         <Route path='signup' element = {<Signup/>}/>
         <Route path='about' element = {<About/>}/>
-
-        <Route path='build' element = {<BuildResume/>}/>
+        {/* <Route path='build' element = {<BuildResume/>}/> */}
+        <Route path='build' element = {<Form/>}/>
         <Route path='templates' element = {<TemplatesPage/>}/>
 
       </Routes>
