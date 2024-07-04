@@ -69,7 +69,7 @@ function StepBar({ steps, currentStep }) {
 
     const displaySteps = newStep.map((step, index) => {
         return (
-            <div key={index} className={index == newStep.length - 1 ? 'w-full flex items-center' : 'flex items-center'} >
+            <div key={index} className='w-full flex items-center' >
                 <div className='relative flex flex-col items-center justify-between text-white'>
                     <div className={`number rounded-full transition duration-500 ease-in-out border-2 border-green-500 h-8 w-8 flex items-center justify-center py-3 ${step.selected ? "bg-green-500 border-green-600" : ""}`}>
                         {step.completed ? (
@@ -78,7 +78,7 @@ function StepBar({ steps, currentStep }) {
                     </div>
                     <div className={`desc absolute top-0 text-center mt-10 w-32 text-xs font-medium uppercase ${step.highlighted ? "text-green-500": ""}`}>{step.description}</div>
                 </div>
-                <div className={ `line flex transition duration-500 ease-in-out ${(step.completed) ? ' h-[3px] mx-5 w-20 rounded-full bg-green-500 ' : 'bg-white'} ${(index != newStep.length - 1) ? ' h-[3px] mx-5 w-20 rounded-full bg-green ' : ''}  `} ></div>
+                <div className={ `line flex transition duration-500 ease-in-out ${(step.completed && index != newStep.length - 1) ? ' h-[5px] mx-2 w-20 rounded-full bg-green-500 ' : 'bg-white'} ${(index != newStep.length - 1) ? ' h-[5px] mx-2 w-20 rounded-full bg-green ' : ''}  `} ></div>
             </div>
 
         )

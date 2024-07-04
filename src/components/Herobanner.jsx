@@ -1,11 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Form from "./buildResume/Form";
 
 function Herobanner() {
   const navigate = useNavigate();
 
   const navigateToCheckScore = () => {
     navigate("/checkscore");
+  };
+
+  const navigateToBuildResume = () => {
+    navigate("/build");
   };
 
   return (
@@ -31,7 +36,7 @@ function Herobanner() {
               >
                 Check your score
               </button>
-              <button className="w-[286px] h-[71px] bg-[#66A947] border-4 border-black rounded-2xl text-white text-2xl font-normal font-poppins flex justify-center items-center transition duration-300 hover:bg-green-600">
+              <button onClick={navigateToBuildResume} className="w-[286px] h-[71px] bg-[#66A947] border-4 border-black rounded-2xl text-white text-2xl font-normal font-poppins flex justify-center items-center transition duration-300 hover:bg-green-600">
                 Build your resume
               </button>
             </div>
