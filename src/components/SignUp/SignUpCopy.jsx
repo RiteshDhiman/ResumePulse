@@ -1,68 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react';
+import 'tailwindcss/tailwind.css';
+// import '@unicons/iconscout/dist/css/line.css';
 
 const SignUpCopy = () => {
+  const [isLogin, setIsLogin] = useState(true);
+
   return (
-    <div>
-      <div class="section">
-		<div class="container">
-			<div class="row full-height justify-content-center">
-				<div class="col-12 text-center align-self-center py-5">
-					<div class="section pb-5 pt-5 pt-sm-2 text-center">
-						<h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
-			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
-			          	<label for="reg-log"></label>
-						<div class="card-3d-wrap mx-auto">
-							<div class="card-3d-wrapper">
-								<div class="card-front">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-4 pb-3">Log In</h4>
-											<div class="form-group">
-												<input type="email" class="form-style" placeholder="Email"/>
-												<i class="input-icon uil uil-at"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password"/>
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Login</a>
-                      <p class="mb-0 mt-4 text-center"><a href="https://www.web-leb.com/code" class="link">Forgot your password?</a></p>
-				      					</div>
-			      					</div>
-			      				</div>
-								<div class="card-back">
-									<div class="center-wrap">
-										<div class="section text-center">
-											<h4 class="mb-3 pb-3">Sign Up</h4>
-											<div class="form-group">
-												<input type="text" class="form-style" placeholder="Full Name"/>
-												<i class="input-icon uil uil-user"></i>
-											</div>	
-											<div class="form-group mt-2">
-												<input type="tel" class="form-style" placeholder="Phone Number"/>
-												<i class="input-icon uil uil-phone"></i>
-											</div>	
-                      <div class="form-group mt-2">
-												<input type="email" class="form-style" placeholder="Email"/>
-												<i class="input-icon uil uil-at"></i>
-											</div>
-											<div class="form-group mt-2">
-												<input type="password" class="form-style" placeholder="Password"/>
-												<i class="input-icon uil uil-lock-alt"></i>
-											</div>
-											<a href="https://www.web-leb.com/code" class="btn mt-4">Register</a>
-				      					</div>
-			      					</div>
-			      				</div>
-			      			</div>
-			      		</div>
-			      	</div>
-		      	</div>
-	      	</div>
-	    </div>
-	</div>
+    <div className="min-h-screen bg-gray-900 text-yellow-200 flex justify-center items-center">
+      <div className="text-center">
+        <div className="mb-6">
+          <h6 className="text-xl font-bold"><span className={`cursor-pointer ${isLogin ? 'border-b-2 border-yellow-200' : ''}`} onClick={() => setIsLogin(true)}>Log In </span><span className={`cursor-pointer ${!isLogin ? 'border-b-2 border-yellow-200' : ''}`} onClick={() => setIsLogin(false)}>Sign Up</span></h6>
+        </div>
+        <div className="relative w-96 h-96">
+          <div className={`absolute w-full h-full transition-transform duration-500 transform ${!isLogin && 'rotate-y-180'}`}>
+            <div className="absolute w-full h-full bg-gray-800 bg-opacity-75 rounded-md backface-hidden p-10">
+              <h4 className="mb-6 text-2xl font-semibold">Log In</h4>
+              <div className="mb-4">
+                <input type="email" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Email" />
+                <i className="uil uil-at absolute left-4 top-10 text-yellow-200"></i>
+              </div>
+              <div className="mb-6">
+                <input type="password" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Password" />
+                <i className="uil uil-lock-alt absolute left-4 top-28 text-yellow-200"></i>
+              </div>
+              <a href="https://www.web-leb.com/code" className="inline-block px-6 py-2 bg-yellow-200 text-gray-900 rounded font-semibold uppercase tracking-wider">Login</a>
+              <p className="mt-4"><a href="https://www.web-leb.com/code" className="text-yellow-200 hover:text-gray-400">Forgot your password?</a></p>
+            </div>
+            <div className="absolute w-full h-full bg-gray-800 bg-opacity-75 rounded-md backface-hidden p-10 transform rotate-y-180">
+              <h4 className="mb-6 text-2xl font-semibold">Sign Up</h4>
+              <div className="mb-4">
+                <input type="text" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Full Name" />
+                <i className="uil uil-user absolute left-4 top-10 text-yellow-200"></i>
+              </div>
+              <div className="mb-4">
+                <input type="tel" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Phone Number" />
+                <i className="uil uil-phone absolute left-4 top-28 text-yellow-200"></i>
+              </div>
+              <div className="mb-4">
+                <input type="email" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Email" />
+                <i className="uil uil-at absolute left-4 top-46 text-yellow-200"></i>
+              </div>
+              <div className="mb-6">
+                <input type="password" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Password" />
+                <i className="uil uil-lock-alt absolute left-4 top-64 text-yellow-200"></i>
+              </div>
+              <a href="https://www.web-leb.com/code" className="inline-block px-6 py-2 bg-yellow-200 text-gray-900 rounded font-semibold uppercase tracking-wider">Register</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default SignUpCopy
+export default SignUpCopy;

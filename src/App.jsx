@@ -8,6 +8,7 @@ import BuildResume from './pages/form/BuildResume'
 import TemplatesPage from './pages/templates/TemplatesPage'
 import Navbar from './components/navbar/Navbar'
 import { useState } from 'react'
+import SignUpCopy from './components/SignUp/SignUpCopy'
 
 
 
@@ -28,6 +29,7 @@ function App() {
     <BrowserRouter>
     <Navbar loginClick={toggleLogin} whetherLogin={whetherLogin} />
     {show && <Signup loginClose={toggleLogin} loginOrNot={login} signUp={whetherLogin} />}
+    {/* <SignUpCopy/> */}
       <Routes>
         <Route path='/' element = {<Home/>}/>
         <Route path='signup' element = {<Signup/>}/>
