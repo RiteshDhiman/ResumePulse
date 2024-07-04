@@ -9,6 +9,8 @@ import TemplatesPage from './pages/templates/TemplatesPage'
 import Navbar from './components/navbar/Navbar'
 import { useState } from 'react'
 import SignUpCopy from './components/SignUp/SignUpCopy'
+import CheckScore from './components/checkscore/Checkscore'
+import Loading from './components/loadingscreen/Loading'
 
 
 
@@ -37,8 +39,10 @@ function App() {
         {/* <Route path='build' element = {<BuildResume/>}/> */}
         <Route path='build' element = {<Form/>}/>
         <Route path='templates' element = {<TemplatesPage/>}/>
+        <Route path='check' element = {<CheckScore/>}/>
 
       </Routes>
+      <Loading/>
     </BrowserRouter>
   )
 }

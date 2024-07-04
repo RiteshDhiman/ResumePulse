@@ -3,13 +3,14 @@ import React from 'react';
 function AboutUs() {
   return (
     <div className="h-screen bg-gray-900 text-white flex">
-      <div className="w-1/2 flex justify-center items-center">
+      <div className="w-2/5 flex justify-center items-center bg-red-200">
         <img src="/images/danalitics.png" alt="Danalitic Logo" className="w-full max-w-lg" />
       </div>
-      <div className="w-1/2 p-10 flex flex-col justify-center">
+      <div className="w-3/5 p-10 flex flex-col justify-center bg-orange-500">
         <div className="mb-10">
           <div className="w-full max-w-lg">
-            <span style={{ color: 'white', fontSize: '50.88px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word' }}>
+            {/* <span style={{ color: 'white', fontSize: '50.88px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word' }}> */}
+            <span className='text-white text-5xl font-krona font-bold text-wrap'>
               About Us<br />
             </span>
             <span style={{ color: 'white', fontSize: '25.44px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word' }}>
