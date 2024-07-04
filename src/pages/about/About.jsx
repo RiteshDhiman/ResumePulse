@@ -1,46 +1,57 @@
-import React from 'react';
+import React from "react";
 
 function AboutUs() {
   return (
-    <div className="h-screen bg-gray-900 text-white flex">
-      <div className="w-2/5 flex justify-center items-center bg-red-200">
-        <img src="/images/danalitics.png" alt="Danalitic Logo" className="w-full max-w-lg" />
-      </div>
-      <div className="w-3/5 p-10 flex flex-col justify-center bg-orange-500">
-        <div className="mb-10">
-          <div className="w-full max-w-lg">
-            {/* <span style={{ color: 'white', fontSize: '50.88px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word' }}> */}
-            <span className='text-white text-5xl font-krona font-bold text-wrap'>
-              About Us<br />
-            </span>
-            <span style={{ color: 'white', fontSize: '25.44px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word' }}>
-              <br />
-            </span>
-            <span style={{ color: 'white', fontSize: '25.44px', fontFamily: 'Krub', fontWeight: '500', wordWrap: 'break-word' }}>
-              Danalitic is a software company that has earned its
-              place as a Google Cloud and AWS partner by delivering
-              innovative solutions in the fields of data analytics,
-              financial data modelling, artificial intelligence, and
-              machine learning.
-            </span>
+    <div className="h-full bg-gray-900 text-white flex flex-col">
+      <div className="w-full flex justify-center items-center py-24">
+        <div className="w-full flex">
+          <div className="w-2/5 h-full flex justify-center items-center">
+            <img
+              src="/images/danalitic.png"
+              alt="Danalitic Logo"
+              className="w-1/2"
+            />
+          </div>
+          <div className="w-3/5 p-10 flex flex-col justify-center">
+            <div className="mb-10 max-w-lg">
+              <h1 className="text-5xl font-krona">
+                About Us
+                <br />
+              </h1>
+              <span className="text-2xl font-krona leading-tight">
+                <br />
+              </span>
+              <p className="text-xl font-krub font-medium leading-relaxed">
+                Danalitic is a software company that has earned its place as a
+                Google Cloud and AWS partner by delivering innovative solutions
+                in the fields of data analytics, financial data modelling,
+                artificial intelligence, and machine learning.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="mb-10">
-          <h2 className="text-3xl font-bold mb-4">Our Team</h2>
-          <div className="flex justify-start gap-8">
-            <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center">
-              <img src="/images/team-member1.png" alt="Team Member 1" className="w-12 h-12 rounded-full" />
-            </div>
-            <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center">
-              <img src="/images/team-member2.png" alt="Team Member 2" className="w-12 h-12 rounded-full" />
-            </div>
-            <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center">
-              <img src="/images/team-member3.png" alt="Team Member 3" className="w-12 h-12 rounded-full" />
-            </div>
-            <div className="w-24 h-24 rounded-full bg-gray-700 flex items-center justify-center">
-              <img src="/images/team-member4.png" alt="Team Member 4" className="w-12 h-12 rounded-full" />
-            </div>
+      </div>
+
+      <div className="w-full  flex flex-col justify-center items-center">
+        <div className="font-krona text-5xl my-10">Our Team</div>
+        <div className="flex justify-center items-center gap-4">
+
+          <div className="w-1/6 border-2 border-[#88DC61] rounded-full">
+            <img src="/images/black_profile.png" alt="" />
           </div>
+          <div className="w-1/6 border-2 border-[#88DC61] rounded-full">
+            <img src="/images/black_profile.png" alt="" />
+          </div>
+          <div className="w-1/6 border-2 border-[#88DC61] rounded-full">
+            <img src="/images/black_profile.png" alt="" />
+          </div>
+          <div className="w-1/6 border-2 border-[#88DC61] rounded-full">
+            <img src="/images/black_profile.png" alt="" />
+          </div>
+          <div className="w-1/6 border-2 border-[#88DC61] rounded-full">
+            <img src="/images/black_profile.png" alt="" />
+          </div>
+          
         </div>
       </div>
     </div>
