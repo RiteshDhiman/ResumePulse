@@ -1,136 +1,113 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 function CheckScore() {
-  const [resumeFile, setResumeFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
-  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
-    setResumeFile(event.target.files[0]);
+    setSelectedFile(event.target.files[0]);
   };
 
-  const handleJobDescriptionChange = (event) => {
+  const handleChange = (event) => {
     setJobDescription(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // TODO: Submit resume and job description to API for scoring
-    console.log('Resume:', resumeFile);
-    console.log('Job Description:', jobDescription);
+  const handleCheckScore = () => {
+    
+    console.log('Checking score for:', selectedFile, jobDescription);
   };
 
-  const handleBuildResumeClick = () => {
-    navigate('/build-resume');
+  const handleUpload = () => {
+ 
+    console.log('Selected file:', selectedFile);
   };
+
+  const wordCount = jobDescription.trim().split(/\s+/).length;
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-900 text-white">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-3xl mx-auto">
-        <div style={{ width: '565px', color: 'white', fontSize: '52.62px', fontFamily: 'Krona One', fontWeight: '400', wordWrap: 'break-word', margin: '0 auto 2rem auto', maxWidth: '100%' }}>
-          Check Resume
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+      <h1 className="w-[35.3125rem] text-white text-center font-bold mt-6 text-3xl mx-auto font-[Krona_One] break-words mt-20">
+        Check Resume
+      </h1>
+
+      <div className="bg-gray-900 rounded-lg p-6 shadow-md w-104 mt-8">
+        <div className="flex items-center mb-4">
+          <img src="/images/upload-icon.png" alt="Upload Icon" className="h-6 w-6 text-green-500 mr-2" />
+          <p className="text-[2.09rem] text-[#66A947] font-[Inter] font-medium break-words">
+            <span>Upload Resume</span>
+          </p>
         </div>
+        <div className="w-[34.3125rem] text-[#A9ACB4] text-[1.784rem] font-[Inter] font-medium break-words">
+          Select and upload the file of your choice
+        </div>
+        <p className="text-gray-400 mb-4">
+          <br></br>
+          _______________________________________________
+        </p>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-6">
-            <label htmlFor="resume-file" className="block text-green-500 text-sm font-bold mb-2">
-              Upload Resume
-            </label>
-            <input
-              type="file"
-              id="resume-file"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              onChange={handleFileChange}
-            />
-            <p className="text-gray-600 text-sm italic mt-1">
-              PDF and DOC formats, up to 50MB
-            </p>
+        <div className="bg-gray-900 rounded-lg p-4 border-dashed border-2 border-gray-500">
+          <div className="flex items-center justify-center">
+            <img src="/images/danalitics.png" alt="Danalitic Logo" className="h-24" />
           </div>
-
-          <div className="mb-6">
-            <label htmlFor="job-description" className="block text-green-500 text-sm font-bold mb-2">
-              Enter Job Description
-            </label>
-            <textarea
-              id="job-description"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              value={jobDescription}
-              onChange={handleJobDescriptionChange}
-            />
-            <p className="text-gray-600 text-sm italic mt-1">
-              0/1000 words
-            </p>
-          </div>
-
-          <div className="text-center mt-4 text-gray-400">
-            <div>First check your score.</div>
-            <div>Don't have a resume? <span className="text-green-500 cursor-pointer" onClick={handleBuildResumeClick}>Build your resume</span></div>
-          </div>
-
-          <div className="flex justify-between mb-4">
-            <button
-              type="submit"
-              className="relative flex-1"
-              style={{
-                height: '80px', // Adjusted height
-                position: 'relative',
-                maxWidth: 'calc(50% - 0.75rem)', // Half width with margin between buttons
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  background: '#66A947',
-                  borderRadius: '20px',
-                  border: '1.49px black solid',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <span style={{ color: 'white', fontSize: '28px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
-                  <b>Check Score</b>
-                </span>
-              </div>
-            </button>
-
-            <button
-              type="button"
-              onClick={handleBuildResumeClick}
-              className="relative flex-1 ml-2"
-              style={{
-                height: '80px', // Adjusted height
-                position: 'relative',
-                maxWidth: 'calc(50% - 0.75rem)', // Half width with margin between buttons
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  position: 'absolute',
-                  background: '#66A947',
-                  borderRadius: '20px',
-                  border: '1.49px black solid',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <span style={{ color: 'white', fontSize: '28px', fontFamily: 'Poppins', fontWeight: '400', wordWrap: 'break-word' }}>
-                  <b>Build your resume</b>
-                </span>
-              </div>
-            </button>
-          </div>
-
+          <p className="text-center text-[#66A947] text-[1.845rem] font-[Inter] font-medium break-words">
+            Choose a file or drag & drop it here
+          </p>
           
-        </form>
+          <p className="text-center text-[#A9ACB4] text-[1.599rem] font-[Inter] font-medium break-words">
+            PDF and DOC formats, up to 50MB
+          </p>
+          <input type="file" className="hidden" id="resumeUpload" onChange={handleFileChange} />
+          <label
+            htmlFor="resumeUpload"
+            className="w-[14.2075rem] mt-6 mb-6 ml-36 h-[4.1825rem] px-[2.029375rem] py-[0.984375rem] bg-white rounded-2xl border-2 border-slate-300 flex justify-center items-center gap-[0.615rem] text-center text-[#54575C] text-[1.845rem] font-[Inter] font-medium break-words cursor-pointer"
+          >
+            Browse File
+          </label>
+        </div>
+        <div className="flex justify-between mt-6">
+          <p className="text-gray-400 mt-4 text-[1.784rem] font-medium font-[Inter]">Don't have a resume?</p>
+        
+          <button
+            className="relative w-[17.904375rem] h-[4.4375rem] bg-[#66A947] text-white font-bold rounded-2xl border border-[#66A947] cursor-pointer"
+            onClick={handleUpload}
+          >
+            <button className="w-[14.52375rem] absolute left-[1.69rem] top-[1rem] text-[1.61375rem] font-[Poppins] font-normal break-words">
+              Build your resume
+            </button>
+          </button>
+        </div>
       </div>
-    </div>
+    
+      <div className="flex items-center">
+        <img src="/images/cloud.png" alt="cloud Logo" className="h-24 mr-4 mt-20" />
+        <h2 className="text-lime-600 text-[2.09125rem] font-medium font-[Inter]">Enter Job Description</h2>
+      </div>
+
+      <div className="bg-gray-900 rounded-lg p-4 border-dashed border-2 border-gray-500 mt-4">
+        <div className="w-[33.75rem] h-80 relative">
+          <div className="flex flex-col items-center justify-center h-full">
+            <textarea
+              className="w-full h-full p-0 bg-gray-800 text-center text-white resize-none outline-none"
+              placeholder="Enter Text"
+              value={jobDescription}
+              onChange={handleChange}
+            />
+            <img src="/images/cloud.png" alt="cloud Logo" className="h-24 mt-2" />
+            <p className="text-gray-400 mt-2">{wordCount} / 1000 words</p>
+          </div>
+        </div>
+      </div>
+      <br></br>
+      <button
+        className="relative w-[26.686875rem] h-[4rem] mt-auto mb-8 bg-lime-600 rounded-[1.86625rem] border border-black text-white text-[2.409375rem] font-normal font-[Poppins] flex items-center justify-center"
+        onClick={handleCheckScore}
+      >
+        Check Score
+      </button>
+
+   </div>
+      
+     
   );
 }
 

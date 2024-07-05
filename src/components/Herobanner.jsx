@@ -5,7 +5,7 @@ function Herobanner() {
   const navigate = useNavigate();
 
   const navigateToCheckScore = () => {
-    navigate("/checkscore");
+    navigate("/check");
   };
 
   return (
