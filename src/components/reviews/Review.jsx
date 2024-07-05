@@ -37,7 +37,7 @@ function Review(props) {
 
 
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     // fade: true,
     speed: 500,
