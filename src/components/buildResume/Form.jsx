@@ -4,6 +4,7 @@ import PersonalDetails from './steps/PersonalDetails'
 import Education from './steps/Education'
 import ProjectsAndCertis from './steps/ProjectsAndCertis'
 import Complete from './steps/Complete'
+import Experience from './steps/Experience'
 import StepBar from './StepBar'
 import {StepBarContext} from './contexts/StepBarContext'
 
@@ -16,8 +17,8 @@ function Form() {
         "Templates",
         "Personal Details",
         "Education",
-        "Experience",
         "Projects and Certifications",
+        "Experience",
         "Complete"
     ];
     
@@ -33,6 +34,8 @@ function Form() {
             case 4:
                 return <ProjectsAndCertis />
             case 5:
+                return <Experience />
+            case 6:
                 return <Complete />
         }
     }
