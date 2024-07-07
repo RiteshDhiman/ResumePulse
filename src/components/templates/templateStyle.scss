@@ -68,17 +68,17 @@
 // }
 
 [data-position='1'] {
-    transform: scale(1.75) translate3d(-30px, 0px, 0px) rotate(-10deg);
+    transform: scale(1.75) translate3d(-70px, 0px, 0px) rotate(-15deg);
     z-index: 2;
 }
 
 [data-position='2'] {
-    transform: scale(2) translate3d(0px, 0px, 0px);
+    transform: scale(2) translate3d(0px, -20px, 0px);
     z-index: 3;
 }
 
 [data-position='3'] {
-    transform: scale(1.75) translate3d(30px, 0px, 0px) rotate(10deg);
+    transform: scale(1.75) translate3d(70px, 0px, 0px) rotate(15deg);
     z-index: 2;
 }
 
