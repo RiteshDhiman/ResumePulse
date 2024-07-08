@@ -30,13 +30,13 @@ function Templates() {
         item.style.zIndex = '';
       }
       item.dataset.position = endPosition;
-      item.addEventListener("transitionend", function () {
+      item.addEventListener("transitioned", function () {
         carousel.classList.remove(`moving-${direction}`);
       }, false);
     }
 
     const activeItem = document.querySelector('[data-position="2"]');
-    console.log(activeItem);
+    // console.log(activeItem);
   }
 
 
@@ -48,9 +48,9 @@ function Templates() {
   ]
 
   return (
-    <div className='box flex relative justify-between items-center h-[40vw] w-[40vw]'>
+    <div className='box flex relative justify-between items-center h-[40vw] w-[45vw]'>
       <div><button className="button button--left" onClick={() => roll('left')}><IoIosArrowDropleft color='white' size={28} /></button></div>
-      <div className='absolute left-1/3 top-16'>
+      <div className='absolute left-[17vw] top-16'>
         <ul className="carousel">
           {templatesArray.map((template, index) => <li key={template} className='item' data-position={`${index + 1}`} ><img src={template} alt={template} /></li>)}
           {/* <li className="item item--1" data-position="1"></li>
