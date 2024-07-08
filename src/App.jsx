@@ -42,7 +42,7 @@ function App() {
         <Route path='check' element = {<CheckScore/>}/>
 
       </Routes>
-      {/* <Loading/> */}
+      <Loading/>
     </BrowserRouter>
   )
 }

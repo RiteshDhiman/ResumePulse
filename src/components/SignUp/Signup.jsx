@@ -8,7 +8,7 @@ import close from '../../../public/images/close.png'
 
 const Signup = ({loginClose, loginOrNot, signUp}) => {
   return (
-    <div className='fixed centering inset-0 bg-black bg-opacity-50'>
+    <div className='fixed centering inset-0 bg-black bg-opacity-50 z-30'>
       <div className='bgImg relative w-1/3 h-[600px] m-auto flex flex-col items-center rounded-[50px]'>
         <span onClick={loginClose} className='absolute right-7 top-5 text-xl font-poppins font-semibold hover:cursor-pointer'><img className='h-[25px]' src={close} alt="" /></span>
 

@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../loadingscreen/loading.scss";
+import fetchQuotes from "./fetchQuotes";
+import { BackgroundGradientAnimation } from "./background-gradient-animation";
 
 const Loading = () => {
+
+  const [randomquote, setQuote] = useState('');
+
+  useEffect(()=>{
+
+    const fetchQuotesInMain = async() =>{
+      const fetching = await fetchQuotes();
+      setQuote(fetching.quote);
+    }
+    fetchQuotesInMain();
+  },[]
+)
+
   return (
-    <div>
-      <div className="intro-block">
+    <div className="w-full h-screen bg-black bg-opacity-30 flex items-center justify-center">
+      <div className="w-2/5 p-10 rounded-xl flex flex-col bg-black">
+      {/* <BackgroundGradientAnimation > */}
         <div className="monitor">
           <svg
             version="1.1"
@@ -19,16 +35,31 @@ const Loading = () => {
           >
             <g>
               <polyline
-                className="ekg"
-                points="486.6,113.8 328.2,113.8 310.3,110.3 296,70.7 246.8,127.4 241.6,120.2 233.9,166.4 227,27.6 
-                  213.2,118.3 211.8,112.3 205.1,126.1 198.2,108.5 194.1,124.4 184.5,92.9 174.1,113 4.3,113"
+                className="ekg stroke-[#59ff00] stroke-2 lincecap"
+                points="406.6,113.8 328.2,113.8 320.3,113.8 295,120.7 290,110.7 285,125.7 280,100.7 270,140.7 260,70.7 246.8,127.4 241.6,120.2 233.9,166.4 227,27.6 
+                  213.2,118.3 211.8,112.3 205.1,126.1 198.2,108.5 194.1,124.4 184.5,92.9 174.1,113 60.3,113"
               />
             </g>
           </svg>
         </div>
+
+        <div className="text-white font-krona text-2xl mx-auto">Loading ....</div>
+        <div className="text-white font-poppins text-md text-center mx-auto">{randomquote}</div>
+
+      {/* </BackgroundGradientAnimation> */}
       </div>
     </div>
   );
+
+  // return (
+  //   <BackgroundGradientAnimation>
+  //     <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
+  //       <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
+  //         Gradients X Animations
+  //       </p>
+  //     </div>
+  //   </BackgroundGradientAnimation>
+  // );
 };
 
 export default Loading;
