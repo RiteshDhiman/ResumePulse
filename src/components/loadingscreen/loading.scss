@@ -3,6 +3,7 @@
     stroke-dashoffset: 1000;
     stroke-dasharray: 1000;
     animation: ekg 3.5s linear forwards infinite;
+    stroke-width: 4;
 }
 
 @keyframes ekg {
@@ -23,5 +24,32 @@
       stroke-dashoffset: 1000;
     }
 }
+
+.monitor img {
+  -webkit-transform: scaleX(-1);
+  scale: 0.5;
+  transform: scaleX(-1);
+  animation: ghuma 1s infinite;
+}
+
+@keyframes ghuma{
+  0%{
+    rotate: 0deg;
+  }
+  25%{
+    rotate: 90deg;
+  }
+  50%{
+    rotate: 180deg;
+  }
+
+  75%{
+    rotate: 270deg;
+  }
+  100%{
+    rotate: 360deg;
+  }
+}
+
   
   
