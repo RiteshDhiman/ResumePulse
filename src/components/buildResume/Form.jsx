@@ -6,22 +6,22 @@ import ProjectsAndCertis from './steps/ProjectsAndCertis'
 import Complete from './steps/Complete'
 import Experience from './steps/Experience'
 import StepBar from './StepBar'
-import {StepBarContext} from './contexts/StepBarContext'
+import { StepBarContext } from './contexts/StepBarContext'
 
 
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
-    const [data,setData] = useState('');
+    const [data, setData] = useState('');
     const [finalData, setFinalData] = useState('')
     const steps = [
         "Templates",
         "Personal Details",
-        "Education",
+        "Academics",
         "Projects and Certifications",
         "Experience",
         "Complete"
     ];
-    
+
 
     const displayStep = (step) => {
         switch (step) {
@@ -40,10 +40,10 @@ function Form() {
         }
     }
 
-    const handleClick = (direction)=>{
+    const handleClick = (direction) => {
         let newStep = currentStep;
 
-        direction == 'next' ? newStep ++ : newStep --;
+        direction == 'next' ? newStep++ : newStep--;
 
         //make sure steps are within bounds
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
@@ -53,7 +53,7 @@ function Form() {
 
         //API
     }
-    
+
 
 
     return (
@@ -61,11 +61,20 @@ function Form() {
             <div className=' bg-transparent w-3/5 h-full flex flex-col justify-start items-center'>
                 <div className='text-2xl text-white font-krona m-10'>Build your Resume</div>
 
+
                 {/* Progress BAR */}
-                <div className='p-14 pt-0 border-b-[1px] border-white mb-10 flex justify-between items-center'>
-                    <StepBar steps={steps} currentStep={currentStep}/>
+                <div className='p-14 pt-0 border-b-[1px] border-white mb-4 flex justify-between items-center'>
+                    <StepBar steps={steps} currentStep={currentStep} />
                 </div>
                 {/**/}
+
+                {/* BUTTONS */}
+                {currentStep != steps.length &&
+                    <div className='w-full mb-2 px-10 flex justify-between items-center'>
+                        <button onClick={() => handleClick('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+                        <button onClick={() => handleClick('next')} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>{currentStep == steps.length - 1 ? 'Submit' : 'Save and Continue'}</button>
+                    </div>
+                }
 
                 {/* FORM */}
                 <div className='p-5 w-full'>
@@ -79,16 +88,6 @@ function Form() {
                     </StepBarContext.Provider>
                 </div>
                 {/*  */}
-
-
-                {/* BUTTONS */}
-                {currentStep != steps.length && 
-                <div className='w-full mb-10 px-10 flex justify-between items-center'>
-                    <button onClick={()=>handleClick('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed':'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-                    <button onClick={()=>handleClick('next')} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>{currentStep == steps.length - 1 ? 'Submit':'Save and Continue'}</button>
-                
-                </div>
-                }
 
 
                 {/* Check if data is available in this component */}
