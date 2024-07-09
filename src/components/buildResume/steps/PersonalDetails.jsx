@@ -15,7 +15,7 @@ function PersonalDetails() {
     initial={{ x: 200, opacity: 0 }}
     animate={{ x: 0, opacity: 1 }}
     transition={{ duration: 0.5, ease: "easeInOut" }} className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
-      <div className="row w-full gap-20 mb-5 justify-start flex ">
+      <div className="row w-full gap-[8rem] mb-5 justify-start flex ">
         <div className='left p-6 w-3/5 flex flex-col justify-start items-start'>
           <div className='heading text-white underline text-2xl '>Personal Details</div>
           <div className="name w-full relative mt-12 ">
@@ -32,7 +32,7 @@ function PersonalDetails() {
             </label>
           </div>
         </div>
-        <div className='right w-1/5 pl-20 rounded-full bg-green-400'>image</div>
+        <div className='right w-1/6 rounded-full bg-green-400 flex justify-center items-center'>image</div>
       </div>
 
       

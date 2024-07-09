@@ -43,9 +43,13 @@ function Education() {
       ])
     }
 
+    // const { name, value } = e.target;
+    const name = 'Dhamaaka';
+    const value = eduArray;
+    setData({ ...data, [name]: value });
 
   }
-
+// eduArray = [edu1:{name:name,year:yr}, edu2:{name:name,year:yr}]
   return (
 
     <motion.div
@@ -156,8 +160,8 @@ function Education() {
         })
       }
 
-
     </motion.div>
+
 
   )
 }
