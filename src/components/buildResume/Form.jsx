@@ -16,7 +16,7 @@ function Form() {
     const steps = [
         "Templates",
         "Personal Details",
-        "Education",
+        "Academics",
         "Projects and Certifications",
         "Experience",
         "Complete"
