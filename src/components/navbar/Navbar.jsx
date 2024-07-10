@@ -21,7 +21,11 @@ const Navbar = ({loginClick, whetherLogin}) => {
         <div className="h-full mx-auto w-11/12 flex justify-between md:justify-center items-center ">
 
           <div className="w-1/3 md:w-2/12 h-full text-white flex justify-center items-center">
-            <img className="h-full" src="/images/google.png" alt="" />गूगल भारत ❤️
+            <img className="h-full" src="/images/google.png" alt="" />
+            <div className="flex flex-col font-poppins">
+            <div>Resume</div>
+            <div>Pulse</div>
+            </div>
           </div>
 
           <div className="w-10/12 h-full text-white font-semibold hidden md:flex justify-around items-center font-poppins md:text-xl">
@@ -40,8 +44,8 @@ const Navbar = ({loginClick, whetherLogin}) => {
 
       </div>
       {menu && 
-      <div className="h-[150px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute">
-        <div className="w-1/3 mx-auto py-5 text-center flex flex-col gap-3">
+      <div className="h-[60px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute">
+        <div className="w-full justify-around py-5 text-center flex gap-3">
           <a href="/"><div className="font-krona text-white">Home</div></a>
           <a href="about"><div className="font-krona text-white">About</div></a>
           <a href="templates"><div className="font-krona text-white">Templates</div></a>
