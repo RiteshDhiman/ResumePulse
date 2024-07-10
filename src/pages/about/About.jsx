@@ -42,7 +42,7 @@ const AboutUs = () => {
   ];
 
   return (
-    <div className="h-full bg-gray-900 text-white flex flex-col items-center">
+    <div className="h-screen bg-gray-900 text-white flex flex-col items-center">
       <div className="w-full flex justify-center items-center py-24 ml-32">
         <div className="w-3/5 flex">
           <div className="w-2/5 h-full flex justify-center items-center ">

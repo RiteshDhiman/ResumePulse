@@ -26,30 +26,30 @@
 }
 
 .monitor img {
-  -webkit-transform: scaleX(-1);
+  // -webkit-transform: scaleX(-1);
   scale: 0.5;
-  transform: scaleX(-1);
-  animation: ghuma 1s infinite;
+  // transform: scaleX(-1);
+  // animation: ghuma 1s linear infinite;
 }
 
-@keyframes ghuma{
-  0%{
-    rotate: 0deg;
-  }
-  25%{
-    rotate: 90deg;
-  }
-  50%{
-    rotate: 180deg;
-  }
+// @keyframes ghuma{
+//   0%{
+//     rotate: 0deg;
+//   }
+//   25%{
+//     rotate: 90deg;
+//   }
+//   50%{
+//     rotate: 180deg;
+//   }
 
-  75%{
-    rotate: 270deg;
-  }
-  100%{
-    rotate: 360deg;
-  }
-}
+//   75%{
+//     rotate: 270deg;
+//   }
+//   100%{
+//     rotate: 360deg;
+//   }
+// }
 
   
   

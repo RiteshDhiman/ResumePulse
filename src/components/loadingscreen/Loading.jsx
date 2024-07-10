@@ -18,11 +18,11 @@ const Loading = () => {
 )
 
   return (
-    <div className="w-full h-screen bg-black bg-opacity-30 flex items-center justify-center">
+    <div className="w-full h-screen bg-opacity-30 flex items-center justify-center">
       <div className="w-4/5 md:w-2/5 p-4 md:p-10 rounded-xl flex flex-col bg-black h-[40vh]">
       {/* <BackgroundGradientAnimation > */}
           <div className="monitor relative w-full h-full flex justify-center items-center">
-            <img src="/images/google.png" alt="" className="absolute mx-auto scale-50 grayscale"/>
+            <img src="/images/document.png" alt="" className="absolute mx-auto scale-50 grayscale"/>
             <svg
               version="1.1"
               id="Layer_1"
@@ -46,7 +46,7 @@ const Loading = () => {
           </div>
 
         <div className="text-white font-krona text-sm md:text-2xl mx-auto">Loading ....</div>
-        <div className="text-white font-poppins text-xs md:text-lg text-center mx-auto">{randomquote}</div>
+        {/* <div className="text-white font-poppins text-xs md:text-lg text-center mx-auto">{randomquote}</div> */}
 
       {/* </BackgroundGradientAnimation> */}
       </div>
