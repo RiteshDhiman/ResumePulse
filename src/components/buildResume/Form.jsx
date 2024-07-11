@@ -67,6 +67,7 @@ function Form() {
                     <StepBar steps={steps} currentStep={currentStep} />
                 </div>
                 {/**/}
+                
 
                 {/* BUTTONS */}
                 {currentStep != steps.length &&

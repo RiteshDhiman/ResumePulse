@@ -29,8 +29,8 @@ function Herobanner() {
       image: '/images/reviews/r1.png'
     },
     {
-      title: "Dream job at Microsoft !",
-      desc: "I used ResumePulse to get suggestions on my resume and it helped me land my dream job at Google! With its expert guidance",
+      title: "Hired at Microsoft !",
+      desc: "The builder helped me craft a professional and eye-catching resume that actually showcased my skills and experience",
       name: "Ritesh Dhiman",
       stars: '/images/reviews/stars.png',
       image: '/images/reviews/r4.png'
@@ -71,8 +71,8 @@ function Herobanner() {
       image: '/images/reviews/r1.png'
     },
     {
-      title: "Dream job at Microsoft !",
-      desc: "I used ResumePulse to get suggestions on my resume and it helped me land my dream job at Google! With its expert guidance",
+      title: "Hired at Microsoft !",
+      desc: "The builder helped me craft a professional and eye-catching resume that actually showcased my skills and experience",
       name: "Ritesh Dhiman",
       stars: '/images/reviews/stars.png',
       image: '/images/reviews/r4.png'

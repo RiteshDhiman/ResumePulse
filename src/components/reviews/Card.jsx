@@ -9,10 +9,10 @@ function Card(props) {
 
 
   return (
-    <div className='bg-[#66A947] font-manrope w-full h-60 rounded-xl flex justify-between items-center overflow-hidden'>
+    <div className='bg-[#66A947] font-manrope w-full h-56 rounded-xl flex justify-between items-center overflow-hidden'>
                 <div className='profile-icon relative w-1/3 h-full'>
-                    <div className=' left-0 bottom-0 absolute w-full'><img src={Frame} /></div>
-                    <div className=' left-3 bottom-4 absolute w-48'><img src={profile_icon} /></div>
+                    <div className=' left-0 bottom-0 absolute h-full'><img src={Frame} /></div>
+                    <div className=' left-3 bottom-3 absolute w-48'><img src={profile_icon} /></div>
                 </div>
 
                 <div className="text text-white p-10 w-2/3 h-full flex-col justify-between items-center">
