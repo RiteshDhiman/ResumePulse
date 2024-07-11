@@ -37,7 +37,7 @@ const Navbar = ({loginClick, whetherLogin}) => {
 
           {/* Hidden Hamburger Menu */}
           <div className="flex md:hidden h-full items-center justify-end gap-6">
-            <div className="centering rounded-full bg-[#66A947] w-[150px] h-2/5 text-lg font-medium hover:cursor-pointer" onClick={handleClick}>Log in/Signup</div>
+            <div className="centering rounded-full bg-[#66A947] w-[150px] h-3/5 text-lg font-medium hover:cursor-pointer text-white" onClick={handleClick}>Log in/Signup</div>
             <RiMenuLine className="text-white text-2xl" onClick={handleMenu}/>
           </div>
         </div>

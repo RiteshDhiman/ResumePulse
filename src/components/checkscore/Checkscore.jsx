@@ -18,11 +18,11 @@ function CheckScore() {
     // console.log('Selected file:', value);
   };
 
-  const wordCount = jobDescription.trim().split(/\s+/).length;
+  // const wordCount = jobDescription.trim().split(/\s+/).length;
 
   return (
-    <div className='h-full w-full flex-col flex justify-between gap-5 items-center bg-gradient-to-b from-[#000931] to-[#00020C] p-8'>
-      <div className='text-white mt-5 font-krona text-center md:text-3xl md:w-1/2 text-xl w-full mb-3'>
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+      <h1 className="w-[35.3125rem] text-white text-center font-bold mt-6 text-3xl mx-auto font-Krona One break-words mt-20">
         Check Resume
       </div>
 

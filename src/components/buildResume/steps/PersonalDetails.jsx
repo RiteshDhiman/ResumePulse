@@ -42,7 +42,7 @@ function PersonalDetails() {
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }} className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
-      <form onSubmit={vallidateForm} className="row w-full mb-5 gap-10 justify-between items-center flex ">
+      <form onSubmit={validateForm} className="row w-full mb-5 gap-10 justify-between items-center flex ">
         <div className='left p-6 w-4/5 flex flex-col justify-start items-start'>
           <div className='heading text-white underline text-2xl '>Personal Details</div>
           <div className="name w-full relative mt-12 ">
