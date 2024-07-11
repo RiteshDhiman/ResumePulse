@@ -21,7 +21,7 @@ const Navbar = ({loginClick, whetherLogin}) => {
         <div className="h-full mx-auto w-11/12 flex justify-between md:justify-center items-center ">
 
           <div className="w-1/3 md:w-2/12 h-full text-white flex justify-center items-center">
-            <img className="h-full" src="/images/google.png" alt="" />
+            <a className = 'h-full' href="/"><img className="h-full" src="/images/google.png" alt="" /></a>
             <div className="flex flex-col font-poppins">
             <div>Resume</div>
             <div>Pulse</div>
@@ -37,7 +37,7 @@ const Navbar = ({loginClick, whetherLogin}) => {
 
           {/* Hidden Hamburger Menu */}
           <div className="flex md:hidden h-full items-center justify-end gap-6">
-            <div className="centering rounded-full bg-[#66A947] w-[150px] h-3/5 text-lg font-medium hover:cursor-pointer" onClick={handleClick}>Log in/Signup</div>
+            <div className="centering rounded-full bg-[#66A947] w-[150px] h-2/5 text-lg font-medium hover:cursor-pointer" onClick={handleClick}>Log in/Signup</div>
             <RiMenuLine className="text-white text-2xl" onClick={handleMenu}/>
           </div>
         </div>

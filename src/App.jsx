@@ -11,6 +11,7 @@ import { useState } from 'react'
 import SignUpCopy from './components/SignUp/SignUpCopy'
 import CheckScore from './components/checkscore/Checkscore'
 import Loading from './components/loadingscreen/Loading'
+import { SparklesPreview } from './components/SignUp/SparklesPreview'
 
 
 
@@ -31,6 +32,7 @@ function App() {
     <BrowserRouter>
     <Navbar loginClick={toggleLogin} whetherLogin={whetherLogin} />
     {show && <Signup loginClose={toggleLogin} loginOrNot={login} signUp={whetherLogin} />}
+    {/* {show && <SignUpCopy/>} */}
     {/* <SignUpCopy/> */}
       <Routes>
         <Route path='/' element = {<Home/>}/>
@@ -43,8 +45,11 @@ function App() {
 
       </Routes>
       {/* <Loading/> */}
+
+      {/* <SparklesPreview/> */}
     </BrowserRouter>
   )
 }
 
 export default App
+

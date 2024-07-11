@@ -1,56 +1,64 @@
-import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
-// import '@unicons/iconscout/dist/css/line.css';
+import React from 'react'
+import '../SignUp/signup.scss'
+import profile from '../../../public/images/dummy_profile.png'
+import fb from '../../../public/images/fb.png'
+import apple from '../../../public/images/apple.png'
+import google from '../../../public/images/google.png'
+import close from '../../../public/images/close.png'
+import { SparklesPreview } from './SparklesPreview'
 
-const SignUpCopy = () => {
-  const [isLogin, setIsLogin] = useState(true);
-
+const Signup = ({loginClose, loginOrNot, signUp}) => {
   return (
-    <div className="min-h-screen bg-gray-900 text-yellow-200 flex justify-center items-center">
-      <div className="text-center">
-        <div className="mb-6">
-          <h6 className="text-xl font-bold"><span className={`cursor-pointer ${isLogin ? 'border-b-2 border-yellow-200' : ''}`} onClick={() => setIsLogin(true)}>Log In </span><span className={`cursor-pointer ${!isLogin ? 'border-b-2 border-yellow-200' : ''}`} onClick={() => setIsLogin(false)}>Sign Up</span></h6>
+    <div className='fixed centering inset-0 bg-black bg-opacity-50 z-30'>
+      <div className='bgImg absolute w-1/3 h-[600px] m-auto flex flex-col items-center rounded-[50px]'>
+        <span onClick={loginClose} className='absolute right-7 top-5 text-xl font-poppins font-semibold hover:cursor-pointer'><img className='h-[25px]' src={close} alt="" /></span>
+
+        <div className='centering w-1/2 h-1/3 flex-col'>
+          <img className = 'h-1/2 text-xl text-white' src={profile} alt="" />
+          <div className='font-krona text-xl text-white'>{loginOrNot? 'SIGN UP' : 'LOGIN'}</div>
         </div>
-        <div className="relative w-96 h-96">
-          <div className={`absolute w-full h-full transition-transform duration-500 transform ${!isLogin && 'rotate-y-180'}`}>
-            <div className="absolute w-full h-full bg-gray-800 bg-opacity-75 rounded-md backface-hidden p-10">
-              <h4 className="mb-6 text-2xl font-semibold">Log In</h4>
-              <div className="mb-4">
-                <input type="email" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Email" />
-                <i className="uil uil-at absolute left-4 top-10 text-yellow-200"></i>
-              </div>
-              <div className="mb-6">
-                <input type="password" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Password" />
-                <i className="uil uil-lock-alt absolute left-4 top-28 text-yellow-200"></i>
-              </div>
-              <a href="https://www.web-leb.com/code" className="inline-block px-6 py-2 bg-yellow-200 text-gray-900 rounded font-semibold uppercase tracking-wider">Login</a>
-              <p className="mt-4"><a href="https://www.web-leb.com/code" className="text-yellow-200 hover:text-gray-400">Forgot your password?</a></p>
-            </div>
-            <div className="absolute w-full h-full bg-gray-800 bg-opacity-75 rounded-md backface-hidden p-10 transform rotate-y-180">
-              <h4 className="mb-6 text-2xl font-semibold">Sign Up</h4>
-              <div className="mb-4">
-                <input type="text" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Full Name" />
-                <i className="uil uil-user absolute left-4 top-10 text-yellow-200"></i>
-              </div>
-              <div className="mb-4">
-                <input type="tel" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Phone Number" />
-                <i className="uil uil-phone absolute left-4 top-28 text-yellow-200"></i>
-              </div>
-              <div className="mb-4">
-                <input type="email" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Email" />
-                <i className="uil uil-at absolute left-4 top-46 text-yellow-200"></i>
-              </div>
-              <div className="mb-6">
-                <input type="password" className="form-input mt-1 block w-full px-10 py-3 rounded bg-gray-800 text-yellow-200" placeholder="Password" />
-                <i className="uil uil-lock-alt absolute left-4 top-64 text-yellow-200"></i>
-              </div>
-              <a href="https://www.web-leb.com/code" className="inline-block px-6 py-2 bg-yellow-200 text-gray-900 rounded font-semibold uppercase tracking-wider">Register</a>
-            </div>
+
+        {loginOrNot 
+        ? 
+
+        <div className='w-9/12 centering mb-4'>
+          <form action="" className='w-full gap-4 flex flex-col'>
+            <input className="w-full py-1 bg-transparent border-b-[1.5px] border-white text-white placeholder-white placeholder:font-krona focus:outline-none" type="text" placeholder='Name'/>
+            <input className="w-full py-1 bg-transparent border-b-[1.5px] border-white text-white placeholder-white placeholder:font-krona focus:outline-none" type="email" placeholder='Email'/>
+            <input className="w-full py-1 bg-transparent border-b-[1.5px] border-white text-white placeholder-white placeholder:font-krona focus:outline-none" type="password" placeholder='Password'/>
+          </form>
+        </div> 
+        
+        : 
+
+        <div className='w-9/12 centering'>
+          <form action="" className='w-full gap-4 flex flex-col'>
+            <input className="w-full py-1 bg-transparent border-b-[1.5px] border-white text-white placeholder-white placeholder:font-krona focus:outline-none" type="email" placeholder='Email'/>
+            <input className="w-full py-1 bg-transparent border-b-[1.5px] border-white text-white placeholder-white placeholder:font-krona focus:outline-none" type="password" placeholder='Password'/>
+            <input type="checkbox" id='check' className=''/>
+          </form>
+        </div> 
+        }
+
+        <div className='w-3/4 rounded-2xl bg-[#66A947] h-[12%] centering text-white font-krona my-3'>
+          {loginOrNot? 'Sign Up' : 'Login'}
+        </div>
+
+        <div className='my-3 text-white font-krona'>----------- OR -----------</div>
+
+        <div className='centering w-11/12 h-[10%] m-3'>
+          <div className='centering w-1/2 h-full justify-between'>
+            <img className='h-3/4' src={google} alt="" />
+            <img className='h-3/4' src={apple} alt="" />
+            <img className='h-3/4' src={fb} alt="" />
           </div>
         </div>
+
+        <div className='w-3/4 centering text-white font-krona text-xs'>Already have an account ? <span className='text-[#88DC61] cursor-pointer'onClick={signUp}> Signin</span></div>
+        
       </div>
     </div>
-  );
+  )
 }
 
-export default SignUpCopy;
+export default Signup
