@@ -1,34 +1,24 @@
-// .button {
-//     position: absolute;
+.cButton {
+    font-size: 4vw;
 
-//     &--left {
-//         left: 54%;
-//         top: 40%;
-//         transform: translateX(-200px);
-//     }
-
-//     &--right {
-//         right: 54%;
-//         top: 40%;
-//         transform: translateX(300px);
-//     }
-// }
+}
 
 .carousel {
-    // display: flex;
-    // height: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
     padding: 0;
     margin: 0;
     transform: translate3d(-80%, -40%, 0);
 }
 
 .item {
-    width: 160px;
-    height: 30px;
+    width: 11vw;
+    height: 2vw;
     background: #dadada;
-    float: left;
+    // float: left;
     list-style: none;
-    margin-right: 20px;
+    // margin-right: 20px;
     position: absolute;
     top: 0;
     left: 0;
@@ -37,26 +27,6 @@
     transition: all .5s ease;
 }
 
-// .item--1 {
-//     background-color: pink;
-// }
-
-// .item--2 {
-//     background-color: purple;
-// }
-
-// .item--3 {
-//     // background-color: orange;
-//     z-index: 3;
-// }
-
-// .item--4 {
-//     background-color: yellow;
-// }
-
-// .item--5 {
-//     background-color: green;
-// }
 
 .item:last-child {
     margin-right: 0;
@@ -68,17 +38,17 @@
 // }
 
 [data-position='1'] {
-    transform: scale(1.75) translate3d(-70px, 0px, 0px) rotate(-15deg);
+    transform: scale(1.75) translate3d(-5vw, 0px, 0px) rotate(-15deg);
     z-index: 2;
 }
 
 [data-position='2'] {
-    transform: scale(2) translate3d(0px, -20px, 0px);
+    transform: scale(2) translate3d(0px, -1.5vw, 0px);
     z-index: 3;
 }
 
 [data-position='3'] {
-    transform: scale(1.75) translate3d(70px, 0px, 0px) rotate(15deg);
+    transform: scale(1.75) translate3d(5vw, 0px, 0px) rotate(15deg);
     z-index: 2;
 }
 

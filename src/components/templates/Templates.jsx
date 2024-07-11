@@ -48,9 +48,9 @@ function Templates() {
   ]
 
   return (
-    <div className='box flex relative justify-between items-center h-[40vw] w-[45vw]'>
-      <div><button className="button button--left" onClick={() => roll('left')}><IoIosArrowDropleft color='white' size={28} /></button></div>
-      <div className='absolute left-[17vw] top-16'>
+    <div className='box flex relative justify-between items-center h-[35vw] w-[46vw] md:h-[35vw] md:w-[50vw]'>
+      <div><button onClick={() => roll('left')}><IoIosArrowDropleft className="cButton" color='white' /></button></div>
+      <div className='absolute left-[18vw] top-6 sm:top-14 lg:top-20 md:left-[20vw]'>
         <ul className="carousel">
           {templatesArray.map((template, index) => <li key={template} className='item' data-position={`${index + 1}`} ><img src={template} alt={template} /></li>)}
           {/* <li className="item item--1" data-position="1"></li>
@@ -62,7 +62,7 @@ function Templates() {
 
       </div>
 
-      <div><button className="button button--right" onClick={() => roll('right')}><IoIosArrowDropright color='white' size={28} /></button></div>
+      <div><button onClick={() => roll('right')}><IoIosArrowDropright className="cButton" color='white' /></button></div>
 
 
     </div>
