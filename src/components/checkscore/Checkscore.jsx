@@ -27,7 +27,7 @@ function CheckScore() {
 
   return (
     <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center">
-      <h1 className="w-[35.3125rem] text-white text-center font-bold mt-6 text-3xl mx-auto font-Krona One break-words mt-20">
+      <h1 className="w-[35.3125rem] text-white text-center font-bold mt-6 text-3xl mx-auto font-Krona One break-words">
         Check Resume
       </h1>
 

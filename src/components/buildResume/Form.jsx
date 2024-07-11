@@ -7,6 +7,7 @@ import Complete from './steps/Complete'
 import Experience from './steps/Experience'
 import StepBar from './StepBar'
 import { StepBarContext } from './contexts/StepBarContext'
+import '../../components/herobanner/star.scss';
 
 
 function Form() {
@@ -58,6 +59,9 @@ function Form() {
 
     return (
         <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] w-full h-full flex justify-center items-center'>
+
+ww
+
             <div className=' bg-transparent w-3/5 h-full flex flex-col justify-start items-center'>
                 <div className='text-2xl text-white font-krona m-10'>Build your Resume</div>
 
