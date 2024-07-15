@@ -9,29 +9,30 @@ function ChooseTemplates() {
     setData({ ...data, [field]: value });
   };
 
+  const templates = [
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+    "/images/templates/template1.png",
+  ]
+
 
   return (
     <motion.div
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }} className='text-white h-full w-full flex justify-between items-center'>
-      <div className="template-grid w-full flex flex-col justify-evenly gap-10 items-center">
-        <div className='row flex justify-between gap-10 items-center'>
-          <div className='w-1/2 cursor-pointer hover:border-2 border-green-500'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
+      transition={{ duration: 0.5, ease: "easeInOut" }} className='text-white h-full w-full'>
+      <div class="grid grid-cols-1 px-[4vw] md:p-0 gap-6 md:gap-6 md:grid-cols-2 lg:grid-cols-3 w-full ">
+          {templates.map((template, index)=><div key={index}><img src={template} alt="template" /></div>)}  
         </div>
-        <div className='row flex justify-between gap-10 items-center'>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-        </div>
-        <div className='row flex justify-between gap-10 items-center'>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-          <div className='w-1/2'><img src="/images/templates/template1.png" alt=""/></div>
-        </div>
-      </div>
 
     </motion.div>
   )
