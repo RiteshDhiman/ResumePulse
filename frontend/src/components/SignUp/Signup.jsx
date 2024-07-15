@@ -1,20 +1,14 @@
 import React from 'react'
 import '../SignUp/signup.scss'
-import profile from '../../../public/images/dummy_profile.png'
-import fb from '../../../public/images/fb.png'
-import apple from '../../../public/images/apple.png'
-import google from '../../../public/images/google.png'
-import close from '../../../public/images/close.png'
-import { SparklesPreview } from './SparklesPreview'
 
 const Signup = ({loginClose, loginOrNot, signUp}) => {
   return (
     <div className='fixed centering inset-0 bg-black bg-opacity-50 z-30'>
-      <div className='bgImg absolute w-1/3 h-[600px] m-auto flex flex-col items-center rounded-[50px]'>
-        <span onClick={loginClose} className='absolute right-7 top-5 text-xl font-poppins font-semibold hover:cursor-pointer'><img className='h-[25px]' src={close} alt="" /></span>
+      <div className='bgImg relative w-1/3 h-[600px] m-auto flex flex-col items-center rounded-[50px]'>
+        <span onClick={loginClose} className='absolute right-7 top-5 text-xl font-poppins font-semibold hover:cursor-pointer'><img className='h-[25px]' src='/images/signup/close.png' alt="" /></span>
 
         <div className='centering w-1/2 h-1/3 flex-col'>
-          <img className = 'h-1/2 text-xl text-white' src={profile} alt="" />
+          <img className = 'h-1/2 text-xl text-white' src='/images/signup/dummy_profile.png' alt="" />
           <div className='font-krona text-xl text-white'>{loginOrNot? 'SIGN UP' : 'LOGIN'}</div>
         </div>
 
@@ -48,9 +42,9 @@ const Signup = ({loginClose, loginOrNot, signUp}) => {
 
         <div className='centering w-11/12 h-[10%] m-3'>
           <div className='centering w-1/2 h-full justify-between'>
-            <img className='h-3/4' src={google} alt="" />
-            <img className='h-3/4' src={apple} alt="" />
-            <img className='h-3/4' src={fb} alt="" />
+            <img className='h-3/4' src='/images/signup/google.png' alt="" />
+            <img className='h-3/4' src='/images/signup/github-logo.png' alt="" />
+            <img className='h-3/4' src='/images/signup/fb.png' alt="" />
           </div>
         </div>
 
