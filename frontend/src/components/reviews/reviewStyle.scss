@@ -22,15 +22,19 @@
 // }
 
 .slide-track{
-    animation: scroll 40s linear infinite;
+    animation: scroll 120s linear infinite;
 }
 
 @keyframes scroll {
     0%{
         transform: translateX(0);
     }
+    50%{
+        transform: translateX(calc(-260px*18));
+
+    }
     100%{
-        transform: translateX(calc(-250px*9));
+        transform: translateX(0);
     }
     
 }
