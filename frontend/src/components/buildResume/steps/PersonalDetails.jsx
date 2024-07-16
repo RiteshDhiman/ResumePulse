@@ -1,40 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
 import { easeInOut, motion } from "framer-motion"
 
 function PersonalDetails() {
-  const { data, setData } = useContext(StepBarContext);
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+
+  const faaltu = {
+    name:'sdfasd',
+    age:21
+  }
+
+  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
+  const [personalData, setPersonalData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    github: '',
+    linkedin: '',
+    portfolio: '',
+    address: ''
+  })
+
+  const handlePersonalData = (e) => {
+    setPersonalData({...personalData, [e.target.name]:e.target.value})
+  }
+
+  const handleChange = async() => {
+    await setData([ ...data, personalData]);
+    console.log(data)
+    handleStep('next');
   };
 
-
-  const validateForm = (e)=>{
-    // if (firstName.length == 0) {
-    //   alert('Invalid Form, First Name can not be empty')
-    //   return
-    // }
-
-    // // Check if the Email is an Empty string or not.
-
-    // if (email.length == 0) {
-    //   alert('Invalid Form, Email Address can not be empty')
-    //   return
-    // }
-
-    // // check if the password follows constraints or not.
-
-    // // if password length is less than 8 characters, alert invalid form.
-
-    // if (password.length < 8) {
-    //   alert(
-    //     'Invalid Form, Password must contain greater than or equal to 8 characters.',
-    //   )
-    //   return
-    // }
-
-  };
 
   return (
 
@@ -42,13 +37,13 @@ function PersonalDetails() {
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }} className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
-      <form onSubmit={validateForm} className="row w-full mb-5 gap-10 justify-between items-center flex ">
+      <form className="row w-full mb-5 gap-10 justify-between items-center flex ">
         <div className='left p-6 w-4/5 flex flex-col justify-start items-start'>
           <div className='heading text-white underline text-2xl '>Personal Details</div>
           <div className="name w-full relative mt-12 ">
             <input placeholder="Enter name"
-              onChange={handleChange}
-              value={data['name'] || ''}
+              onChange={handlePersonalData}
+              value={personalData.name || ''}
               name='name'
               type="text"
               className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Person.png')] w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 pr-10 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -66,8 +61,8 @@ function PersonalDetails() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="email w-2/5 relative my-4">
           <input placeholder="Enter email"
-            onChange={handleChange}
-            value={data['email'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.email || ''}
             name='email'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/personalDetails/Mail.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -78,8 +73,8 @@ function PersonalDetails() {
         </div>
         <div className="phone w-2/5 relative my-4 ">
           <input placeholder="Enter phone number"
-            onChange={handleChange}
-            value={data['phone'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.phone || ''}
             name='phone'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Phone.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -94,8 +89,8 @@ function PersonalDetails() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="github w-2/5 relative my-4 ">
           <input placeholder="Enter your Github profile link"
-            onChange={handleChange}
-            value={data['github'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.github || ''}
             name='github'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/GitHub.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -107,8 +102,8 @@ function PersonalDetails() {
 
         <div className="linkedin w-2/5 relative my-4 ">
           <input placeholder="Enter your Linkedin profile link"
-            onChange={handleChange}
-            value={data['linkedin'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.linkedin || ''}
             name='linkedin'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/LinkedIn.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -123,8 +118,8 @@ function PersonalDetails() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="portfolio w-2/5 relative my-4 ">
           <input placeholder="Enter your Portfolio link"
-            onChange={handleChange}
-            value={data['portfolio'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.portfolio || ''}
             name='portfolio'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/personalDetails/Portfolio.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -136,8 +131,8 @@ function PersonalDetails() {
 
         <div className="address w-2/5 relative my-4 ">
           <input placeholder="Enter your address"
-            onChange={handleChange}
-            value={data['address'] || ''}
+            onChange={handlePersonalData}
+            value={personalData.address || ''}
             name='address'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Location.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -148,6 +143,11 @@ function PersonalDetails() {
         </div>
 
       </div>
+
+        <div className='w-full mb-2 px-10 flex justify-between items-center'>
+          <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+          <button onClick={handleChange} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
+        </div>
     </motion.div>
 
   )

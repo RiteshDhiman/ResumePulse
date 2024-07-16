@@ -4,15 +4,9 @@ import { motion } from 'framer-motion';
 
 
 function Education() {
-  const { data, setData } = useContext(StepBarContext);
+  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
   const [eduArray, setEduArray] = useState([]);
   const [skillArray, setSkillArray] = useState([]);
-
-  useEffect(() => {
-
-    console.log(eduArray);
-
-  }, [eduArray])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -163,6 +157,10 @@ function Education() {
       }
 
     </motion.div>
+    <div className='w-full mb-2 px-10 flex justify-between items-center'>
+          <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+          <button onClick={handleChange} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
+        </div>
     <motion.div
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}

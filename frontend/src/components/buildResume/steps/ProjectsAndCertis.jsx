@@ -6,12 +6,6 @@ function ProjectsAndCertis() {
   const { data, setData } = useContext(StepBarContext);
   const [projectArray, setProjectArray] = useState([]);
 
-  useEffect(() => {
-
-    console.log(projectArray);
-
-  }, [projectArray])
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });

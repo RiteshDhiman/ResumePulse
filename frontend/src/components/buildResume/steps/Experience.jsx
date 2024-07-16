@@ -6,12 +6,6 @@ function Experience() {
     const { data, setData } = useContext(StepBarContext);
     const [expArray, setExpArray] = useState([]);
 
-    useEffect(() => {
-
-        console.log(expArray);
-
-    }, [expArray])
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setData({ ...data, [name]: value });

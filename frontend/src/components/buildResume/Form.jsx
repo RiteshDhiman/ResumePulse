@@ -12,8 +12,7 @@ import '../../components/herobanner/star.scss';
 
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
-    const [data, setData] = useState('');
-    const [finalData, setFinalData] = useState('')
+    const [data, setData] = useState([]);
     const steps = [
         "Templates",
         "Personal Details",
@@ -33,7 +32,7 @@ function Form() {
             case 3:
                 return <Education />
             case 4:
-                return <ProjectsAndCertis />
+                // return <ProjectsAndCertis />
             case 5:
                 return <Experience />
             case 6:
@@ -41,7 +40,7 @@ function Form() {
         }
     }
 
-    const handleClick = (direction) => {
+    const handleStep = (direction) => {
         let newStep = currentStep;
 
         direction == 'next' ? newStep++ : newStep--;
@@ -60,7 +59,6 @@ function Form() {
     return (
         <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] w-full h-full flex justify-center items-center'>
 
-ww
 
             <div className=' bg-transparent w-3/5 h-full flex flex-col justify-start items-center'>
                 <div className='text-2xl text-white font-krona m-10'>Build your Resume</div>
@@ -74,20 +72,22 @@ ww
                 
 
                 {/* BUTTONS */}
-                {currentStep != steps.length &&
+                {/* {currentStep != steps.length &&
                     <div className='w-full mb-2 px-10 flex justify-between items-center'>
                         <button onClick={() => handleClick('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
                         <button onClick={() => handleClick('next')} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>{currentStep == steps.length - 1 ? 'Submit' : 'Save and Continue'}</button>
+
                     </div>
-                }
+                } */}
 
                 {/* FORM */}
                 <div className='p-5 w-full'>
                     <StepBarContext.Provider value={{
                         data,
                         setData,
-                        finalData,
-                        setFinalData
+                        currentStep,
+                        handleStep,
+
                     }}>
                         {displayStep(currentStep)}
                     </StepBarContext.Provider>
