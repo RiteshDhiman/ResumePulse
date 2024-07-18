@@ -19,9 +19,6 @@ function ChooseTemplates() {
     "/images/templates/template1.png",
     "/images/templates/template1.png",
     "/images/templates/template1.png",
-    "/images/templates/template1.png",
-    "/images/templates/template1.png",
-    "/images/templates/template1.png",
   ]
 
 
@@ -30,15 +27,20 @@ function ChooseTemplates() {
       initial={{ x: 200, opacity: 0 }}
       animate={{ x: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }} className='text-white h-full w-full'>
-        <div className='w-full mb-2 px-10 flex justify-between items-center'>
-          <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-          <button onClick={() => handleStep('next')} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
-        </div>
+      <div className='w-full mb-2 px-10 flex justify-between items-center'>
+        <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+        <button onClick={() => handleStep('next')} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
+      </div>
       <div className="grid grid-cols-1 px-[4vw] md:p-0 gap-6 md:gap-6 md:grid-cols-2 lg:grid-cols-3 w-full ">
-          {templates.map((template, index)=><div key={index}><img src={template} alt="template" /></div>)}  
+        {templates.map((template, index) => <div key={index}><img src={template} alt="template" /></div>)}
+      </div>
+      <div className="w-full flex justify-center mt-5">
+        <button className='bg-[#66A947] text-white text-2xl py-4 px-11 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Show More</button>
       </div>
 
-        
+
+
+
 
     </motion.div>
   )
