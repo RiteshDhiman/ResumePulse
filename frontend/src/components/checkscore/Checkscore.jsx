@@ -43,9 +43,9 @@ function CheckScore() {
             </div>
 
           </div>
-          <div className='middle mb-4 w-[26vw] flex justify-between items-center'>
+          <div className='middle mb-4 w-[26vw] flex justify-center gap-5 items-center'>
             <div className='text-[#A9ACB4] text-sm'>Don't have a resume ?</div>
-            <div><button onClick={handleBuild} className='text-white bg-[#66A947] rounded-xl px-3 py-2'>Build your resume</button></div>
+            <div><button onClick={handleBuild} className='text-white text-sm bg-[#66A947] rounded-lg px-2 py-1'>Build your resume</button></div>
           </div>
         
 
@@ -66,7 +66,7 @@ function CheckScore() {
           </div> */}
 
           
-            <div class="flex items-center justify-center w-full h-full">
+            <div class="flex items-center justify-center w-full h-2/3">
                 <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-full border-[4px] border-white border-dashed rounded-3xl cursor-pointer bg-transparent">
                     <div class="flex flex-col items-center justify-center pt-5 pb-6">
                         <svg class="w-8 h-8 mb-4 text-[#66A947] " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -88,7 +88,6 @@ function CheckScore() {
               <div className='text-[#66A947] font-semibold text-lg'>Job Description</div>
               <div className='text-[#A9ACB4] text-sm'>Enter job description details as text</div>
             </div>
-
           </div>
 
           {/* <div className='middle mb-3 h-10 flex justify-between items-center'>

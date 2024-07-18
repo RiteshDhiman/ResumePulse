@@ -15,9 +15,6 @@ function TemplatesPage() {
     "/images/templates/template1.png",
     "/images/templates/template1.png",
     "/images/templates/template1.png",
-    "/images/templates/template1.png",
-    "/images/templates/template1.png",
-    "/images/templates/template1.png",
   ]
   return (
 
@@ -43,7 +40,11 @@ function TemplatesPage() {
           All Templates
         </div>
         <div class="grid grid-cols-1 px-[4vw] md:p-0 gap-6 md:gap-6 md:grid-cols-2 lg:grid-cols-3 w-9/12 ">
-          {templates.map((template, index)=><div key={index}><img src={template} alt="template" /></div>)}  
+          {templates.map((template, index) => <div key={index}><img src={template} alt="template" /></div>)}
+        </div>
+
+        <div className="w-full flex justify-center mt-5">
+          <button className='bg-[#66A947] text-white text-2xl py-5 px-11 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Show More</button>
         </div>
       </div>
     </>

@@ -48,7 +48,7 @@ function Templates() {
   ]
 
   return (
-    <div className='box flex relative justify-between items-center h-[300px] w-[400px] sm:h-[500px] sm:w-[550px] lg:w-[1000px] lg:h-[770px]'>
+    <div className='box bg-red-400 flex relative justify-between items-center h-[300px] w-[400px] sm:h-[500px] sm:w-[550px] lg:w-[1000px] lg:h-[770px]'>
       <div><button onClick={() => roll('left')}><IoIosArrowDropleft className="cButton text-[25px] sm:text-[35px] lg:text-[50px]" color='white' /></button></div>
       <div className='absolute left-[18vw] top-6 sm:top-14 lg:top-20 md:left-[20vw]'>
         <ul className="carousel">
