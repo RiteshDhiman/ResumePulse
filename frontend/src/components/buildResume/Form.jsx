@@ -32,7 +32,7 @@ function Form() {
             case 3:
                 return <Education />
             case 4:
-                // return <ProjectsAndCertis />
+                return <ProjectsAndCertis />
             case 5:
                 return <Experience />
             case 6:

@@ -61,7 +61,7 @@ function Experience() {
                     </label>
                 </div>
                 <div className="school_college w-2/5 relative my-4 ">
-                    <input placeholder="Enter your position"
+                    <input placeholder="Enter your role"
                         onChange={handleChange}
                         value={data['position'] || ''}
                         name='position'

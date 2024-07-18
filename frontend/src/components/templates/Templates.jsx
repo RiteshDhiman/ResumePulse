@@ -48,19 +48,14 @@ function Templates() {
   ]
 
   return (
-    <div className='box flex relative justify-between items-center h-[300px] w-[400px] sm:h-[500px] sm:w-[550px] lg:w-[1000px] lg:h-[770px]'>
+    <div className='bg-red-200 dbox relative flex justify-between items-center h-[300px] w-[400px] sm:h-[500px] sm:w-[550px] lg:w-[1000px] lg:h-[770px]'>
       <div><button onClick={() => roll('left')}><IoIosArrowDropleft className="cButton text-[25px] sm:text-[35px] lg:text-[50px]" color='white' /></button></div>
-      <div className='absolute left-[18vw] top-6 sm:top-14 lg:top-20 md:left-[20vw]'>
-        <ul className="carousel">
+        <div className="carousel absolute top-[10vh] left-[vw] bg-purple-900">
           {templatesArray.map((template, index) => <li key={template} className='item' data-position={`${index + 1}`} ><img src={template} alt={template} /></li>)}
-          {/* <li className="item item--1" data-position="1"></li>
-        <li className="item item--2" data-position="2"></li>
-        <li className="item item--3" data-position="3"></li>
-        <li className="item item--4" data-position="4"></li>
-        <li className="item item--5" data-position="5"></li> */}
-        </ul>
 
-      </div>
+        </div>
+
+
 
       <div><button onClick={() => roll('right')}><IoIosArrowDropright className="cButton text-[25px] sm:text-[35px] lg:text-[50px]" color='white' /></button></div>
 

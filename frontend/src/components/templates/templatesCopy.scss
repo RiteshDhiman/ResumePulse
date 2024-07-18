@@ -1,0 +1,21 @@
+
+.cards:hover:not(.active).left {
+    transform: translateX(-50%) rotate(-10deg) scale(0.9);
+}
+
+.cards:hover:not(.active).right {
+    transform: translateX(50%) rotate(10deg) scale(0.9);
+}
+
+.cards.left {
+    transform: translateX(-50%) scale(0.9);
+}
+
+.cards.right {
+    transform: translateX(50%) scale(0.9);
+}
+
+.cards.active {
+    z-index: 5;
+    position: relative;
+}
