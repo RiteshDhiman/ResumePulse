@@ -12,7 +12,7 @@ import '../../components/herobanner/star.scss';
 
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
     const steps = [
         "Templates",
         "Personal Details",
@@ -49,7 +49,7 @@ function Form() {
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
 
         // GET DATA ON CLICKING SAVE BUTTON
-        console.log("Data = " + JSON.stringify(data));
+        console.log("Data from Form component = " + JSON.stringify(data));
 
         //API
     }

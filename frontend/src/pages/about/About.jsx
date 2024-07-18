@@ -26,6 +26,7 @@ const AboutUs = () => {
               in the fields of data analytics, financial data modelling,
               artificial intelligence, and machine learning.
             </p>
+            <p>Add contact details ⚠️</p>
           </div>
         </div>
       </div>

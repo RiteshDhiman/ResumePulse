@@ -55,7 +55,7 @@ function Review(props) {
   return (
     <>
       <div className='slider overflow-hidden relative w-full h-70 px-5 grid place-items-center m-auto'>
-        <div className="slide-track flex w-[280vw] lg:w-[380vw]">
+        <div className="slide-track flex w-[280vw]">
           {reviews.map((review, index) => <div key={index} className="slide w-1/2 h-full flex items-start p-5"><Card key={review.name} title={review.title} desc={review.desc} name={review.name} stars={review.stars} image={review.image} /></div>)}
         </div>
       </div>

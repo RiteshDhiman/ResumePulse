@@ -10,6 +10,7 @@ function PersonalDetails() {
   }
 
   const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
+  const [save, setSave] = useState(false);
   const [personalData, setPersonalData] = useState({
     name: '',
     email: '',
@@ -20,14 +21,31 @@ function PersonalDetails() {
     address: ''
   })
 
+  useEffect(()=>{
+    // console.log("personal data from useEffect", personalData);
+   
+    setData({ ...data, 'PersonalDetails': personalData});
+    console.log("data from useEffect", data);
+
+  },[save]);
+
   const handlePersonalData = (e) => {
-    setPersonalData({...personalData, [e.target.name]:e.target.value})
+    setPersonalData({...personalData, [e.target.name]:e.target.value});
+    save == false ? setSave(true) : setSave(false);
+    
+    // console.log("input");
+    // console.log(data);
+
+    
   }
 
   const handleChange = async() => {
-    await setData([ ...data, personalData]);
-    console.log(data)
+    // await setData([ ...data, personalData]);
+    // setData({ ...data, 'PersonalDetails': personalData});
+    save == false ? setSave(true) : setSave(false);
     handleStep('next');
+    console.log("data from Submit button = ", data);
+    
   };
 
 
