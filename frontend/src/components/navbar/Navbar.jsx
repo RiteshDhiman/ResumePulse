@@ -21,7 +21,7 @@ const Navbar = ({loginClick, whetherLogin}) => {
         <div className="h-full mx-auto w-11/12 flex justify-between md:justify-center items-center ">
 
           <div className="w-1/3 md:w-2/12 h-full text-white flex justify-center items-center">
-            <a className = 'h-full' href="/"><img className="h-full" src="/images/google.png" alt="" /></a>
+            <a className = 'h-full' href="/"><img className="h-full" src="/images/signup/google.png" alt="" /></a>
             <div className="flex flex-col font-poppins">
             <div>Resume</div>
             <div>Pulse</div>

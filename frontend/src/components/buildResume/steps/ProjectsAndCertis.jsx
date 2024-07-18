@@ -3,7 +3,7 @@ import { StepBarContext } from '../contexts/StepBarContext'
 import { easeInOut, motion } from "framer-motion"
 
 function ProjectsAndCertis() {
-  const { data, setData } = useContext(StepBarContext);
+  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
   const [projectArray, setProjectArray] = useState([]);
 
   const handleChange = (e) => {

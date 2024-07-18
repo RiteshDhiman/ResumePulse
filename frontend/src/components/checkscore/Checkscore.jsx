@@ -43,7 +43,7 @@ function CheckScore() {
             </div>
 
           </div>
-          <div className='middle mb-4 w-[26vw] flex justify-between items-center'>
+          <div className='middle mb-4 w-[26vw] flex justify-center gap-4 items-center'>
             <div className='text-[#A9ACB4] text-sm'>Don't have a resume ?</div>
             <div><button onClick={handleBuild} className='text-white bg-[#66A947] rounded-xl px-3 py-2'>Build your resume</button></div>
           </div>
