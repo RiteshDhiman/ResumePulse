@@ -15,9 +15,15 @@ const formSlice = createSlice({
         }, 
         setEducation : (state, action) => {
             state.academics = action.payload
+        },
+        setProjects : (state, action) => {
+            state.projects = action.payload
+        },
+        setExperience : (state, action) => {
+            state.projects = action.payload
         }
     }
 })
 
-export const { setPersonal, setEducation } = formSlice.actions;
+export const { setPersonal, setEducation, setProjects, setExperience} = formSlice.actions;
 export default formSlice.reducer
