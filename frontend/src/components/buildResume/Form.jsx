@@ -12,9 +12,8 @@ import '../../components/herobanner/star.scss';
 
 function Form() {
     const [currentStep, setCurrentStep] = useState(1);
-    const [data, setData] = useState({});
+    // const [data, setData] = useState({});
     const steps = [
-        "Templates",
         "Personal Details",
         "Academics",
         "Projects and Certifications",
@@ -26,16 +25,14 @@ function Form() {
     const displayStep = (step) => {
         switch (step) {
             case 1:
-                return <ChooseTemplates />
-            case 2:
                 return <PersonalDetails />
-            case 3:
+            case 2:
                 return <Education />
-            case 4:
+            case 3:
                 return <ProjectsAndCertis />
-            case 5:
+            case 4:
                 return <Experience />
-            case 6:
+            case 5:
                 return <Complete />
         }
     }
@@ -47,11 +44,6 @@ function Form() {
 
         //make sure steps are within bounds
         newStep > 0 && newStep <= steps.length && setCurrentStep(newStep);
-
-        // GET DATA ON CLICKING SAVE BUTTON
-        console.log("Data from Form component = " + JSON.stringify(data));
-
-        //API
     }
 
 
@@ -83,8 +75,8 @@ function Form() {
                 {/* FORM */}
                 <div className='p-5 w-full'>
                     <StepBarContext.Provider value={{
-                        data,
-                        setData,
+                        // data,
+                        // setData,
                         currentStep,
                         handleStep,
 

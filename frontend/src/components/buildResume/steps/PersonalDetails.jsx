@@ -1,52 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
 import { easeInOut, motion } from "framer-motion"
+import {useSelector, useDispatch} from 'react-redux'
+import { setPersonal } from '../../../store/formSlice'
 
-function PersonalDetails() {
+const PersonalDetails = () => {
 
-  const faaltu = {
-    name:'sdfasd',
-    age:21
-  }
+  const { currentStep, handleStep } = useContext(StepBarContext);
 
-  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
-  const [save, setSave] = useState(false);
+  const personalItem = useSelector((state) => state.form.personal)
+  const dispatch = useDispatch();
+
   const [personalData, setPersonalData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    github: '',
-    linkedin: '',
-    portfolio: '',
-    address: ''
+    name: personalItem.name,
+    email: personalItem.email,
+    phone: personalItem.phone,
+    github: personalItem.github,
+    linkedin: personalItem.linkedin,
+    portfolio: personalItem.portfolio,
+    address: personalItem.address
   })
-
-  useEffect(()=>{
-    // console.log("personal data from useEffect", personalData);
-   
-    setData({ ...data, 'PersonalDetails': personalData});
-    console.log("data from useEffect", data);
-
-  },[save]);
 
   const handlePersonalData = (e) => {
     setPersonalData({...personalData, [e.target.name]:e.target.value});
-    save == false ? setSave(true) : setSave(false);
-    
-    // console.log("input");
-    // console.log(data);
-
-    
   }
 
-  const handleChange = async() => {
-    // await setData([ ...data, personalData]);
-    // setData({ ...data, 'PersonalDetails': personalData});
-    save == false ? setSave(true) : setSave(false);
+  const handleNext = () => {
+    dispatch(setPersonal(personalData))
     handleStep('next');
-    console.log("data from Submit button = ", data);
-    
-  };
+  }
 
 
   return (
@@ -61,7 +43,7 @@ function PersonalDetails() {
           <div className="name w-full relative mt-12 ">
             <input placeholder="Enter name"
               onChange={handlePersonalData}
-              value={personalData.name || ''}
+              value={personalData.name}
               name='name'
               type="text"
               className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Person.png')] w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 pr-10 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -80,7 +62,7 @@ function PersonalDetails() {
         <div className="email w-2/5 relative my-4">
           <input placeholder="Enter email"
             onChange={handlePersonalData}
-            value={personalData.email || ''}
+            value={personalData.email}
             name='email'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/personalDetails/Mail.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -92,7 +74,7 @@ function PersonalDetails() {
         <div className="phone w-2/5 relative my-4 ">
           <input placeholder="Enter phone number"
             onChange={handlePersonalData}
-            value={personalData.phone || ''}
+            value={personalData.phone}
             name='phone'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Phone.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -108,7 +90,7 @@ function PersonalDetails() {
         <div className="github w-2/5 relative my-4 ">
           <input placeholder="Enter your Github profile link"
             onChange={handlePersonalData}
-            value={personalData.github || ''}
+            value={personalData.github}
             name='github'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/GitHub.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -121,7 +103,7 @@ function PersonalDetails() {
         <div className="linkedin w-2/5 relative my-4 ">
           <input placeholder="Enter your Linkedin profile link"
             onChange={handlePersonalData}
-            value={personalData.linkedin || ''}
+            value={personalData.linkedin}
             name='linkedin'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/LinkedIn.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -137,7 +119,7 @@ function PersonalDetails() {
         <div className="portfolio w-2/5 relative my-4 ">
           <input placeholder="Enter your Portfolio link"
             onChange={handlePersonalData}
-            value={personalData.portfolio || ''}
+            value={personalData.portfolio}
             name='portfolio'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/personalDetails/Portfolio.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -150,7 +132,7 @@ function PersonalDetails() {
         <div className="address w-2/5 relative my-4 ">
           <input placeholder="Enter your address"
             onChange={handlePersonalData}
-            value={personalData.address || ''}
+            value={personalData.address}
             name='address'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Location.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -164,7 +146,7 @@ function PersonalDetails() {
 
         <div className='w-full mb-2 px-10 flex justify-between items-center'>
           <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-          <button onClick={handleChange} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
+          <button onClick={handleNext} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
         </div>
     </motion.div>
 

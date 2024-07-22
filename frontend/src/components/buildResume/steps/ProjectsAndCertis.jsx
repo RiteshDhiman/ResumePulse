@@ -3,8 +3,10 @@ import { StepBarContext } from '../contexts/StepBarContext'
 import { easeInOut, motion } from "framer-motion"
 
 function ProjectsAndCertis() {
-  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
+  const {currentStep, handleStep } = useContext(StepBarContext);
   const [projectArray, setProjectArray] = useState([]);
+
+  const data = ''
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -148,7 +150,7 @@ function ProjectsAndCertis() {
 
 
 
-
+<button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
 
     </motion.div>
   )

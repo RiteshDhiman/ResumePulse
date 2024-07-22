@@ -1,50 +1,56 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
 import { motion } from 'framer-motion';
-
+import {useSelector, useDispatch} from 'react-redux'
+import { setEducation, setPersonal } from '../../../store/formSlice';
 
 function Education() {
-  const { data, setData, currentStep, handleStep } = useContext(StepBarContext);
-  const [eduArray, setEduArray] = useState([]);
-  const [skillArray, setSkillArray] = useState([]);
+  const {currentStep, handleStep } = useContext(StepBarContext);
+  const [eduObj, setEduObj] = useState({
+    degree : '',
+    percentage_cgpa : '',
+    school_college : '',
+    year : '',
+  })
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData({ ...data, [name]: value });
-  };
+  const [skillObj, setSkillObj] = useState('')
 
-  const handleClick = (e) => {
-    // console.log("Degree = " + JSON.stringify(data.degree));
-    // console.log("School/College = " + JSON.stringify(data.school_college));
-    // console.log("Percentage/CGPA = " + JSON.stringify(data.percentage_cgpa));
-    // console.log("Year = " + JSON.stringify(data.year));
+  const dispatch = useDispatch();
 
-    let degree = data.degree;
-    let school_college = data.school_college;
-    let percentage_cgpa = data.percentage_cgpa;
-    let year = data.year;
+  const [academicsData, setAcademicsData] = useState({
+    education:[],
+    skills:[]
+  })
 
 
-    if (degree == undefined && school_college == undefined && percentage_cgpa == undefined && year == undefined) {
-      alert("Input fields are empty !")
-    } else {
-      setEduArray([
-        ...eduArray, {
-          degree,
-          school_college,
-          percentage_cgpa,
-          year
-        }
-      ])
-    }
-
-    // const { name, value } = e.target;
-    const name = 'Dhamaaka';
-    const value = eduArray;
-    setData({ ...data, [name]: value });
-
+  const handleEduAdd = () => {
+    setAcademicsData({...academicsData, education : [...academicsData.education, eduObj]})
+    setEduObj(
+      {
+        degree : '',
+        percentage_cgpa : '',
+        school_college : '',
+        year : '',
+      }
+    )
   }
-// eduArray = [edu1:{name:name,year:yr}, edu2:{name:name,year:yr}]
+  const handleSkillsAdd = () => {
+    setAcademicsData({...academicsData, skills : [...academicsData.skills, skillObj]})
+    setSkillObj('')
+  }
+
+  const handleEduChange = (e) => {
+    setEduObj({...eduObj, [e.target.name] : e.target.value})
+  }
+  const handleSkillChange = (e) => {
+    setSkillObj(e.target.value)
+  }
+
+  const nextPage = () => {
+    dispatch(setEducation(academicsData));
+    handleStep('next')
+  }
+
   return (
     <>
 
@@ -62,8 +68,9 @@ function Education() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="degree w-2/5 relative my-4">
           <input placeholder="Enter Degree"
-            onChange={handleChange}
-            value={data['degree'] || ''}
+            onChange={handleEduChange}
+            value={eduObj.degree}
+            // value={item.personal.name}
             name='degree'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -74,8 +81,8 @@ function Education() {
         </div>
         <div className="school_college w-2/5 relative my-4 ">
           <input placeholder="Enter School/College"
-            onChange={handleChange}
-            value={data['school_college'] || ''}
+            onChange={handleEduChange}
+            value={eduObj.school_college}
             name='school_college'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -89,8 +96,8 @@ function Education() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="percentage_cgpa w-2/5 relative my-4 ">
           <input placeholder="Enter your Percentage/CGPA"
-            onChange={handleChange}
-            value={data['percentage_cgpa'] || ''}
+            onChange={handleEduChange}
+            value={eduObj.percentage_cgpa}
             name='percentage_cgpa'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Percentage.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -102,8 +109,8 @@ function Education() {
 
         <div className="year w-2/5 relative my-4 ">
           <input placeholder="Enter Year"
-            onChange={handleChange}
-            value={data['year'] || ''}
+            onChange={handleEduChange}
+            value={eduObj.year}
             name='year'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Year.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -115,7 +122,7 @@ function Education() {
       </div>
 
       <div className='row p-5 w-full flex justify-center items-center'>
-        <button className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
+        <button onClick={handleEduAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
       </div>
 
 
@@ -136,7 +143,7 @@ function Education() {
       </div>
 
       {
-        eduArray.map((edu, index) => {
+        academicsData.education.map((edu, index) => {
           return (
             <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
               <div className="my-4 text-white ">
@@ -159,7 +166,7 @@ function Education() {
     </motion.div>
     <div className='w-full mb-2 px-10 flex justify-between items-center'>
           <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-          <button onClick={handleChange} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
+          <button onClick={nextPage} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
         </div>
     <motion.div
       initial={{ x: 200, opacity: 0 }}
@@ -175,8 +182,8 @@ function Education() {
       <div className='row px-6 w-full flex justify-between items-center'>
         <div className="degree w-2/5 relative my-4">
           <input placeholder="Enter Skill"
-            onChange={handleChange}
-            value={data['skill'] || ''}
+            onChange={handleSkillChange}
+            value={skillObj}
             name='skill'
             type="text"
             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -189,7 +196,7 @@ function Education() {
       </div>
 
       <div className='row p-5 w-full flex justify-center items-center'>
-        <button onClick={handleClick} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
+        <button onClick={handleSkillsAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
       </div>
 
       
@@ -203,11 +210,11 @@ function Education() {
       </div>
 
       {
-        skillArray.map((skill, index) => {
+        academicsData.skills.map((skill, index) => {
           return (
             <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
               <div className="my-4 text-white ">
-                {skill.skill}
+                {skill}
               </div>
               
             </div>
