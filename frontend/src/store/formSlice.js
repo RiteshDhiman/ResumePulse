@@ -4,9 +4,17 @@ const formSlice = createSlice({
     name : 'form',
     initialState : {
         personal : {},
-        academics : {},
-        projects : {},
-        experience : {},
+        academics : {
+            education : [],
+            skills : []
+        },
+        projects : {
+            projects : [],
+            certifications : []
+        },
+        experience : {
+            experience : []
+        },
     },
 
     reducers : {

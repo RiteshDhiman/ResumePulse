@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { StepBarContext } from '../contexts/StepBarContext'
 import { easeInOut, motion } from "framer-motion"
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setExperience } from '../../../store/formSlice';
 
 function Experience() {
     const { currentStep, handleStep } = useContext(StepBarContext);
     const dispatch = useDispatch();
+    const expSliceData = useSelector((state)=>state.form.experience)
 
     const [expData, setExpData] = useState({
-        experience: []
+        experience: [...expSliceData.experience]
     })
 
     const [expObj, setExpObj] = useState({

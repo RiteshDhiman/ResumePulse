@@ -7,10 +7,11 @@ import { setProjects } from '../../../store/formSlice';
 function ProjectsAndCertis() {
   const { currentStep, handleStep } = useContext(StepBarContext);
   const dispatch = useDispatch();
+  const projectSliceData = useSelector((state)=>state.form.projects)
 
   const [projectsData, setProjectsData] = useState({
-    projects: [],
-    certifications: []
+    projects: [...projectSliceData.projects],
+    certifications: [...projectSliceData.certifications]
   })
 
   const [projectObj, setProjectObj] = useState({
