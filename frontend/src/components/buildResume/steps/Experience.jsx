@@ -8,23 +8,25 @@ function Experience() {
     const { currentStep, handleStep } = useContext(StepBarContext);
     const dispatch = useDispatch();
 
-    const [expData, setExpData] = useState({})
+    const [expData, setExpData] = useState({
+        experience: []
+    })
 
     const [expObj, setExpObj] = useState({
         company_name: '',
         role: '',
-        desc: '',
-        duration: '',
+        description: '',
+        duration: null,
     })
 
-
     const handleExpAdd = () => {
-        setExpData({ ...expData, expObj })
+        setExpData({ ...expData, experience: [...expData.experience, expObj] })
         setExpObj(
             {
-                cert_name: '',
-                cert_organization: '',
-                cert_date: '',
+                company_name: '',
+                role: '',
+                description: '',
+                duration: null,
             }
         )
     }
@@ -58,7 +60,7 @@ function Experience() {
                 <div className="w-2/5 relative my-4">
                     <input placeholder="Enter Company name"
                         onChange={handleExpChange}
-                        value={expData.company_name}
+                        value={expObj.company_name}
                         name='company_name'
                         type="text"
                         className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/experience/Company.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -70,7 +72,7 @@ function Experience() {
                 <div className="school_college w-2/5 relative my-4 ">
                     <input placeholder="Enter your role"
                         onChange={handleExpChange}
-                        value={expData.role}
+                        value={expObj.role}
                         name='role'
                         type="text"
                         className="peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -85,9 +87,9 @@ function Experience() {
                 <div className="w-2/5 relative my-4 ">
                     <input placeholder="Enter description"
                         onChange={handleExpChange}
-                        value={expData.desc}
+                        value={expObj.description}
                         name='description'
-                        type="date"
+                        type="text"
                         className="peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
                     <label htmlFor="description"
                         className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -97,7 +99,7 @@ function Experience() {
                 <div className="w-2/5 relative my-4 ">
                     <input placeholder="Enter duration"
                         onChange={handleExpChange}
-                        value={expData.duration}
+                        value={expObj.duration}
                         name='duration'
                         type="date"
                         className="peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
@@ -132,7 +134,7 @@ function Experience() {
             </div>
 
             {
-                expData.map((exp, index) => {
+                expData.experience.map((exp, index) => {
                     return (
                         <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
                             <div className="my-4 text-white ">
@@ -142,7 +144,7 @@ function Experience() {
                                 {exp.role}
                             </div>
                             <div className="my-4 text-white ">
-                                {exp.desc}
+                                {exp.description}
                             </div>
                             <div className="my-4 text-white ">
                                 {exp.duration}

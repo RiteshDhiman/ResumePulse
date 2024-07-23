@@ -190,7 +190,8 @@ function ProjectsAndCertis() {
           </div>
           <div className="w-2/5 relative my-4 ">
             <input placeholder="Enter organization name"
-              onChange={certiObj.cert_organization}
+            onChange={handleCertiChange}
+              value={certiObj.cert_organization}
               name='cert_organization'
               type="text"
               className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />

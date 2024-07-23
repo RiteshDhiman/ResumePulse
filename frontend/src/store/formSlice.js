@@ -20,7 +20,7 @@ const formSlice = createSlice({
             state.projects = action.payload
         },
         setExperience : (state, action) => {
-            state.projects = action.payload
+            state.experience = action.payload
         }
     }
 })
