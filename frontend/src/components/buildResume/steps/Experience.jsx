@@ -17,17 +17,21 @@ function Experience() {
         company_name: '',
         role: '',
         description: '',
-        duration: null,
+        start_date: null,
+        end_date: null,
+
     })
 
     const handleExpAdd = () => {
-        setExpData({ ...expData, experience: [...expData.experience, expObj] })
+
+        setExpData({ ...expData, experience: [...expData.experience, {...expObj, 'duration':  `${expObj.start_date} to ${expObj.end_date}`}] })
         setExpObj(
             {
                 company_name: '',
                 role: '',
                 description: '',
-                duration: null,
+                start_date: null,
+                end_date: null,
             }
         )
     }
@@ -93,7 +97,7 @@ function Experience() {
                 </div>
 
                 <div className='row px-6 w-full flex justify-between items-center'>
-                    <div className="w-2/5 relative my-4 ">
+                    <div className="w-full relative my-4 ">
                         <input placeholder="Enter description"
                             onChange={handleExpChange}
                             value={expObj.description}
@@ -106,20 +110,35 @@ function Experience() {
                             Description
                         </label>
                     </div>
+                </div>
+
+                <div className='row px-6 w-full flex justify-between items-center'>
                     <div className="w-2/5 relative my-4 ">
-                        <input placeholder="Enter duration"
+                        <input placeholder="Enter start date"
                             onChange={handleExpChange}
-                            value={expObj.duration}
-                            id='duration'
-                            name='duration'
-                            type="date"
+                            value={expObj.start_date}
+                            id='start_date'
+                            name='start_date'
+                            type='month'
                             className="peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
-                        <label htmlFor="duration"
+                        <label htmlFor="start_date"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
-                            Duration
+                            Start date
                         </label>
                     </div>
-
+                    <div className="w-2/5 relative my-4 ">
+                        <input placeholder="Enter end date"
+                            onChange={handleExpChange}
+                            value={expObj.end_date}
+                            id='end_date'
+                            name='end_date'
+                            type="month"
+                            className="peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+                        <label htmlFor="end_date"
+                            className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
+                            End date
+                        </label>
+                    </div>
 
                 </div>
 
@@ -140,7 +159,10 @@ function Experience() {
                         Description
                     </div>
                     <div className="my-4 text-white ">
-                        Duration
+                        Start date
+                    </div>
+                    <div className="my-4 text-white ">
+                        End date
                     </div>
                 </div>
 
@@ -158,7 +180,10 @@ function Experience() {
                                     {exp.description}
                                 </div>
                                 <div className="my-4 text-white ">
-                                    {exp.duration}
+                                    {exp.start_date}
+                                </div>
+                                <div className="my-4 text-white ">
+                                    {exp.end_date}
                                 </div>
                             </div>
                         );
