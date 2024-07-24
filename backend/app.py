@@ -7,7 +7,7 @@ from scripts.utils import to_json_formatted
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["https://127.0.0.1/5173","trustedwebsite.com"])
+CORS(app, origins=["http://localhost:5173"])
 
 @app.route('/')
 def hello_world():
@@ -16,6 +16,7 @@ def hello_world():
 @app.route("/check_score_route", methods=["POST"])
 def check_score_route():
     if 'file' not in request.files:
+        print('Dhamaaaaaaaka')
         return jsonify({'error': 'No file part'}), 400
     
     file = request.files['file']
@@ -23,7 +24,7 @@ def check_score_route():
 
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-    
+    print(file.filename)
     if not os.path.exists('check_score_resumes'):
         os.makedirs('check_score_resumes')
         
@@ -34,16 +35,21 @@ def check_score_route():
         file.save(file_path)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    
-    return jsonify({check_score(file_path,text)}), 200
+    print(file_path)
+    temp = 'abcd'
+    print({})
+    return jsonify({"checkscore" : check_score(file_path,text)}), 200
 
 def check_score(file_path,jd_text):
     extracted_text = extract_text_from_file(file_path)
     result_from_gpt = get_cv_analysis(extracted_text,jd_text)
     return to_json_formatted(result_from_gpt)
     
-@app.route("build_resume_route", methods=["POST"])  
+@app.route("/build_resume_route", methods=["POST"])  
 def build_resume_route():
     pass
     # json_data = request.json
     # return build_resume(json_data)
+
+if "__main__" == __name__:
+    app.run(debug=True)
