@@ -224,7 +224,6 @@ function Education() {
               <div className="my-4 text-white ">
                 {skill}
               </div>
-              
             </div>
           );
         })
