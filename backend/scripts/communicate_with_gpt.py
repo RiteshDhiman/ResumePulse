@@ -27,9 +27,9 @@ def get_cv_analysis(cv_text, jd_text):
     {
       similarityScore: < just the score>, 
       matchingAreas: [
-        bestMatched: [<words from the cv that exactly matched the JD>],
-        partiallyMatched: [<words from the cv that partially matched the JD>],
-        poorlyMatched: [<words from the cv that poorly/no matched the JD>]
+        bestMatched: [],
+        partiallyMatched: [],
+        poorlyMatched: []
         ], 
       improvementSuggestions: [<5-6 suggestions>]
     }

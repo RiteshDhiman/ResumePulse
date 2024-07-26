@@ -2,7 +2,6 @@
 
 import pymupdf
 from docx2txt import process
-
 from scripts.communicate_with_gpt import get_image_text
 from scripts.utils import process_image, extract_images_from_pdf
 
