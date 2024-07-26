@@ -1,5 +1,5 @@
 # Code completed just needs to update the prompts
-# todo resume contruction
+
 from openai import OpenAI
 from dotenv import load_dotenv
 
