@@ -1,6 +1,10 @@
 # Code completed just needs to update the prompts
 # todo resume contruction
 from openai import OpenAI
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def communicate_with_openai(message, response_type={ "type": "json_object" }):
     client = OpenAI()

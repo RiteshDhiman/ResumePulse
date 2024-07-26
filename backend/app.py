@@ -9,14 +9,9 @@ import os
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
-@app.route('/')
-def hello_world():
-    return render_template("some_frontend.html")
-
 @app.route("/check_score_route", methods=["POST"])
 def check_score_route():
     if 'file' not in request.files:
-        print('Dhamaaaaaaaka')
         return jsonify({'error': 'No file part'}), 400
     
     file = request.files['file']
@@ -24,25 +19,21 @@ def check_score_route():
 
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-    print(file.filename)
     if not os.path.exists('check_score_resumes'):
-        os.makedirs('check_score_resumes')
+        os.makedirs('./check_score_resumes')
         
     filename = secure_filename(file.filename)
-    file_path = os.path.join('check_score_resumes', filename)
+    file_path = os.path.join('./check_score_resumes', filename)
     
     try:
         file.save(file_path)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-    print(file_path)
-    temp = 'abcd'
-    print({})
+
     return jsonify({"checkscore" : check_score(file_path,text)}), 200
 
 def check_score(file_path,jd_text):
     extracted_text = extract_text_from_file(file_path)
-    print ()
     result_from_gpt = get_cv_analysis(extracted_text,jd_text)
     return to_json_formatted(result_from_gpt)
     
@@ -51,9 +42,6 @@ def build_resume_route():
     pass
     # json_data = request.json
     # return build_resume(json_data)
-    #this comment was made by Arjun :)
-    #imma make the build resume function (probably)
-
 
 if "__main__" == __name__:
     app.run(debug=True)
