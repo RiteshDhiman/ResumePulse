@@ -159,7 +159,7 @@ function Experience() {
 
 
                 {/* TABLE */}
-                <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
+                {/* <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
                     <div className="my-4 text-white ">
                         Company
                     </div>
@@ -172,9 +172,9 @@ function Experience() {
                     <div className="my-4 text-white ">
                         Duration
                     </div>
-                </div>
+                </div> */}
 
-                {
+                {/* {
                     expData.experience.map((exp, index) => {
                         return (
                             <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
@@ -194,7 +194,31 @@ function Experience() {
                             </div>
                         );
                     })
-                }
+                } */}
+
+                <table className='text-white w-full bg-slate-950'>
+                    <tr className='h-[50px]'>
+                        <th>Degree</th>
+                        <th>School/College</th>
+                        <th>Percentage/CGPA</th>
+                        <th>Year</th>
+                        <th>Action</th>
+                    </tr>
+
+                    {
+                        expData.experience.map((exp,index)=>{
+                            return(
+                                <tr key={index} className='text-center h-[40px]'>
+                                    <td>{exp.company_name}</td>
+                                    <td>{exp.role}</td>
+                                    <td className='text-wrap'>{exp.description}</td>
+                                    <td>{exp.duration}</td>
+                                    <td><button className='text-red-600' onClick={()=>deleteExperience(index)}>Delete</button></td>
+                                </tr>
+                            )
+                        })
+                    }
+                </table>
 
 
 
