@@ -16,7 +16,7 @@ def extract_text_from_file(file_path):
     elif file_extension == 'pdf':
         extracted_text = extract_text_from_pdf(file_path)
     elif file_extension in ['.doc', '.docx']:
-        extracted_text = extract_text_from_word_1(file_path)
+        extracted_text = extract_text_from_word(file_path)
         
     if not extracted_text:
         extracted_text = extract_text_from_scanned_pdf(file_path)
@@ -56,7 +56,7 @@ def extract_text_from_scanned_pdf(file_path):
 
 # --------------------------------------------------------------------------#
 # extract text from word documents
-def extract_text_from_word_1(file_path):
+def extract_text_from_word(file_path):
     return process(file_path).strip()
     
 # --------------------------------------------------------------------------#
