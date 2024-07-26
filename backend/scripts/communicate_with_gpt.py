@@ -95,7 +95,7 @@ def build_resume_with_gpt(json_clean_data):
   
   system_prompt = """
   You are a professional resume builder that builds one page resume. You follow the standard procedures of making a resume like the order of education, work experience etc.
-  You give me a response in json format
+  You give me a response in json format.
   """
   
   user_prompt = f"Generate me just the code using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}"
