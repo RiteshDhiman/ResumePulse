@@ -2,7 +2,7 @@
 
 import pymupdf
 from docx2txt import process
-from docx2python import docx2python
+
 from scripts.communicate_with_gpt import get_image_text
 from scripts.utils import process_image, extract_images_from_pdf
 
@@ -59,26 +59,4 @@ def extract_text_from_scanned_pdf(file_path):
 def extract_text_from_word_1(file_path):
     return process(file_path).strip()
     
-def extract_text_from_word_2(file_path):
-    # Extract the contents of the docx file
-    content = docx2python(file_path)
-    
-    # List to hold the text
-    text_list = []
-    
-    # Recursively extract text from the content
-    support_for_v2_word_extraction_1(content.body, text_list)
-    
-    # Join the text list into a single string
-    return '\n'.join(text_list)
-
-def support_for_v2_word_extraction_1(data, text_list):
-    """
-    Recursively extract text from nested lists and append to text_list.
-    """
-    if isinstance(data, list):
-        for item in data:
-            support_for_v2_word_extraction_1(item, text_list)
-    elif isinstance(data, str):
-        text_list.append(data)
 # --------------------------------------------------------------------------#

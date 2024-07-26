@@ -42,6 +42,7 @@ def check_score_route():
 
 def check_score(file_path,jd_text):
     extracted_text = extract_text_from_file(file_path)
+    print ()
     result_from_gpt = get_cv_analysis(extracted_text,jd_text)
     return to_json_formatted(result_from_gpt)
     
@@ -50,6 +51,9 @@ def build_resume_route():
     pass
     # json_data = request.json
     # return build_resume(json_data)
+    #this comment was made by Arjun :)
+    #imma make the build resume function (probably)
+
 
 if "__main__" == __name__:
     app.run(debug=True)
