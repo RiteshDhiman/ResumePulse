@@ -19,21 +19,20 @@ function Experience() {
         description: '',
         start_date: null,
         end_date: null,
-
+        duration : null
     })
 
     const handleExpAdd = () => {
-
-        setExpData({ ...expData, experience: [...expData.experience, {...expObj, 'duration':  `${expObj.start_date} to ${expObj.end_date}`}] })
-        setExpObj(
-            {
-                company_name: '',
-                role: '',
-                description: '',
-                start_date: null,
-                end_date: null,
-            }
-        )
+        const { start_date, end_date, ...expObjWithoutDates } = expObj;
+        setExpData({ ...expData, experience: [...expData.experience, { ...expObjWithoutDates, duration: `${start_date} to ${end_date}` }] });
+        setExpObj({
+            company_name: '',
+            role: '',
+            description: '',
+            start_date: null,
+            end_date: null,
+            duration : null
+        });
     }
 
 
@@ -46,11 +45,23 @@ function Experience() {
         handleStep('next')
     }
 
+    const prevPage = () => {
+        dispatch(setExperience(expData));
+        handleStep('')
+    }
+
+    const deleteExperience = (value) => {
+        setExpData((prevState) => ({
+          ...prevState,
+          experience: prevState.experience.filter((item, index) => index !== value),
+        }));
+      };
+
 
     return (
         <>
             <div className='w-full mb-6 px-10 flex justify-between items-center'>
-                <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+                <button onClick={prevPage} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
                 <button onClick={nextPage} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
             </div>
 
@@ -159,10 +170,7 @@ function Experience() {
                         Description
                     </div>
                     <div className="my-4 text-white ">
-                        Start date
-                    </div>
-                    <div className="my-4 text-white ">
-                        End date
+                        Duration
                     </div>
                 </div>
 
@@ -172,7 +180,7 @@ function Experience() {
                             <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
                                 <div className="my-4 text-white ">
                                     {exp.company_name}
-                                </div>
+                                </div>      
                                 <div className="my-4 text-white ">
                                     {exp.role}
                                 </div>
@@ -180,11 +188,9 @@ function Experience() {
                                     {exp.description}
                                 </div>
                                 <div className="my-4 text-white ">
-                                    {exp.start_date}
+                                    {exp.duration}
                                 </div>
-                                <div className="my-4 text-white ">
-                                    {exp.end_date}
-                                </div>
+                                <button className='text-red-600' onClick={()=>deleteExperience(index)}>Delete</button>
                             </div>
                         );
                     })

@@ -61,6 +61,24 @@ function ProjectsAndCertis() {
     dispatch(setProjects(projectsData));
     handleStep('next')
   }
+  const prevPage = () => {
+    dispatch(setProjects(projectsData));
+    handleStep('')
+  }
+
+  const deleteProjects = (value) => {
+    setProjectsData((prevState) => ({
+      ...prevState,
+      projects: prevState.projects.filter((item, index) => index !== value),
+    }));
+  };
+
+  const deleteCerti = (value) => {
+    setProjectsData((prevState) => ({
+      ...prevState,
+      certifications: prevState.certifications.filter((item, index) => index !== value),
+    }));
+  };
 
 
 
@@ -68,7 +86,7 @@ function ProjectsAndCertis() {
   return (
     <>
       <div className='w-full mb-6 px-10 flex justify-between items-center'>
-        <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+        <button onClick={prevPage} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
         <button onClick={nextPage} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
       </div>
 
@@ -91,6 +109,7 @@ function ProjectsAndCertis() {
               name='name'
               id='name'
               type="text"
+              autoComplete='off'
               className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="name"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -161,7 +180,7 @@ function ProjectsAndCertis() {
                 <div className="my-4 text-white ">
                   {project.description}
                 </div>
-
+                <button className='text-red-600' onClick={()=>deleteProjects(index)}>Delete</button>
               </div>
             );
           })
@@ -227,6 +246,9 @@ function ProjectsAndCertis() {
           </div>
 
         </div>
+        <div className='row p-5 w-full flex justify-center items-center'>
+          <button onClick={handleCertisAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
+        </div>
 
 
 
@@ -248,18 +270,20 @@ function ProjectsAndCertis() {
         {
           projectsData.certifications.map((certi, index) => {
             return (
-              <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                <div className="my-4 text-white ">
-                  {certi.cert_name}
-                </div>
-                <div className="my-4 text-white ">
-                  {certi.cert_organization}
-                </div>
-                <div className="my-4 text-white ">
-                  {certi.cert_date}
+
+                <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
+                  <div className="my-4 text-white ">
+                    {certi.cert_name}
+                  </div>
+                  <div className="my-4 text-white ">
+                    {certi.cert_organization}
+                  </div>
+                  <div className="my-4 text-white ">
+                    {certi.cert_date}
+                  </div>
+                <button className='text-red-600' onClick={()=>deleteCerti(index)}>Delete</button>
                 </div>
 
-              </div>
             );
           })
         }

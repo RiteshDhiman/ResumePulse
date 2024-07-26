@@ -9,7 +9,7 @@ function Education() {
   const eduSliceData = useSelector((state) => state.form.academics)
 
   const [eduObj, setEduObj] = useState({
-    degree: '',
+    degree: 'High School',
     percentage_cgpa: '',
     school_college: '',
     year: '',
@@ -29,7 +29,7 @@ function Education() {
     setAcademicsData({ ...academicsData, education: [...academicsData.education, eduObj] })
     setEduObj(
       {
-        degree: '',
+        degree: eduObj.degree,
         percentage_cgpa: '',
         school_college: '',
         year: '',
@@ -53,17 +53,37 @@ function Education() {
     handleStep('next')
   }
 
-  // const handleDeleteSkills = (skillToDelete) => {
-  //   setAcademicsData((prevData) => ({
-  //     ...prevData,
-  //     academicsData.skills.filter((skill) => skill !== skillToDelete)
-  //   }))
-  // }
+  const prevPage = () => {
+    dispatch(setEducation(academicsData));
+    handleStep('')
+  }
+
+  const deleteSkill = (value) => {
+    setAcademicsData((prevState) => ({
+      ...prevState,
+      skills: prevState.skills.filter((item, index) => index !== value),
+    }));
+  };
+
+  const deleteEducation = (value) => {
+    setAcademicsData((prevState) => ({
+      ...prevState,
+      education: prevState.education.filter((item, index) => index !== value),
+    }));
+  };
+  
+  const handleSelectChange = (event) => {
+    setEduObj({...eduObj, degree : event.target.value})
+  };
+
+  // useEffect(()=>{
+  //   deleteSkill()
+  // },[academicsData])
 
   return (
     <>
       <div className='w-full mb-6 px-10 flex justify-between items-center'>
-        <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+        <button onClick={prevPage} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
         <button onClick={nextPage} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Save and Continue</button>
       </div>
 
@@ -80,17 +100,18 @@ function Education() {
         </div>
         <div className='row px-6 w-full flex justify-between items-center'>
           <div className="degree w-2/5 relative my-4">
-            <input placeholder="Enter Degree"
-              onChange={handleEduChange}
-              value={eduObj.degree}
-              id='degree'
-              name='degree'
-              type="text"
-              autoComplete="off"
-              className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+
+              <select name="degree" id="degree" className='w-full outline-none bg-transparent text-white' onChange={handleSelectChange}>
+                <option className="text-black" value="High School">High School</option>
+                <option className="text-black" value="Senior Secondary">Senior Secondary</option>
+                <option className="text-black" value="Diploma">Diploma</option>
+                <option className="text-black" value="Undergraduate">Undergraduate</option>
+                <option className="text-black" value="Postgraduate">Postgraduate</option>
+                <option className="text-black" value="Phd">Phd</option>
+              </select>
             <label htmlFor="degree"
 
-              className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
+              className="after:content[''] pointer-events-none absolute left-0 -top-3.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Degree
             </label>
           </div>
@@ -166,20 +187,27 @@ function Education() {
         {
           academicsData.education.map((edu, index) => {
             return (
-              <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                <div className="my-4 text-white ">
-                  {edu.degree}
+              <div className='flex justify-evenly w-full '>
+                <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
+                  <div className="my-4 text-white ">
+                    {edu.degree}
+                  </div>
+                  <div className="my-4 text-white ">
+                    {edu.school_college}
+                  </div>
+                  <div className="my-4 text-white ">
+                    {edu.percentage_cgpa}
+                  </div>
+                  <div className="my-4 text-white ">
+                    {edu.year}
+                  </div>
                 </div>
-                <div className="my-4 text-white ">
-                  {edu.school_college}
-                </div>
-                <div className="my-4 text-white ">
-                  {edu.percentage_cgpa}
-                </div>
-                <div className="my-4 text-white ">
-                  {edu.year}
-                </div>
+
+                <button className='text-red-600' onClick={()=>deleteEducation(index)}>Delete</button>
+
               </div>
+
+              
             );
           })
         }
@@ -236,7 +264,7 @@ function Education() {
                   <div className="my-3 text-white ">
                     {skill}
                   </div>
-                  <button className='text-red-600'>Delete</button>
+                  <button className='text-red-600' onClick={()=>deleteSkill(index)}>Delete</button>
 
                 </div>
               );
