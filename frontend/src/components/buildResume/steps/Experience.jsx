@@ -86,6 +86,7 @@ function Experience() {
                             name='company_name'
                             id='company_name'
                             type="text"
+                            autoComplete='off'
                             className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/experience/Company.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
                         <label htmlFor="company_name"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -99,6 +100,7 @@ function Experience() {
                             id='role'
                             name='role'
                             type="text"
+                            autoComplete='off'
                             className="peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
                         <label htmlFor="role"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -115,6 +117,7 @@ function Experience() {
                             name='description'
                             id='description'
                             type="text"
+                            autoComplete='off'
                             className="peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
                         <label htmlFor="description"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -159,63 +162,25 @@ function Experience() {
 
 
                 {/* TABLE */}
-                {/* <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                    <div className="my-4 text-white ">
-                        Company
-                    </div>
-                    <div className="my-4 text-white ">
-                        Role
-                    </div>
-                    <div className="my-4 text-white ">
-                        Description
-                    </div>
-                    <div className="my-4 text-white ">
-                        Duration
-                    </div>
-                </div> */}
 
-                {/* {
-                    expData.experience.map((exp, index) => {
-                        return (
-                            <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                                <div className="my-4 text-white ">
-                                    {exp.company_name}
-                                </div>      
-                                <div className="my-4 text-white ">
-                                    {exp.role}
-                                </div>
-                                <div className="my-4 text-white ">
-                                    {exp.description}
-                                </div>
-                                <div className="my-4 text-white ">
-                                    {exp.duration}
-                                </div>
-                                <button className='text-red-600' onClick={()=>deleteExperience(index)}>Delete</button>
-                            </div>
-                        );
-                    })
-                } */}
-
-                <table className='text-white w-full bg-slate-950'>
-                    <tr className='h-[50px]'>
-                        <th>Degree</th>
-                        <th>School/College</th>
-                        <th>Percentage/CGPA</th>
-                        <th>Year</th>
-                        <th>Action</th>
+                <table className='text-white w-full bg-slate-950 rounded-xl'>
+                    <tr className='h-[50px] border-b-[1px] border-white'>
+                        <th className='w-1/4'>Name</th>
+                        <th className='w-1/4'>Organization</th>
+                        <th className='w-1/4'>Date</th>
+                        <th className='w-1/6'>Action</th>
                     </tr>
 
                     {
                         expData.experience.map((exp,index)=>{
-                            return(
-                                <tr key={index} className='text-center h-[40px]'>
-                                    <td>{exp.company_name}</td>
-                                    <td>{exp.role}</td>
-                                    <td className='text-wrap'>{exp.description}</td>
-                                    <td>{exp.duration}</td>
-                                    <td><button className='text-red-600' onClick={()=>deleteExperience(index)}>Delete</button></td>
-                                </tr>
-                            )
+                        return(
+                            <tr key={index} className='text-center w-full text-sm'>
+                            <td className='py-4 w-1/4'>{exp.company_name}</td>
+                            <td className='py-4 w-1/4'>{exp.role}</td>
+                            <td className='py-4 w-1/4'>{exp.duration}</td>
+                            <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteExperience(index)}>Delete</button></td>
+                            </tr>
+                        )
                         })
                     }
                 </table>

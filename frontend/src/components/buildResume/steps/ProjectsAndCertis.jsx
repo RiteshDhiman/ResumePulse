@@ -154,37 +154,28 @@ function ProjectsAndCertis() {
 
 
         {/* TABLE */}
-        <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-          <div className="my-4 text-white ">
-            Name
-          </div>
-          <div className="my-4 text-white ">
-            Link
-          </div>
-          <div className="my-4 text-white ">
-            Description
-          </div>
 
-        </div>
+        <table className='text-white w-full bg-slate-950 rounded-xl'>
+          <tr className='h-[50px] border-b-[1px] border-white'>
+            <th className='w-1/4'>Project Name</th>
+            <th className='w-1/3'>Description</th>
+            <th className='w-1/4'>Project Link</th>
+            <th className='w-1/6'>Action</th>
+          </tr>
 
-        {
-          projectsData.projects.map((project, index) => {
-            return (
-              <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                <div className="my-4 text-white ">
-                  {project.name}
-                </div>
-                <div className="my-4 text-white ">
-                  {project.link}
-                </div>
-                <div className="my-4 text-white ">
-                  {project.description}
-                </div>
-                <button className='text-red-600' onClick={()=>deleteProjects(index)}>Delete</button>
-              </div>
-            );
-          })
-        }
+          {
+            projectsData.projects.map((project,index)=>{
+              return(
+                <tr key={index} className='text-center w-full text-sm'>
+                  <td className='py-4 w-1/4'>{project.name}</td>
+                  <td className='py-4 max-w-1/3'>{project.description}</td>
+                  <td className='py-4 w-1/4'>{project.link}</td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteProjects(index)}>Delete</button></td>
+                </tr>
+              )
+            })
+          }
+        </table>
 
       </motion.div>
 
@@ -209,6 +200,7 @@ function ProjectsAndCertis() {
               name='cert_name'
               id='cert_name'
               type="text"
+              autoComplete='off'
               className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="cert_name"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -222,6 +214,7 @@ function ProjectsAndCertis() {
               name='cert_organization'
               id='cert_organization'
               type="text"
+              autoComplete='off'
               className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="cert_organization"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -238,6 +231,7 @@ function ProjectsAndCertis() {
               name='cert_date'
               id='cert_date'
               type="text"
+              autoComplete='off'
               className="peer  pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="cert_date"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
@@ -254,7 +248,30 @@ function ProjectsAndCertis() {
 
 
         {/* TABLE */}
-        <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
+
+        <table className='text-white w-full bg-slate-950 rounded-xl'>
+          <tr className='h-[50px] border-b-[1px] border-white'>
+            <th className='w-1/4'>Name</th>
+            <th className='w-1/3'>Organization</th>
+            <th className='w-1/6'>Date</th>
+            <th className='w-1/6'>Action</th>
+          </tr>
+
+          {
+            projectsData.certifications.map((certi,index)=>{
+              return(
+                <tr key={index} className='text-center w-full text-sm'>
+                  <td className='py-4 w-1/4'>{certi.cert_name}</td>
+                  <td className='py-4 w-1/3'>{certi.cert_organization}</td>
+                  <td className='py-4 w-1/6'>{certi.cert_date}</td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteCerti(index)}>Delete</button></td>
+                </tr>
+              )
+            })
+          }
+        </table>
+
+        {/* <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
           <div className="my-4 text-white ">
             Name
           </div>
@@ -286,7 +303,9 @@ function ProjectsAndCertis() {
 
             );
           })
-        }
+        } */}
+
+        
       </motion.div>
 
     </>

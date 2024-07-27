@@ -30,6 +30,18 @@ const PersonalDetails = () => {
     handleStep('next');
   }
 
+  const handleReset = () => {
+    setPersonalData({
+      name: '',
+      email: '',
+      phone: '',
+      github: '',
+      linkedin: '',
+      portfolio: '',
+      location: ''
+    })
+  }
+
 
   return (
     <>
@@ -153,24 +165,26 @@ const PersonalDetails = () => {
 
         </div>
         <div className='row px-6 w-full flex justify-between items-center'>
-        <div className="w-2/5 relative my-4 ">
-          <input placeholder="Enter your location"
-            onChange={handlePersonalData}
-            value={personalData.location}
-            name='location'
-            id='location'
-            type="text"
-            autoComplete="off"
-            className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Location.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
-          <label htmlFor="location"
-            className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
-            Location (optional)
-          </label>
-        </div>
+          <div className="w-2/5 relative my-4 ">
+            <input placeholder="Enter your location"
+              onChange={handlePersonalData}
+              value={personalData.location}
+              name='location'
+              id='location'
+              type="text"
+              autoComplete="off"
+              className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/personalDetails/Location.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+            <label htmlFor="location"
+              className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
+              Location (optional)
+            </label>
+          </div>
 
         </div>
         
-
+        <div className='row p-5 w-full flex justify-center items-center'>
+          <button onClick={handleReset} className='bg-red-600 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-red-800 transition duration-200 ease-in-out active:bg-[#264d14] '>Reset</button>
+        </div>
 
       </motion.div>
     </>

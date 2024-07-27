@@ -109,9 +109,7 @@ function Education() {
                 <option className="text-black" value="Postgraduate">Postgraduate</option>
                 <option className="text-black" value="Phd">Phd</option>
               </select>
-            <label htmlFor="degree"
-
-              className="after:content[''] pointer-events-none absolute left-0 -top-3.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
+            <label htmlFor="degree" className="after:content[''] pointer-events-none absolute left-0 -top-3.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Degree
             </label>
           </div>
@@ -167,50 +165,29 @@ function Education() {
           <button onClick={handleEduAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
         </div>
 
+        <table className='text-white w-full bg-slate-950 rounded-xl'>
+          <tr className='h-[50px] border-b-[1px] border-white'>
+            <th className='w-1/6'>Degree</th>
+            <th className='w-1/3'>School/College</th>
+            <th className='w-1/6'>Percentage/CGPA</th>
+            <th className='w-1/6'>Year</th>
+            <th className='w-1/6'>Action</th>
+          </tr>
 
-        {/* TABLE */}
-        <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-          <div className="my-4 text-white ">
-            Degree
-          </div>
-          <div className="my-4 text-white ">
-            School/College
-          </div>
-          <div className="my-4 text-white ">
-            Percentage/CGPA
-          </div>
-          <div className="my-4 text-white ">
-            Year
-          </div>
-        </div>
-
-        {
-          academicsData.education.map((edu, index) => {
-            return (
-              <div className='flex justify-evenly w-full '>
-                <div key={index} className='row px-6 w-full border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                  <div className="my-4 text-white ">
-                    {edu.degree}
-                  </div>
-                  <div className="my-4 text-white ">
-                    {edu.school_college}
-                  </div>
-                  <div className="my-4 text-white ">
-                    {edu.percentage_cgpa}
-                  </div>
-                  <div className="my-4 text-white ">
-                    {edu.year}
-                  </div>
-                </div>
-
-                <button className='text-red-600' onClick={()=>deleteEducation(index)}>Delete</button>
-
-              </div>
-
-              
-            );
-          })
-        }
+          {
+            academicsData.education.map((edu,index)=>{
+              return(
+                <tr key={index} className='text-center w-full text-sm'>
+                  <td className='py-4 w-1/6'>{edu.degree}</td>
+                  <td className='py-4 max-w-1/3'>{edu.school_college}</td>
+                  <td className='py-4 w-1/6'>{edu.percentage_cgpa}</td>
+                  <td className='py-4 w-1/6'>{edu.year}</td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteEducation(index)}>Delete</button></td>
+                </tr>
+              )
+            })
+          }
+        </table>
 
       </motion.div>
 
@@ -251,25 +228,23 @@ function Education() {
 
 
         {/* TABLE */}
-        <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-start items-center'>
-          <div className="my-4 text-white ">
-            Skill
-          </div>
-        </div>
+        <table className='text-white w-full bg-slate-950 rounded-xl'>
+          <tr className='h-[50px] border-b-[1px] border-white'>
+            <th className='w-1/2'>Skill</th>
+            <th className='w-1/2'>Action</th>
+          </tr>
 
           {
-            academicsData.skills.map((skill, index) => {
-              return (
-                <div key={index} className='row px-6 w-full last:rounded-b-2xl border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>
-                  <div className="my-3 text-white ">
-                    {skill}
-                  </div>
-                  <button className='text-red-600' onClick={()=>deleteSkill(index)}>Delete</button>
-
-                </div>
-              );
+            academicsData.skills.map((skill,index)=>{
+              return(
+                <tr key={index} className='text-center w-full text-sm'>
+                  <td className='py-4 w-1/6'>{skill}</td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteSkill(index)}>Delete</button></td>
+                </tr>
+              )
             })
           }
+        </table>
 
       </motion.div>
 

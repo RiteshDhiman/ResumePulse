@@ -25,13 +25,13 @@ function Complete() {
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className='container mb-10 bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
 
-        <div className=" w-full bg-red-500 gap-20 mb-5 justify-start flex flex-col items-center ">
+        <div className=" w-full gap-20 mb-5 justify-start flex flex-col items-center ">
 
           <div className='text-white underline text-2xl'>Preview</div>
           </div>
 
 
-          <div className='container bg-blue-300 gap-16 flex flex-col'>
+          <div className='container gap-16 flex flex-col'>
             <div className="personal w-full flex flex-col justify-start">
               <div className='text-white underline text-2xl mb-4'>Personal Details</div>
 
