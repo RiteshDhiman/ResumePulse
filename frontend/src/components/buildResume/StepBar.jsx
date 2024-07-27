@@ -69,7 +69,7 @@ function StepBar({ steps, currentStep }) {
 
     const displaySteps = newStep.map((step, index) => {
         return (
-            <div key={index} className='w-full flex items-center' >
+            <div key={index} className='w-full flex items-center justify-center' >
                 <div className='relative flex flex-col items-center justify-between text-white'>
                     <div className={`number rounded-full transition duration-500 ease-in-out border-2 border-green-500 h-8 w-8 flex items-center justify-center py-3 ${step.selected ? "bg-green-500 border-green-600" : ""}`}>
                         {step.completed ? (

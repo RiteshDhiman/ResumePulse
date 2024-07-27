@@ -52,13 +52,13 @@ function Form() {
         <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] w-full h-full flex justify-center items-center'>
 
 
-            <div className=' bg-transparent w-3/5 h-full flex flex-col justify-start items-center'>
+            <div className=' bg-transparent w-full md:w-3/5 h-full flex flex-col justify-start items-center'>
                 <div className='text-2xl text-white font-krona m-10'>Build your Resume</div>
 
 
                 {/* Progress BAR */}
                 <div className='p-14 pt-0 border-b-[1px] border-white mb-4 flex justify-between items-center'>
-                    <StepBar steps={steps} currentStep={currentStep} />
+                    {/* <StepBar steps={steps} currentStep={currentStep} /> */}
                 </div>
                 {/**/}
                 
