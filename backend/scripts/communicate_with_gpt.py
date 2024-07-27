@@ -1,15 +1,15 @@
 # Code completed just needs to update the prompts
-# todo resume contruction
+
 from openai import OpenAI
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
-def communicate_with_openai(message, response_type={ "type": "json_object" }):
+def communicate_with_openai(message, response_type={ "type": "json_object" }, model="gpt-4o"):
     client = OpenAI()
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model=model,
         max_tokens=1024,
         temperature=0.4,
         n=1,
@@ -27,9 +27,9 @@ def get_cv_analysis(cv_text, jd_text):
     {
       similarityScore: < just the score>, 
       matchingAreas: [
-        bestMatched: [],
-        partiallyMatched: [],
-        poorlyMatched: []
+        bestMatched: [<upto 5 points>],
+        partiallyMatched: [<upto 5 points>],
+        poorlyMatched: [<upto 5 points>]
         ], 
       improvementSuggestions: [<5-6 suggestions>]
     }
@@ -85,19 +85,24 @@ def get_image_text(encoded_image_string):
     return communicate_with_openai(message, response_format)
   
 def build_resume_with_gpt(json_clean_data):
-  formatting = """
-    {
-      librariesToInstall: <just the names of the libraries that is recognised by pip separated by a comma>, 
-      code: <all the code>, 
-      additionalInstructions: <text based instructions> 
-    }
-    """
-  
   system_prompt = """
   You are a professional resume builder that builds one page resume. You follow the standard procedures of making a resume like the order of education, work experience etc.
   You give me a response in json format.
   """
   
-  user_prompt = f"Generate me just the code using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}"
+  formatting = """
+    {
+      librariesToInstall: <just the names of the libraries that is recognised by pip separated by a comma>, 
+      code: <all the code>, 
+      filePath: <path of the word file>
+    }
+    """
   
+  user_prompt = f"Generate me just the code without using any f-string in the script using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}. In the doc.save use this directory path to save './exported_resume/'"
   
+  message = [
+    {"role":"system", "content":system_prompt},
+    {"role":"user", "content": user_prompt}
+  ]
+  
+  return communicate_with_openai(message=message, model="gpt-4-turbo")

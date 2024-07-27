@@ -1,13 +1,14 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from scripts.extract_text import extract_text_from_file
 from scripts.communicate_with_gpt import get_cv_analysis
 from scripts.utils import to_json_formatted
+from scripts.build_resume import build_resume
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
+CORS(app, origins=["http://localhost:5173","http://trustedwebsite.com"])
 
 @app.route("/check_score_route", methods=["POST"])
 def check_score_route():
@@ -30,7 +31,9 @@ def check_score_route():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-    return jsonify({"checkscore" : check_score(file_path,text)}), 200
+    result_json = check_score(file_path,text)
+    os.remove(file_path)
+    return jsonify({"checkscore" : result_json}), 200
 
 def check_score(file_path,jd_text):
     extracted_text = extract_text_from_file(file_path)
@@ -39,9 +42,12 @@ def check_score(file_path,jd_text):
     
 @app.route("/build_resume_route", methods=["POST"])  
 def build_resume_route():
-    pass
-    # json_data = request.json
-    # return build_resume(json_data)
+    json_data = request.json["payload"]
+    resume_path = build_resume(json_data)
+    try:
+        return send_file(resume_path, as_attachment=True)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if "__main__" == __name__:
     app.run(debug=True)
