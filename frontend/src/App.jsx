@@ -12,7 +12,7 @@ import SignUpCopy from './components/SignUp/SignUpCopy'
 import CheckScore from './components/checkscore/Checkscore'
 import Loading from './components/loadingscreen/Loading'
 import { SparklesPreview } from './components/SignUp/SparklesPreview'
-
+import Footer from './components/Footer'
 
 
 function App() {
@@ -47,6 +47,10 @@ function App() {
       {/* <Loading/> */}
 
       {/* <SparklesPreview/> */}
+      <Footer />
+
+
+
     </BrowserRouter>
   )
 }
