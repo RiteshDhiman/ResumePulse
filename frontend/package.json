@@ -15,7 +15,7 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.3",
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.14",
     "i": "^0.3.7",

@@ -82,18 +82,7 @@ function StepBar({ steps, currentStep }) {
 
     // //  */}
 
-
-
-
     //         // {/* </div> */ }
-
-
-
-
-
-
-
-
 
 
     //         )

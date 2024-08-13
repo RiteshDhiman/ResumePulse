@@ -8,7 +8,8 @@ from scripts.build_resume import build_resume
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173","http://trustedwebsite.com"])
+# origins=["http://localhost:5173","http://trustedwebsite.com"]
+CORS(app);
 
 @app.route("/check_score_route", methods=["POST"])
 def check_score_route():
@@ -42,7 +43,11 @@ def check_score(file_path,jd_text):
     
 @app.route("/build_resume_route", methods=["POST"])  
 def build_resume_route():
+    print(request.json)
+    print(type(request.json))
+
     json_data = request.json["payload"]
+
     resume_path = build_resume(json_data)
     try:
         return send_file(resume_path, as_attachment=True)
