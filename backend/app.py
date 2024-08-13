@@ -8,6 +8,7 @@ from scripts.build_resume import build_resume
 import os
 
 app = Flask(__name__)
+# origins=["http://localhost:5173","http://trustedwebsite.com"]
 CORS(app)
 
 @app.route("/check_score_route", methods=["POST"])
@@ -42,11 +43,11 @@ def check_score(file_path,jd_text):
     
 @app.route("/build_resume_route", methods=["POST"])  
 def build_resume_route():
-    json_data = request.json["payload"]
-    # resume_path = build_resume(json_data)
+    json_data = request.json
+    resume_path = build_resume(json_data)
     try:
-        # return send_file(resume_path, as_attachment=True)
-        return send_from_directory("exported_resume", "Shreya_Resume.docx")
+        return send_file(resume_path)
+        # return send_from_directory("exported_resume", "Shreya_Resume.docx")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

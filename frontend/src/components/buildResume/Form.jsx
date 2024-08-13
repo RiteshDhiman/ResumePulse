@@ -56,7 +56,7 @@ function Form() {
 
 
                 {/* Progress BAR */}
-                <div className='p-14 pt-0 border-b-[1px] border-white mb-4 flex justify-between items-center'>
+                <div className='w-11/12 md:w-full md:p-14 px-1 pb-12 pt-0 mb-4 border-b-[1px] border-white flex justify-between items-center'>
                     <StepBar steps={steps} currentStep={currentStep} />
                 </div>
                 {/**/}
