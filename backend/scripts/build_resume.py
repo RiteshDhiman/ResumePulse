@@ -2,7 +2,7 @@ from scripts.utils import to_json_formatted
 from scripts.communicate_with_gpt import build_resume_with_gpt
 
 def build_resume(json_request_data):
-    data = to_json_formatted(json_request_data)
+    # data = to_json_formatted(json_request_data)
     prep_data = { 
                  obj["type"].rsplit("/", 1)[-1][3:]: obj["payload"]
                 for obj in data 
