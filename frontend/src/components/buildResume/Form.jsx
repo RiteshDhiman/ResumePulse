@@ -47,7 +47,6 @@ function Form() {
     }
 
 
-
     return (
         <div className=' bg-gradient-to-b from-[#000931] to-[#00020C] w-full h-full flex justify-center items-center'>
 
@@ -58,7 +57,7 @@ function Form() {
 
                 {/* Progress BAR */}
                 <div className='p-14 pt-0 border-b-[1px] border-white mb-4 flex justify-between items-center'>
-                    {/* <StepBar steps={steps} currentStep={currentStep} /> */}
+                    <StepBar steps={steps} currentStep={currentStep} />
                 </div>
                 {/**/}
                 

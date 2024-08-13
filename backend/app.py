@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from scripts.extract_text import extract_text_from_file
@@ -8,7 +8,7 @@ from scripts.build_resume import build_resume
 import os
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173","http://trustedwebsite.com"])
+CORS(app)
 
 @app.route("/check_score_route", methods=["POST"])
 def check_score_route():
@@ -43,9 +43,10 @@ def check_score(file_path,jd_text):
 @app.route("/build_resume_route", methods=["POST"])  
 def build_resume_route():
     json_data = request.json["payload"]
-    resume_path = build_resume(json_data)
+    # resume_path = build_resume(json_data)
     try:
-        return send_file(resume_path, as_attachment=True)
+        # return send_file(resume_path, as_attachment=True)
+        return send_from_directory("exported_resume", "Shreya_Resume.docx")
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
