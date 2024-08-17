@@ -31,9 +31,8 @@ const Navbar = ({loginClick, whetherLogin}) => {
 
           <div className="w-10/12 h-full text-white font-semibold hidden md:flex justify-around items-center font-poppins md:text-xl">
             <a href="/"><div>Home</div></a>
-            {/* <a href="about"><div>About</div></a> */}
-            <a href="templates"><div>Templates</div></a>
             <Link to="about"><div>About</div></Link>
+            <Link to="templates"><div>Templates</div></Link>
             <div className="centering rounded-full bg-[#66A947] w-[150px] h-3/5 text-lg font-medium hover:cursor-pointer" onClick={handleClick}>Log in/Signup</div>
           </div>
 
