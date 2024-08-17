@@ -12,8 +12,7 @@ function Complete() {
   const sliceData = useSelector((state) => state.form)
   const personalData = sliceData.personal;
   const academicsData = sliceData.academics;
-
-
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async () => {
 
