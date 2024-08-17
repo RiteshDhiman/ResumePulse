@@ -12,50 +12,14 @@ function Complete() {
   const sliceData = useSelector((state) => state.form)
   const personalData = sliceData.personal;
   const academicsData = sliceData.academics;
-
-  const finalSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const response = await fetch('http://127.0.0.1:5000/build_resume_route', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ payload: sliceData }),  // Ensure the payload is wrapped correctly
-        
-      });
-
-      console.log(JSON.stringify({ payload: sliceData }))
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(new Blob([blob]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'resume.pdf'); // Specify the desired file name and extension
-      document.body.appendChild(link);
-      link.click();
-      link.parentNode.removeChild(link);
-  
-      console.log('Resume downloaded successfully');
-    } catch (error) {
-      console.log('An error occurred:', error.message);
-    }
-  };
-  
-
-
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = async () => {
 
     console.log(sliceData);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/build_resume_route', sliceData, {
+      const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
         headers: {
           'Content-Type': "application/json",
         },

@@ -7,6 +7,7 @@ function CheckScore() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
   const navigate = useNavigate();
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleChange = (event) => {
     setJobDescription(event.target.value);
@@ -27,7 +28,7 @@ function CheckScore() {
     formData.append('jd_text', jobDescription);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/check_score_route', formData, {
+      const response = await axios.post('http://127.0.0.1:5000/api/check_score_route', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
