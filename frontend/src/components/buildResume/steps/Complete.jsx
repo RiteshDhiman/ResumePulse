@@ -12,25 +12,62 @@ function Complete() {
   const sliceData = useSelector((state) => state.form)
   const personalData = sliceData.personal;
   const academicsData = sliceData.academics;
-  const apiUrl = process.env.REACT_APP_API_URL;
+  // const apiUrl = process.env.REACT_APP_API_URL;
+
+  // const handleSubmit = async () => {
+
+  //   console.log(sliceData);
+
+  //   try {
+  //     const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
+  //       headers: {
+  //         'Content-Type': "application/json",
+  //       },
+  //     });
+  //     console.log('Response:', response.data);
+
+  //   } catch (error) {
+  //     console.error('Error uploading file:', error);
+  //   }
+
+  // };
 
   const handleSubmit = async () => {
-
     console.log(sliceData);
-
+  
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
+        responseType: 'blob', // Set response type to blob to handle binary data
         headers: {
-          'Content-Type': "application/json",
+          'Content-Type': 'application/json',
         },
       });
-      console.log('Response:', response.data);
-
+  
+      let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
+  
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      // Create a link element
+      const link = document.createElement('a');
+      // Set the href to the blob URL
+      link.href = url;
+      // Set the download attribute to the filename received from the backend
+      link.setAttribute('download', filename);
+      // Append link to the body
+      document.body.appendChild(link);
+      // Trigger a click on the link
+      link.click();
+      // Clean up and remove the link
+      link.parentNode.removeChild(link);
+      // Revoke the object URL to free up memory
+      window.URL.revokeObjectURL(url);
+  
     } catch (error) {
-      console.error('Error uploading file:', error);
+      console.error('Error downloading file:', error);
     }
-
   };
+  
+
 
 
 

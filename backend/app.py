@@ -46,7 +46,7 @@ def build_resume_route():
     json_data = request.json
     resume_path, resume_name = build_resume(json_data)
     try:
-        return send_file(resume_path, download_name=resume_name)
+        return send_file(resume_path,as_attachment=True, download_name=resume_name)
         # return send_from_directory("exported_resume", resume_name)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
