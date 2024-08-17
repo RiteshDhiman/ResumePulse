@@ -100,7 +100,7 @@ def build_resume_with_gpt(json_clean_data):
     }
     """
   
-  user_prompt = f"Generate me just the code without using any f-string in the script using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}. In the doc.save use this directory path to save './exported_resume/'"
+  user_prompt = f"Generate me just the code without using any f-string in the script using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}. Save the document to the directory path './exported_resume/' using doc.save "
   
   message = [
     {"role":"system", "content":system_prompt},
