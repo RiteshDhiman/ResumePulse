@@ -92,9 +92,11 @@ def build_resume_with_gpt(json_clean_data):
   
   formatting = """
     {
-      librariesToInstall: <just the names of the libraries that is recognised by pip separated by a comma>, 
-      code: <all the code>, 
-      filePath: <path of the word file>
+        "librariesToInstall": "<comma-separated names of pip-recognized libraries>", 
+        "code": "<all the code>", 
+        "filePath": "<path of the word file alongwith the name of the file>", 
+        "filename": "<name of the word file>", 
+        "issues": "<any issues if the data is not legitimate>"
     }
     """
   

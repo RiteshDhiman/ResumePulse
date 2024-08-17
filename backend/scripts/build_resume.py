@@ -23,6 +23,6 @@ def build_resume(json_request_data):
     exec(code_for_resume)
     
     path_to_resume = formatted_json_response["filePath"]
-    
+    file_name = formatted_json_response["filename"]
     print(path_to_resume)
-    return path_to_resume
+    return path_to_resume, file_name
