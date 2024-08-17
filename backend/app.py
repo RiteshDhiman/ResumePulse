@@ -11,7 +11,7 @@ app = Flask(__name__)
 # origins=["http://localhost:5173","http://trustedwebsite.com"]
 CORS(app)
 
-@app.route("/check_score_route", methods=["POST"])
+@app.route("/api/check_score_route", methods=["POST"])
 def check_score_route():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
@@ -41,12 +41,12 @@ def check_score(file_path,jd_text):
     result_from_gpt = get_cv_analysis(extracted_text,jd_text)
     return to_json_formatted(result_from_gpt)
     
-@app.route("/build_resume_route", methods=["POST"])  
+@app.route("/api/build_resume_route", methods=["POST"])  
 def build_resume_route():
     json_data = request.json
     resume_path, resume_name = build_resume(json_data)
     try:
-        return send_file(resume_path, as_attachment=True)
+        return send_file(resume_path, download_name=resume_name)
         # return send_from_directory("exported_resume", resume_name)
     except Exception as e:
         return jsonify({"error": str(e)}), 500

@@ -6,6 +6,8 @@ from flatten_dict import flatten
 def build_resume(json_request_data):
     data_prep = flatten(json_request_data, reducer=make_reducer(delimiter='_'), enumerate_types=(list,), keep_empty_types=(dict,))
     
+    print(data_prep)
+    
     json_response = build_resume_with_gpt(data_prep)
     formatted_json_response = to_json_formatted(json_response)
     

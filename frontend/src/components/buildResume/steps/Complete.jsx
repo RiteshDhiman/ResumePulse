@@ -20,7 +20,7 @@ function Complete() {
     console.log(sliceData);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/build_resume_route', sliceData, {
+      const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
         headers: {
           'Content-Type': "application/json",
         },
