@@ -50,6 +50,10 @@ def build_resume_route():
         # return send_from_directory("exported_resume", resume_name)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/hello", methods=["GET"])
+def hello():
+    return jsonify({"message": "Hello World!"})
 
 if "__main__" == __name__:
     app.run(debug=True)
