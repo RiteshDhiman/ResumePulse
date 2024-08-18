@@ -46,6 +46,9 @@ def check_score(file_path,jd_text):
     
 @app.route("/api/build_resume_route", methods=["POST"])  
 def build_resume_route():
+    if not os.path.exists('exported_resume'):
+        os.makedirs('./exported_resume')
+
     json_data = request.json
     resume_path, resume_name = build_resume(json_data)
     try:
