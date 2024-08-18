@@ -69,23 +69,23 @@ function StepBar({ steps, currentStep }) {
 
     const displaySteps = newStep.map((step, index) => {
         return (
-            <div key={index} className=' flex items-center justify-center w-[5rem] last:w-[2rem] ' >
+            <div key={index} className=' flex items-center justify-center w-1/2 last:w-[2rem] ' >
                 <div className='relative flex items-center justify-center flex-shrink-0 text-white'>
                     <div className={`number rounded-full transition duration-500 ease-in-out border-2 border-green-500  h-1 w-7 md:h-8 md:w-8 flex items-center justify-center py-3 text-xs md:text-lg  ${step.selected ? "bg-green-500 border-green-600" : ""}`}>
                         {step.completed ? (
                             <span className='text-white font-bold text-lg'>&#10003;</span>
                         ) : (index + 1)}
                     </div>
-                    <div className={`desc absolute top-0 text-center mt-10 w-18 sm:w-32 text-[8px] md:text-xs font-medium uppercase ${step.highlighted ? "text-green-500" : ""}`}>{step.description}</div>
+                    <div className={`desc absolute top-0 text-center mt-10 w-18 sm:w-30 text-[8px] md:text-xs font-medium uppercase ${step.highlighted ? "text-green-500" : ""}`}>{step.description}</div>
 
 
                 </div>
                 {
                     index != newStep.length - 1 ? (
-                        <>
-                            <div className='text-white bg-white h-[0.5px] w-[3rem] mx-[2rem] hidden md:flex'></div>
-                            <div className='text-white mx-[2rem] flex md:hidden'>/</div>
-                        </>
+                        <div className=' w-full'>
+                            <div className={` text-white h-[0.5px] mx-[2rem] hidden md:flex ${step.completed ? "bg-green-500" : "bg-white"}`}></div>
+                            <div className={` ml-[1.5rem] mr-0 sm:ml-[3rem] sm:mr-0 flex md:hidden ${step.completed ? "text-green-500" : "text-white"}`}>/</div>
+                        </div>
                     ) :
                         (
                             <div className='text-white hidden'></div>
