@@ -11,8 +11,11 @@ app = Flask(__name__)
 # origins=["http://localhost:5173","http://trustedwebsite.com"]
 CORS(app)
 
-@app.route("/api/check_score_route", methods=["POST"])
+@app.route("/api/check_score_route", methods=["GET","POST"])
 def check_score_route():
+    if request.method == 'GET':
+        return jsonify({'error': 'GET method not allowed'}), 405
+    
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     

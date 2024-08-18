@@ -7,7 +7,7 @@ function CheckScore() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_URL;
+  // const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleChange = (event) => {
     setJobDescription(event.target.value);
