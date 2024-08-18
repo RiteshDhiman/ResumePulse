@@ -36,13 +36,14 @@ function Complete() {
     console.log(sliceData);
   
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
+      const response = await axios.post('https://resume-pulse-back.vercel.app/api/build_resume_route', sliceData, {
         responseType: 'blob', // Set response type to blob to handle binary data
         headers: {
           'Content-Type': 'application/json',
         },
       });
   
+      console.log(response)
       let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
   
       // Create a URL for the blob
@@ -61,16 +62,12 @@ function Complete() {
       link.parentNode.removeChild(link);
       // Revoke the object URL to free up memory
       window.URL.revokeObjectURL(url);
+
   
     } catch (error) {
       console.error('Error downloading file:', error);
     }
   };
-  
-
-
-
-
 
   return (
     <>
