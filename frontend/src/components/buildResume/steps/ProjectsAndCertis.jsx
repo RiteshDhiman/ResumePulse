@@ -101,8 +101,8 @@ function ProjectsAndCertis() {
           </div>
 
         </div>
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="degree w-2/5 relative my-4">
+        <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
+          <div className="degree w-full relative my-4">
             <input placeholder="Enter project name"
               onChange={handleProjectChange}
               value={projectObj.name}
@@ -116,7 +116,7 @@ function ProjectsAndCertis() {
               Project name
             </label>
           </div>
-          <div className="school_college w-2/5 relative my-4 ">
+          <div className="school_college w-full relative my-4 ">
             <input placeholder="Enter project link"
               onChange={handleProjectChange}
               value={projectObj.link}
@@ -129,10 +129,7 @@ function ProjectsAndCertis() {
               Project link
             </label>
           </div>
-        </div>
-
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="percentage_cgpa w-2/5 relative my-4 ">
+          <div className="percentage_cgpa w-full relative my-4 ">
             <input placeholder="Enter description"
               onChange={handleProjectChange}
               value={projectObj.description}
@@ -145,7 +142,6 @@ function ProjectsAndCertis() {
               Description
             </label>
           </div>
-
         </div>
 
         <div className='row p-5 w-full flex justify-center items-center'>
@@ -192,8 +188,8 @@ function ProjectsAndCertis() {
         </div>
 
 
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="degree w-2/5 relative my-4">
+        <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
+          <div className="degree w-full relative my-4">
             <input placeholder="Enter certification name"
               onChange={handleCertiChange}
               value={certiObj.cert_name}
@@ -207,7 +203,7 @@ function ProjectsAndCertis() {
               Certification name
             </label>
           </div>
-          <div className="school_college w-2/5 relative my-4 ">
+          <div className="school_college w-full relative my-4 ">
             <input placeholder="Enter organization name"
               onChange={handleCertiChange}
               value={certiObj.cert_organization}
@@ -221,10 +217,7 @@ function ProjectsAndCertis() {
               Organization name
             </label>
           </div>
-        </div>
-
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="percentage_cgpa w-2/5 relative my-4 ">
+          <div className="percentage_cgpa w-full relative my-4 ">
             <input placeholder="Enter certification date"
               onChange={handleCertiChange}
               value={certiObj.cert_date}
@@ -238,8 +231,8 @@ function ProjectsAndCertis() {
               Certification date
             </label>
           </div>
-
         </div>
+
         <div className='row p-5 w-full flex justify-center items-center'>
           <button onClick={handleCertisAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
         </div>

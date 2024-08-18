@@ -13,6 +13,7 @@ import CheckScore from './components/checkscore/Checkscore'
 import Loading from './components/loadingscreen/Loading'
 import { SparklesPreview } from './components/SignUp/SparklesPreview'
 import Footer from './components/Footer'
+import Result from './result/Result'
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path='build' element = {<Form/>}/>
         <Route path='templates' element = {<TemplatesPage/>}/>
         <Route path='check' element = {<CheckScore/>}/>
+        <Route path='result' element = {<Result/>}/>
 
       </Routes>
       {/* <Loading/> */}

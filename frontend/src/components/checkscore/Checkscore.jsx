@@ -38,6 +38,8 @@ function CheckScore() {
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+
+    navigate('/result')
   };
 
   const handleBuild = () => {
