@@ -78,8 +78,8 @@ function Experience() {
                     </div>
 
                 </div>
-                <div className='row px-6 w-full flex justify-between items-center'>
-                    <div className="w-2/5 relative my-4">
+                <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
+                    <div className="w-full relative my-4">
                         <input placeholder="Enter Company name"
                             onChange={handleExpChange}
                             value={expObj.company_name}
@@ -93,7 +93,7 @@ function Experience() {
                             Company
                         </label>
                     </div>
-                    <div className="school_college w-2/5 relative my-4 ">
+                    <div className="school_college w-full relative my-4 ">
                         <input placeholder="Enter your role"
                             onChange={handleExpChange}
                             value={expObj.role}
@@ -107,9 +107,6 @@ function Experience() {
                             Role
                         </label>
                     </div>
-                </div>
-
-                <div className='row px-6 w-full flex justify-between items-center'>
                     <div className="w-full relative my-4 ">
                         <input placeholder="Enter description"
                             onChange={handleExpChange}
@@ -124,10 +121,7 @@ function Experience() {
                             Description
                         </label>
                     </div>
-                </div>
-
-                <div className='row px-6 w-full flex justify-between items-center'>
-                    <div className="w-2/5 relative my-4 ">
+                    <div className="w-full relative my-4 ">
                         <input placeholder="Enter start date"
                             onChange={handleExpChange}
                             value={expObj.start_date}
@@ -140,7 +134,7 @@ function Experience() {
                             Start date
                         </label>
                     </div>
-                    <div className="w-2/5 relative my-4 ">
+                    <div className="w-full relative my-4 ">
                         <input placeholder="Enter end date"
                             onChange={handleExpChange}
                             value={expObj.end_date}
@@ -153,7 +147,6 @@ function Experience() {
                             End date
                         </label>
                     </div>
-
                 </div>
 
                 <div className='row p-5 w-full flex justify-center items-center'>

@@ -28,7 +28,7 @@ function CheckScore() {
     formData.append('jd_text', jobDescription);
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/check_score_route', formData, {
+      const response = await axios.post('https://resume-pulse-back.vercel.app/api/check_score_route', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -38,6 +38,8 @@ function CheckScore() {
     } catch (error) {
       console.error('Error uploading file:', error);
     }
+
+    navigate('/result')
   };
 
   const handleBuild = () => {

@@ -98,8 +98,8 @@ function Education() {
           </div>
 
         </div>
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="degree w-2/5 relative my-4">
+        <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
+          <div className="degree w-full relative my-4">
 
               <select name="degree" id="degree" className='w-full outline-none bg-transparent text-white' onChange={handleSelectChange}>
                 <option className="text-black" value="High School">High School</option>
@@ -113,7 +113,7 @@ function Education() {
               Degree
             </label>
           </div>
-          <div className="school_college w-2/5 relative my-4 ">
+          <div className="school_college w-full relative my-4 ">
             <input placeholder="Enter School/College"
               onChange={handleEduChange}
               value={eduObj.school_college}
@@ -127,10 +127,7 @@ function Education() {
               School/College
             </label>
           </div>
-        </div>
-
-        <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="percentage_cgpa w-2/5 relative my-4 ">
+          <div className="percentage_cgpa w-full relative my-4 ">
             <input placeholder="Enter your Percentage/CGPA"
               onChange={handleEduChange}
               value={eduObj.percentage_cgpa}
@@ -145,7 +142,7 @@ function Education() {
             </label>
           </div>
 
-          <div className="year w-2/5 relative my-4 ">
+          <div className="year w-full relative my-4 ">
             <input placeholder="Enter Year"
               onChange={handleEduChange}
               value={eduObj.year}
