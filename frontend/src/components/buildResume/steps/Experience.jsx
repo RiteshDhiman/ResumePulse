@@ -17,9 +17,9 @@ function Experience() {
         company_name: '',
         role: '',
         description: '',
-        start_date: null,
-        end_date: null,
-        duration : null
+        start_date: '',
+        end_date: '',
+        duration : ''
     })
 
     const handleExpAdd = () => {
@@ -29,9 +29,9 @@ function Experience() {
             company_name: '',
             role: '',
             description: '',
-            start_date: null,
-            end_date: null,
-            duration : null
+            start_date: '',
+            end_date: '',
+            duration : ''
         });
     }
 
