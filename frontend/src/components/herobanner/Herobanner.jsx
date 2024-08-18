@@ -55,11 +55,73 @@ function Herobanner() {
           </div>
         </div>
       </div>
+
+      <div className="flex flex-col mt-28 gap-12 items-center font-poppins">
+        <div className="text-xs sm:text-sm md:text-base lg:text-lg text-center">ResumePulse has helped people land jobs at these great companies</div>
+        <div class="w-4/5 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+          <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+            <li>
+              <img src="/images/logos/facebook.svg" alt="Facebook" />
+            </li>
+            <li>
+              <img src="/images/logos/disney.svg" alt="Disney" />
+            </li>
+            <li>
+              <img src="/images/logos/airbnb.svg" alt="Airbnb" />
+            </li>
+            <li>
+              <img src="/images/logos/apple.svg" alt="Apple" />
+            </li>
+            <li>
+              <img src="/images/logos/spark.svg" alt="Spark" />
+            </li>
+            <li>
+              <img src="/images/logos/samsung.svg" alt="Samsung" />
+            </li>
+            <li>
+              <img src="/images/logos/quora.svg" alt="Quora" />
+            </li>
+            <li>
+              <img src="/images/logos/sass.svg" alt="Sass" />
+            </li>
+          </ul>
+          <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll aria-hidden='true'">
+            <li>
+              <img src="/images/logos/facebook.svg" alt="Facebook" />
+            </li>
+            <li>
+              <img src="/images/logos/disney.svg" alt="Disney" />
+            </li>
+            <li>
+              <img src="/images/logos/airbnb.svg" alt="Airbnb" />
+            </li>
+            <li>
+              <img src="/images/logos/apple.svg" alt="Apple" />
+            </li>
+            <li>
+              <img src="/images/logos/spark.svg" alt="Spark" />
+            </li>
+            <li>
+              <img src="/images/logos/samsung.svg" alt="Samsung" />
+            </li>
+            <li>
+              <img src="/images/logos/quora.svg" alt="Quora" />
+            </li>
+            <li>
+              <img src="/images/logos/sass.svg" alt="Sass" />
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
       <div className="flex-col flex justify-center items-center my-36">
         <Review reviewsArray={reviews} direction={1} />
         {/* <div className='h-10'></div> */}
         {/* <Review reviewsArray={reviews2} direction={-1} /> */}
       </div>
+
     </div>
   );
 }
