@@ -11,8 +11,11 @@ app = Flask(__name__)
 # origins=["http://localhost:5173","http://trustedwebsite.com"]
 CORS(app)
 
-@app.route("/api/check_score_route", methods=["POST"])
+@app.route("/api/check_score_route", methods=["GET","POST"])
 def check_score_route():
+    if request.method == 'GET':
+        return jsonify({'error': 'GET method not allowed'}), 405
+    
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
@@ -43,6 +46,9 @@ def check_score(file_path,jd_text):
     
 @app.route("/api/build_resume_route", methods=["POST"])  
 def build_resume_route():
+    if not os.path.exists('exported_resume'):
+        os.makedirs('./exported_resume')
+
     json_data = request.json
     resume_path, resume_name = build_resume(json_data)
     try:
@@ -50,6 +56,10 @@ def build_resume_route():
         # return send_from_directory("exported_resume", resume_name)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/hello", methods=["GET"])
+def hello():
+    return jsonify({"message": "Hello World!"})
 
 if "__main__" == __name__:
     app.run(debug=True)

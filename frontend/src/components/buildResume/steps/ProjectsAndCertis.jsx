@@ -230,7 +230,7 @@ function ProjectsAndCertis() {
               value={certiObj.cert_date}
               name='cert_date'
               id='cert_date'
-              type="text"
+              type="date"
               autoComplete='off'
               className="peer  pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="cert_date"
