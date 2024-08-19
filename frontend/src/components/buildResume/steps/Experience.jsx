@@ -19,7 +19,7 @@ function Experience() {
         description: '',
         start_date: '',
         end_date: '',
-        duration : ''
+        duration: ''
     })
 
     const handleExpAdd = () => {
@@ -31,7 +31,7 @@ function Experience() {
             description: '',
             start_date: '',
             end_date: '',
-            duration : ''
+            duration: ''
         });
     }
 
@@ -52,10 +52,10 @@ function Experience() {
 
     const deleteExperience = (value) => {
         setExpData((prevState) => ({
-          ...prevState,
-          experience: prevState.experience.filter((item, index) => index !== value),
+            ...prevState,
+            experience: prevState.experience.filter((item, index) => index !== value),
         }));
-      };
+    };
 
 
     return (
@@ -159,21 +159,23 @@ function Experience() {
                 <table className='text-white w-full bg-slate-950 rounded-xl'>
                     <tr className='h-[50px] border-b-[1px] border-white'>
                         <th className='w-1/4'>Name</th>
-                        <th className='w-1/4'>Organization</th>
+                        <th className='w-1/4'>Role</th>
+                        {/* <th className='w-1/4'>Description</th> */}
                         <th className='w-1/4'>Date</th>
                         <th className='w-1/6'>Action</th>
                     </tr>
 
                     {
-                        expData.experience.map((exp,index)=>{
-                        return(
-                            <tr key={index} className='text-center w-full text-sm'>
-                            <td className='py-4 w-1/4'>{exp.company_name}</td>
-                            <td className='py-4 w-1/4'>{exp.role}</td>
-                            <td className='py-4 w-1/4'>{exp.duration}</td>
-                            <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteExperience(index)}>Delete</button></td>
-                            </tr>
-                        )
+                        expData.experience.map((exp, index) => {
+                            return (
+                                <tr key={index} className='text-center w-full text-sm'>
+                                    <td className='py-4 w-1/4'>{exp.company_name}</td>
+                                    <td className='py-4 w-1/4'>{exp.role}</td>
+                                    {/* <td className='py-4 w-1/4'>{exp.description}</td> */}
+                                    <td className='py-4 w-1/4'>{exp.duration}</td>
+                                    <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteExperience(index)}>Delete</button></td>
+                                </tr>
+                            )
                         })
                     }
                 </table>
