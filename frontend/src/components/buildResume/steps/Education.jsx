@@ -91,7 +91,7 @@ function Education() {
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
-        className='container bg-[url("/images/form/form_bg.png")] bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
+        className='container bg-white/30 backdrop-blur-lg bg-cover bg-center w-full gap-0 flex flex-col justify-between items-center font-poppins rounded-3xl overflow-hidden p-10'>
         <div className="row w-full gap-20 mb-5 justify-start flex ">
           <div className='left p-6 pb-0 w-3/5 '>
             <div className='heading text-white underline text-2xl '>Education</div>

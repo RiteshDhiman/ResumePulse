@@ -58,8 +58,8 @@ function Herobanner() {
 
       <div className="flex flex-col mt-28 gap-12 items-center font-poppins">
         <div className="text-xs sm:text-sm md:text-base lg:text-lg text-center">ResumePulse has helped people land jobs at these great companies</div>
-        <div class="w-4/5 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-          <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+        <div className="w-4/5 inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+          <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
             <li>
               <img src="/images/logos/facebook.svg" alt="Facebook" />
             </li>
@@ -85,7 +85,7 @@ function Herobanner() {
               <img src="/images/logos/sass.svg" alt="Sass" />
             </li>
           </ul>
-          <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll aria-hidden='true'">
+          <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll aria-hidden='true'">
             <li>
               <img src="/images/logos/facebook.svg" alt="Facebook" />
             </li>

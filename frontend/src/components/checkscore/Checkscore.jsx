@@ -90,7 +90,7 @@ function CheckScore() {
           </div>
           <div className='bottom w-full h-2/3'>
             <div className="box w-full h-full rounded-3xl border-4 border-dashed border-white flex flex-col justify-start items-start p-4">
-              <div className='w-full h-full'><textarea onChange={handleChange} className='scroll flex w-full h-full text-white justify-center bg-transparent items-center resize-none placeholder:text-[#66A947] border-none' placeholder='Enter text'></textarea></div>
+              <div className='w-full h-full'><textarea onChange={handleChange} className='outline-none scroll flex w-full h-full text-white justify-center bg-transparent items-center resize-none placeholder:text-[#66A947] border-none' placeholder='Enter text'></textarea></div>
               {/* <div className='text-[#A9ACB4] text-sm mb-6 w-full flex justify-center items-center'>{wordCount}/1000 words</div> */}
             </div>
           </div>
