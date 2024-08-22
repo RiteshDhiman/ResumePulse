@@ -248,9 +248,6 @@ const PersonalDetails = () => {
 
           {/* </div> */}
 
-
-          <button type='submit' disabled={isSubmitting} className='bg-[#66A947] text-white my-10 py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] disabled:cursor-not-allowed '>Save and Continue</button>
-
           <div className='row p-5 w-full flex justify-center items-center'>
             <button onClick={() => resetForm({
               values: {
@@ -265,6 +262,8 @@ const PersonalDetails = () => {
               }
             })} type='reset' className='bg-red-600 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-red-800 transition duration-200 ease-in-out active:bg-[#264d14] '>Reset</button>
           </div>
+          
+          <button type='submit' disabled={isSubmitting} className='bg-[#66A947] text-white my-10 py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] disabled:cursor-not-allowed '>Save and Continue</button>
         </form>
 
 
