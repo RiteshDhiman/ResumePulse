@@ -8,36 +8,44 @@ import { experienceSchema } from '../../../schemas';
 
 function Experience() {
     const { currentStep, handleStep } = useContext(StepBarContext);
+
     const dispatch = useDispatch();
     const expSliceData = useSelector((state) => state.form.experience)
 
     const [expData, setExpData] = useState({
         experience: [...expSliceData.experience]
     })
-    const [expObj, setExpObj] = useState({
-        company_name: '',
-        role: '',
-        description: '',
-        start_date: '',
-        end_date: '',
-        duration: ''
-    })
+
+
+    // const [expObj, setExpObj] = useState({
+    //     // company_name: '',
+    //     // role: '',
+    //     // description: '',
+    //     start_date: '',
+    //     end_date: '',
+    //     duration: ''
+    // })
 
 
     //add EXPERIENCE button
     const onSubmit = async (values, actions) => {
-        
-        setExpObj({
+
+        const newExp = {
             company_name: values.company_name,
             role: values.role,
             description: values.description,
-        });
+            start_date: values.start_date,
+            end_date: values.end_date,
+            duration: ''
+        };
 
-        const { start_date, end_date, ...expObjWithoutDates } = expObj;
-        setExpData({ ...expData, experience: [...expData.experience, { ...expObjWithoutDates, duration: `${start_date} to ${end_date}` }] });
+        // console.log(start_date);
+
+        const { start_date, end_date, ...withoutDatesObj} = newExp;
+        setExpData({ ...expData, experience: [...expData.experience, { ...withoutDatesObj, duration: `${start_date} to ${end_date}` }] });
 
 
-        // actions.resetForm();
+        actions.resetForm();
 
         // dispatch(setEducation(academicsData));
 
@@ -49,6 +57,9 @@ function Experience() {
             company_name: '',
             role: '',
             description: '',
+            start_date: '',
+            end_date: '',
+            duration: ''
         },
         validationSchema: experienceSchema,
         onSubmit,
@@ -144,7 +155,7 @@ function Experience() {
                             name='role'
                             type="text"
                             autoComplete='off'
-                            className={errors.description && touched.description ? "peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" } />
+                            className={errors.description && touched.description ? "peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer bg-[length:30px] bg-no-repeat bg-right bg-[url('/images/form/experience/Position.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100"} />
                         <label htmlFor="role"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
                             Role
@@ -162,7 +173,7 @@ function Experience() {
                             id='description'
                             type="text"
                             autoComplete='off'
-                            className={errors.description && touched.description ? "peer pr-2 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" } />
+                            className={errors.description && touched.description ? "peer pr-2 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer pr-2 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100"} />
                         <label htmlFor="description"
                             className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
                             Description
@@ -171,8 +182,11 @@ function Experience() {
                     </div>
                     <div className="w-full relative my-4 ">
                         <input placeholder="Enter start date"
-                            onChange={handleExpChange}
-                            value={expObj.start_date}
+                            // onChange={handleExpChange}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            // value={expObj.start_date}
+                            value={values.start_date}
                             id='start_date'
                             name='start_date'
                             type='month'
@@ -184,8 +198,11 @@ function Experience() {
                     </div>
                     <div className="w-full relative my-4 ">
                         <input placeholder="Enter end date"
-                            onChange={handleExpChange}
-                            value={expObj.end_date}
+                            // onChange={handleExpChange}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            // value={expObj.end_date}
+                            value={values.end_date}
                             id='end_date'
                             name='end_date'
                             type="month"
@@ -204,7 +221,6 @@ function Experience() {
 
 
                 {/* TABLE */}
-
                 <table className='text-white w-full bg-slate-950 rounded-xl'>
                     <tr className='h-[50px] border-b-[1px] border-white'>
                         <th className='w-1/4'>Name</th>
@@ -228,10 +244,6 @@ function Experience() {
                         })
                     }
                 </table>
-
-
-
-
 
             </motion.div>
         </>

@@ -1,11 +1,13 @@
 import * as yup from "yup";
 
 const reg = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm
+const phone = /^[0-9]{10}$/
+
 
 export const personalDetailsSchema = yup.object().shape({
     name: yup.string().min(2, "Please enter name").required("Required"),
     email: yup.string().email("Please enter valid email").required("Required"),
-    phone: yup.number("Please enter valid phone number").min(10).required("Required"),
+    phone: yup.string().matches(phone,'Please enter 10 digit phone no.').required("Required"),
     github: yup.string().matches(reg,'URL is not valid').required("Required"),
     linkedin: yup.string().matches(reg,'URL is not valid').required("Required"),
     portfolio: yup.string().matches(reg,'URL is not valid'),
@@ -19,14 +21,14 @@ export const academicsSchema = yup.object().shape({
     year: yup.string()
     .required()
     .matches(/^[0-9]+$/, "Must be only digits")
-    .min(4, 'Must be exactly 5 digits')
-    .max(4, 'Must be exactly 5 digits')
+    .min(4, 'Year must be exactly 4 digits')
+    .max(4, 'Year must be exactly 4 digits')
     .required("required"),
 })
 
 
 export const projectSchema = yup.object().shape({
-    name: yup.string().min(2, "Please enter name").required("Required"),
+    name: yup.string().min(2, "Please enter valid project name").required("Required"),
     link: yup.string().matches(reg,'URL is not valid').required("Required"),
     description: yup.string().min(2, "Please enter valid description").required("Required"),
 })

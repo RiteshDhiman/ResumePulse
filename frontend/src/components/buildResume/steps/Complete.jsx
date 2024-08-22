@@ -166,7 +166,7 @@ function Complete() {
           <div className="academics w-full flex flex-col justify-start">
             <div className='text-white underline text-2xl mb-4'>Skills</div>
 
-            <table className='text-white w-full bg-slate-950 rounded-xl'>
+            <table className='text-white w-1/4 bg-slate-950 rounded-xl'>
               <tr className='h-[50px] border-b-[1px] border-white'>
                 <th className='w-1/2'>Skill</th>
               </tr>

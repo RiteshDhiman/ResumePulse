@@ -254,7 +254,14 @@ const PersonalDetails = () => {
           <div className='row p-5 w-full flex justify-center items-center'>
             <button onClick={() => resetForm({
               values: {
-                title: '',
+                name: '',
+                email: '',
+                phone: '',
+                github: '',
+                linkedin: '',
+                portfolio: '',
+                location: '',
+                role: ''
               }
             })} type='reset' className='bg-red-600 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-red-800 transition duration-200 ease-in-out active:bg-[#264d14] '>Reset</button>
           </div>
