@@ -85,26 +85,26 @@ def get_image_text(encoded_image_string):
     return communicate_with_openai(message, response_format)
   
 def build_resume_with_gpt(json_clean_data):
-  system_prompt = """
-  You are a professional resume builder that builds one page resume. You follow the standard procedures of making a resume like the order of education, work experience etc.
-  You give me a response in json format.
-  """
-  
-  formatting = """
-    {
-        "librariesToInstall": "<comma-separated names of pip-recognized libraries>", 
-        "code": "<all the code>", 
-        "filePath": "<path of the word file alongwith the name of the file>", 
-        "filename": "<name of the word file>", 
-        "issues": "<any issues if the data is not legitimate>"
-    }
+    system_prompt = """
+    You are a professional resume builder that builds one page resume. You follow the standard procedures of making a resume like the order of education, work experience etc.
+    You give me a response in json format.
     """
-  
-  user_prompt = f"Generate me just the code without using any f-string in the script using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}. Save the document to the directory path './exported_resume/' using doc.save "
-  
-  message = [
-    {"role":"system", "content":system_prompt},
-    {"role":"user", "content": user_prompt}
-  ]
-  
-  return communicate_with_openai(message=message, model="gpt-4-turbo")
+    
+    formatting = """
+        {
+            "librariesToInstall": "<comma-separated names of pip-recognized libraries>", 
+            "code": "<all the code>", 
+            "filePath": "<path of the word file alongwith the name of the file>", 
+            "filename": "<name of the word file>", 
+            "issues": "<any issues if the data is not legitimate>"
+        }
+        """
+    
+    user_prompt = f"Generate me just the code without using any f-string in the script using the python-docx module to make a beautifully formatted resume that attracts anyone based on the following data. Data:{json_clean_data}, Format of JSON Response:{formatting}. Save the document in the directory using `os.path.join(os.path.dirname(os.path.abspath(__file__)),'exported_resume')` to get the for saving the file for doc.save "
+    
+    message = [
+        {"role":"system", "content":system_prompt},
+        {"role":"user", "content": user_prompt}
+    ]
+    
+    return communicate_with_openai(message=message, model="gpt-4-turbo")
