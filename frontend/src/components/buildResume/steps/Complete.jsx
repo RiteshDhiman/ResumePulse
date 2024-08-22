@@ -36,7 +36,7 @@ function Complete() {
 
   const handleSubmit = async () => {
     console.log(sliceData);
-  
+
     try {
       const response = await axios.post('https://resume-pulse-back.vercel.app/api/build_resume_route', sliceData, {
         responseType: 'blob', // Set response type to blob to handle binary data
@@ -44,10 +44,10 @@ function Complete() {
           'Content-Type': 'application/json',
         },
       });
-  
+
       console.log(response)
       let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
-  
+
       // Create a URL for the blob
       const url = window.URL.createObjectURL(new Blob([response.data]));
       // Create a link element
@@ -65,7 +65,7 @@ function Complete() {
       // Revoke the object URL to free up memory
       window.URL.revokeObjectURL(url);
 
-  
+
     } catch (error) {
       console.error('Error downloading file:', error);
     }
@@ -74,8 +74,8 @@ function Complete() {
   return (
     <>
       <div className='w-full mb-6 px-10 flex justify-between items-center'>
-        <button onClick={()=> handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-        <button onClick={()=>handleSubmit()} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
+        <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
+        <button onClick={() => handleSubmit()} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
       </div>
 
       <motion.div
@@ -147,11 +147,14 @@ function Complete() {
               </tr>
 
               {
-                academicsData.education.map((skill,index)=>{
-                  return(
+                academicsData.education.map((edu, index) => {
+                  return (
                     <tr key={index} className='text-center w-full text-sm'>
-                      <td className='py-4 w-1/6'>{skill}</td>
-                      <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteSkill(index)}>Delete</button></td>
+                      <td className='py-4 w-1/6'>{edu.degree}</td>
+                      <td className='py-4 max-w-1/3'>{edu.school_college}</td>
+                      <td className='py-4 w-1/6'>{edu.percentage_cgpa}</td>
+                      <td className='py-4 w-1/6'>{edu.year}</td>
+                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td> */}
                     </tr>
                   )
                 })
@@ -169,11 +172,11 @@ function Complete() {
               </tr>
 
               {
-                academicsData.skills.map((skill,index)=>{
-                  return(
+                academicsData.skills.map((skill, index) => {
+                  return (
                     <tr key={index} className='text-center w-full text-sm'>
                       <td className='py-4 w-1/6'>{skill}</td>
-                      <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteSkill(index)}>Delete</button></td>
+                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td> */}
                     </tr>
                   )
                 })
@@ -187,18 +190,18 @@ function Complete() {
 
             <table className='text-white w-full bg-slate-950 rounded-xl'>
               <tr className='h-[50px] border-b-[1px] border-white'>
-                <th className='w-1/4'>Name</th>
-                <th className='w-1/3'>Organization</th>
-                <th className='w-1/6'>Date</th>
+                <th className='w-1/4'>Project Name</th>
+                <th className='w-1/3'>Description</th>
+                <th className='w-1/4'>Project Link</th>
               </tr>
 
               {
-                projectsData.certifications.map((certi,index)=>{
-                  return(
+                projectsData.projects.map((project, index) => {
+                  return (
                     <tr key={index} className='text-center w-full text-sm'>
-                      <td className='py-4 w-1/4'>{certi.cert_name}</td>
-                      <td className='py-4 w-1/3'>{certi.cert_organization}</td>
-                      <td className='py-4 w-1/6'>{certi.cert_date}</td>
+                      <td className='py-4 w-1/4'>{project.name}</td>
+                      <td className='py-4 max-w-1/3'>{project.description}</td>
+                      <td className='py-4 w-1/4'>{project.link}</td>
                     </tr>
                   )
                 })
@@ -217,13 +220,13 @@ function Complete() {
               </tr>
 
               {
-                projectsData.certifications.map((certi,index)=>{
-                  return(
+                projectsData.certifications.map((certi, index) => {
+                  return (
                     <tr key={index} className='text-center w-full text-sm'>
                       <td className='py-4 w-1/4'>{certi.cert_name}</td>
                       <td className='py-4 w-1/3'>{certi.cert_organization}</td>
                       <td className='py-4 w-1/6'>{certi.cert_date}</td>
-                    </tr> 
+                    </tr>
                   )
                 })
               }
@@ -238,17 +241,18 @@ function Complete() {
             <table className='text-white w-full bg-slate-950 rounded-xl'>
               <tr className='h-[50px] border-b-[1px] border-white'>
                 <th className='w-1/3'>Name</th>
-                <th className='w-1/3'>Organization</th>
+                <th className='w-1/3'>Role</th>
                 <th className='w-1/3'>Date</th>
               </tr>
 
               {
-                expData.experience.map((exp,index)=>{
-                  return(
+                expData.experience.map((exp, index) => {
+                  return (
                     <tr key={index} className='text-center w-full text-sm'>
-                    <td className='py-4 w-1/4'>{exp.company_name}</td>
-                    <td className='py-4 w-1/4'>{exp.role}</td>
-                    <td className='py-4 w-1/4'>{exp.duration}</td>
+                      <td className='py-4 w-1/4'>{exp.company_name}</td>
+                      <td className='py-4 w-1/4'>{exp.role}</td>
+                      {/* <td className='py-4 w-1/4'>{exp.description}</td> */}
+                      <td className='py-4 w-1/4'>{exp.duration}</td>
                     </tr>
                   )
                 })

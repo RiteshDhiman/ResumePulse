@@ -101,7 +101,7 @@ function ProjectsAndCertis() {
           </div>
 
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
+        <form className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
           <div className="degree w-full relative my-4">
             <input placeholder="Enter project name"
               onChange={handleProjectChange}
@@ -142,7 +142,7 @@ function ProjectsAndCertis() {
               Description
             </label>
           </div>
-        </div>
+        </form>
 
         <div className='row p-5 w-full flex justify-center items-center'>
           <button onClick={handleProjectsAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
