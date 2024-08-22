@@ -3,6 +3,8 @@ import { StepBarContext } from '../contexts/StepBarContext'
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux'
 import { setEducation, setPersonal } from '../../../store/formSlice';
+import { useFormik } from "formik";
+import { academicsSchema } from '../../../schemas';
 
 function Education() {
   const { currentStep, handleStep } = useContext(StepBarContext);
@@ -14,10 +16,45 @@ function Education() {
     school_college: '',
     year: '',
   })
-
   const [skillObj, setSkillObj] = useState('')
-
   const dispatch = useDispatch();
+
+
+
+  //add education button
+  const onSubmit = async (values, actions) => {
+    console.log(values);
+    setEduObj(
+      {
+        degree: eduObj.degree,
+        percentage_cgpa: values.percentage_cgpa,
+        school_college: values.school_college,
+        year: values.year,
+      }
+    );
+
+    console.log(eduObj);
+    
+    setAcademicsData({ ...academicsData, education: [...academicsData.education, eduObj] })
+    
+    //TO CLEAR FORM AFTER SUBMITTING
+    // actions.resetForm();
+    console.log(academicsData);
+    // dispatch(setEducation(academicsData));
+
+  }
+
+  //intial values
+  const { values, errors, touched, handleChange, handleSubmit, handleBlur, isSubmitting } = useFormik({
+    initialValues: {
+      degree: eduObj.degree,
+      percentage_cgpa: '',
+      school_college: '',
+      year: '',
+    },
+    validationSchema: academicsSchema,
+    onSubmit,
+  })
 
   const [academicsData, setAcademicsData] = useState({
     education: [...eduSliceData.education],
@@ -25,25 +62,32 @@ function Education() {
   })
 
 
-  const handleEduAdd = () => {
-    setAcademicsData({ ...academicsData, education: [...academicsData.education, eduObj] })
-    setEduObj(
-      {
-        degree: eduObj.degree,
-        percentage_cgpa: '',
-        school_college: '',
-        year: '',
-      }
-    )
-  }
+  // const handleEduAdd = () => {
+  //   setAcademicsData({ ...academicsData, education: [...academicsData.education, eduObj] })
+  //   setEduObj(
+  //     {
+  //       degree: eduObj.degree,
+  //       percentage_cgpa: '',
+  //       school_college: '',
+  //       year: '',
+  //     }
+  //   )
+  // }
+
+  const handleSelectChange = (event) => {
+    setEduObj({ ...eduObj, degree: event.target.value })
+  };
+
+  // const handleEduChange = (e) => {
+  //   setEduObj({ ...eduObj, [e.target.name]: e.target.value })
+  // }
+
   const handleSkillsAdd = () => {
     setAcademicsData({ ...academicsData, skills: [...academicsData.skills, skillObj] })
     setSkillObj('')
   }
 
-  const handleEduChange = (e) => {
-    setEduObj({ ...eduObj, [e.target.name]: e.target.value })
-  }
+
   const handleSkillChange = (e) => {
     setSkillObj(e.target.value)
   }
@@ -71,14 +115,14 @@ function Education() {
       education: prevState.education.filter((item, index) => index !== value),
     }));
   };
+
   
-  const handleSelectChange = (event) => {
-    setEduObj({...eduObj, degree : event.target.value})
-  };
 
   // useEffect(()=>{
   //   deleteSkill()
   // },[academicsData])
+
+  // console.log(errors)
 
   return (
     <>
@@ -98,69 +142,85 @@ function Education() {
           </div>
 
         </div>
-        <div className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
-          <div className="degree w-full relative my-4">
+        <form onSubmit={handleSubmit} className='grid grid-cols-1 md:grid-cols-2 place-items-center w-full gap-x-24 px-6'>
 
-              <select name="degree" id="degree" className='w-full outline-none bg-transparent text-white' onChange={handleSelectChange}>
-                <option className="text-black" value="High School">High School</option>
-                <option className="text-black" value="Senior Secondary">Senior Secondary</option>
-                <option className="text-black" value="Diploma">Diploma</option>
-                <option className="text-black" value="Undergraduate">Undergraduate</option>
-                <option className="text-black" value="Postgraduate">Postgraduate</option>
-                <option className="text-black" value="Phd">Phd</option>
-              </select>
+
+          <div className="degree w-full relative my-4">
+            <select name="degree" id="degree" className='w-full outline-none bg-transparent text-white' onChange={handleSelectChange}>
+              <option className="text-black" value="High School">High School</option>
+              <option className="text-black" value="Senior Secondary">Senior Secondary</option>
+              <option className="text-black" value="Diploma">Diploma</option>
+              <option className="text-black" value="Undergraduate">Undergraduate</option>
+              <option className="text-black" value="Postgraduate">Postgraduate</option>
+              <option className="text-black" value="Phd">Phd</option>
+            </select>
             <label htmlFor="degree" className="after:content[''] pointer-events-none absolute left-0 -top-3.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Degree
             </label>
           </div>
           <div className="school_college w-full relative my-4 ">
             <input placeholder="Enter School/College"
-              onChange={handleEduChange}
-              value={eduObj.school_college}
+              onChange={handleChange}
+              // onChange={handleEduChange}
+              value={values.school_college}
+              // value={eduObj.school_college}
               name='school_college'
               id='school_college'
               type="text"
               autoComplete="off"
-              className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+              onBlur={handleBlur}
+              className={errors.school_college && touched.school_college ? "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/School.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100"} />
             <label htmlFor="school_college"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               School/College
             </label>
+            {errors.school_college && touched.school_college && <div className='error absolute left-0 -bottom-5 text-red-500 text-xs font-light'>{errors.school_college}</div>}
           </div>
+
           <div className="percentage_cgpa w-full relative my-4 ">
             <input placeholder="Enter your Percentage/CGPA"
-              onChange={handleEduChange}
-              value={eduObj.percentage_cgpa}
+              onChange={handleChange}
+              // onChange={handleEduChange}
+              value={values.percentage_cgpa}
+              // value={eduObj.percentage_cgpa}
               name='percentage_cgpa'
               id='percentage_cgpa'
               type="text"
               autoComplete="off"
-              className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Percentage.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+              onBlur={handleBlur}
+              className={errors.percentage_cgpa && touched.percentage_cgpa ? "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Percentage.png')] pr-10 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Percentage.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100"} />
             <label htmlFor="percentage_cgpa"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Percentage/CGPA
             </label>
+            {errors.percentage_cgpa && touched.percentage_cgpa && <div className='error absolute left-0 -bottom-5 text-red-500 text-xs font-light'>{errors.percentage_cgpa}</div>}
           </div>
 
           <div className="year w-full relative my-4 ">
             <input placeholder="Enter Year"
-              onChange={handleEduChange}
-              value={eduObj.year}
+              onChange={handleChange}
+              // onChange={handleEduChange}
+              value={values.year}
+              // value={eduObj.year}
               name='year'
               id='year'
               type="text"
               autoComplete="off"
-              className="peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Year.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
+              onBlur={handleBlur}
+              className={errors.year && touched.year ? "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Year.png')] pr-10 w-full h-full border-b border-red-600 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" : "peer bg-[length:35px] bg-no-repeat bg-right-top bg-[url('/images/form/education/Year.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100"} />
             <label htmlFor="year"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Year
             </label>
+            {errors.year && touched.year && <div className='error absolute left-0 -bottom-5 text-red-500 text-xs font-light'>{errors.year}</div>}
           </div>
-        </div>
 
-        <div className='row p-5 w-full flex justify-center items-center'>
-          <button onClick={handleEduAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
-        </div>
+          {/* <div className='row p-5 w-full flex justify-center items-center'> */}
+            <button type='submit' className='bg-[#66A947] my-6 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
+          {/* </div> */}
+        </form>
+
+
 
         <table className='text-white w-full bg-slate-950 rounded-xl'>
           <tr className='h-[50px] border-b-[1px] border-white'>
@@ -172,14 +232,14 @@ function Education() {
           </tr>
 
           {
-            academicsData.education.map((edu,index)=>{
-              return(
+            academicsData.education.map((edu, index) => {
+              return (
                 <tr key={index} className='text-center w-full text-sm'>
                   <td className='py-4 w-1/6'>{edu.degree}</td>
                   <td className='py-4 max-w-1/3'>{edu.school_college}</td>
                   <td className='py-4 w-1/6'>{edu.percentage_cgpa}</td>
                   <td className='py-4 w-1/6'>{edu.year}</td>
-                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteEducation(index)}>Delete</button></td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteEducation(index)}>Delete</button></td>
                 </tr>
               )
             })
@@ -200,26 +260,32 @@ function Education() {
 
         </div>
         <div className='row px-6 w-full flex justify-between items-center'>
-          <div className="degree w-full relative my-4">
+          <div className="skill w-full relative my-4">
             <input placeholder="Enter Skill"
+              // onChange={handleChange}
               onChange={handleSkillChange}
+              // value={values.skill}
               value={skillObj}
               name='skill'
               id='skill'
               type="text"
               autoComplete="off"
+              
               className="peer bg-[length:35px] bg-no-repeat bg-right bg-[url('/images/form/education/Degree.png')] pr-10 w-full h-full border-b border-white bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-white outline outline-0 transition-all placeholder-shown:border-white focus:border-white focus:outline-0 disabled:border-0 disabled:bg-white placeholder:opacity-0 focus:placeholder:opacity-100" />
             <label htmlFor="degree"
               className="after:content[''] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-white transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-white after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-white peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-white peer-focus:after:scale-x-100 peer-focus:after:border-white peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-white">
               Skill
             </label>
+            {/* {errors.skill && touched.skill && <div className='error absolute left-0 -bottom-5 text-red-500 text-xs font-light'>{errors.skill}</div>} */}
+          </div>
+
+          <div className='row p-5 w-full flex justify-center items-center'>
+            <button onClick={handleSkillsAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
           </div>
 
         </div>
 
-        <div className='row p-5 w-full flex justify-center items-center'>
-          <button onClick={handleSkillsAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
-        </div>
+
 
 
 
@@ -232,11 +298,11 @@ function Education() {
           </tr>
 
           {
-            academicsData.skills.map((skill,index)=>{
-              return(
+            academicsData.skills.map((skill, index) => {
+              return (
                 <tr key={index} className='text-center w-full text-sm'>
                   <td className='py-4 w-1/6'>{skill}</td>
-                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={()=>deleteSkill(index)}>Delete</button></td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td>
                 </tr>
               )
             })

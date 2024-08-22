@@ -190,9 +190,9 @@ function Complete() {
 
             <table className='text-white w-full bg-slate-950 rounded-xl'>
               <tr className='h-[50px] border-b-[1px] border-white'>
-              <th className='w-1/4'>Project Name</th>
-            <th className='w-1/3'>Description</th>
-            <th className='w-1/4'>Project Link</th>
+                <th className='w-1/4'>Project Name</th>
+                <th className='w-1/3'>Description</th>
+                <th className='w-1/4'>Project Link</th>
               </tr>
 
               {
