@@ -2,3 +2,4 @@
 .venv
 venv
 scripts/__pycache__
+exported_resume
