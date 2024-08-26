@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { easeInOut, motion } from "framer-motion"
 import { StepBarContext } from '../contexts/StepBarContext'
 import { useContext } from 'react';
@@ -14,28 +14,11 @@ function Complete() {
   const academicsData = sliceData.academics;
   const expData = sliceData.experience;
   const projectsData = sliceData.projects;
-  // const apiUrl = process.env.REACT_APP_API_URL;
-
-  // const handleSubmit = async () => {
-
-  //   console.log(sliceData);
-
-  //   try {
-  //     const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route', sliceData, {
-  //       headers: {
-  //         'Content-Type': "application/json",
-  //       },
-  //     });
-  //     console.log('Response:', response.data);
-
-  //   } catch (error) {
-  //     console.error('Error uploading file:', error);
-  //   }
-
-  // };
+  const [disabled, setDisabled] = useState(false)
 
   const handleSubmit = async () => {
     console.log(sliceData);
+    setDisabled(true)
 
     try {
       const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route/0', sliceData, {
@@ -75,7 +58,7 @@ function Complete() {
     <>
       <div className='w-full mb-6 px-10 flex justify-between items-center'>
         <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-        <button onClick={() => handleSubmit()} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
+        <button disabled={disabled} onClick={() => handleSubmit()} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
       </div>
 
       <motion.div
