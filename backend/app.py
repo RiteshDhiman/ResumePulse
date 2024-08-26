@@ -91,7 +91,7 @@ def build_resume_route(resume):
         os.makedirs(exported_resume_dir)
         
     if request.method == 'GET':
-        file_path = os.path.join(exported_resume_dir, resume)
+        file_path = os.path.join(exported_resume_dir, f"{resume}.docx")
         if os.path.exists(file_path):
             return send_file(file_path, as_attachment=True)
         else:
@@ -100,19 +100,27 @@ def build_resume_route(resume):
     elif request.method == 'POST':
         json_data = request.json
         try:
-            resume_path, resume_name = build_resume(json_data)
+            resume = build_resume(json_data)
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            print(f"Error: {str(e)}")
+            return jsonify({"building error": str(e)}), 500
         
         try:
-            
-            return jsonify({"status": "success", "resume_name": resume_name}), 200
-            # return send_from_directory("exported_resume", resume_name)
+            resume_name = f"resume_{round(time.time(), 3)}_{uuid.uuid4().hex[:8]}"
+            resume_path = os.path.join(exported_resume_dir, f"{resume_name}.docx")
+            resume.save(resume_path)
         except Exception as e:
-            return jsonify({"error": str(e)}), 500
+            print(f"Error: {str(e)}")
+            return jsonify({" saving error": str(e)}), 500
+        
+        try:
+            return jsonify({"status": "success", "resume_name": resume_name}), 200
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return jsonify({" sending resume success error": str(e)}), 500
     
     else:
-        return jsonify({'error': 'Method not allowed'}), 405
+        return jsonify({'error': 'Method not allowed'}), 405    
     
 @app.route("/", methods=["GET"])
 def hello():

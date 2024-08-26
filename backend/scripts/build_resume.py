@@ -12,9 +12,12 @@ def build_resume(json_request_data):
     formatted_json_response = to_json_formatted(json_response)
     
     code_for_resume = formatted_json_response["code"]
-    exec(code_for_resume)
     
-    path_to_resume = formatted_json_response["filePath"]
-    file_name = formatted_json_response["filename"]
-    print(path_to_resume)
-    return path_to_resume, file_name
+    # Create a dictionary to hold the variables
+    exec_context = {}
+    
+    exec(code_for_resume, exec_context)
+    doc = exec_context["doc"]
+    print(doc)
+    
+    return doc
