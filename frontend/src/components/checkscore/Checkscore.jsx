@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './checkscore.scss';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -7,7 +7,6 @@ function CheckScore() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
   const navigate = useNavigate();
-  // const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleChange = (event) => {
     setJobDescription(event.target.value);
@@ -28,18 +27,27 @@ function CheckScore() {
     formData.append('jd_text', jobDescription);
 
     try {
-      const response = await axios.post('https://resume-pulse-back.vercel.app/api/check_score_route', formData, {
+      const response = await axios.post('http://127.0.0.1:5000/api/check_score_route/0', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('Response:', response.data);
-      // Handle the response as needed
-    } catch (error) {
+      // console.log(response.data.request_id)
+      // const finalResponse = await axios.get(`http://127.0.0.1:5000/api/check_score_route/${response.data.request_id}`)
+      // console.log(finalResponse)
+      // navigate('/result', { state: { finalData: finalResponse.data } });
+
+      const requestId = response.data.request_id;
+      navigate('/result', { state: { requestId } });
+    } 
+    catch (error) {
       console.error('Error uploading file:', error);
     }
 
-    navigate('/result')
+    
+    
+    // navigate(`/${asdhffjh}`)
+    // navigate('/result')
   };
 
   const handleBuild = () => {

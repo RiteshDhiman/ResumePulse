@@ -7,11 +7,11 @@ import store from './store/store.js'
 import { FirebaseProvider } from './firebaseContext/FirebaseContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <FirebaseProvider>
       <Provider store={store}>
         <App />
       </Provider>
     </FirebaseProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )
