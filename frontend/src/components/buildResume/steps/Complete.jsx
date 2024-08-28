@@ -3,8 +3,11 @@ import { easeInOut, motion } from "framer-motion"
 import { StepBarContext } from '../contexts/StepBarContext'
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import Loading from '../../loadingscreen/Loading'
 
 import axios from 'axios';
+import Aierror from '../../loadingscreen/Aierror';
+import Download from '../../loadingscreen/Download';
 
 
 function Complete() {
@@ -15,42 +18,58 @@ function Complete() {
   const expData = sliceData.experience;
   const projectsData = sliceData.projects;
   const [disabled, setDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [openaierror, setopenaierror] = useState(false)
+  const [download, setdownload] = useState(false);
+  const [file, setFile] = useState('')
 
-  const handleSubmit = async () => {
-    console.log(sliceData);
+  const handleDownload = async() => {
+    const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`)
+    let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
+
+      // Create a URL for the blob
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      // Create a link element
+      const link = document.createElement('a');
+      // Set the href to the blob URL
+      link.href = url;
+      // Set the download attribute to the filename received from the backend
+      link.setAttribute('download', filename);
+      // Append link to the body
+      document.body.appendChild(link);
+      // Trigger a click on the link
+      link.click();
+      // Clean up and remove the link
+      link.parentNode.removeChild(link);
+      // Revoke the object URL to free up memory
+      window.URL.revokeObjectURL(url); 
+  }
+
+  const handleSubmit = async (sliceData) => {
+    setopenaierror(false)
     setDisabled(true)
 
     try {
+      setLoading(true)
       const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route/0', sliceData, {
         // responseType: 'blob', // Set response type to blob to handle binary data
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      })
+      setFile(response.data.resume_name)
+
+      setLoading(false)
+      setdownload(true)
 
       console.log(response)
-      // let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
 
-      // // Create a URL for the blob
-      // const url = window.URL.createObjectURL(new Blob([response.data]));
-      // // Create a link element
-      // const link = document.createElement('a');
-      // // Set the href to the blob URL
-      // link.href = url;
-      // // Set the download attribute to the filename received from the backend
-      // link.setAttribute('download', filename);
-      // // Append link to the body
-      // document.body.appendChild(link);
-      // // Trigger a click on the link
-      // link.click();
-      // // Clean up and remove the link
-      // link.parentNode.removeChild(link);
-      // // Revoke the object URL to free up memory
-      // window.URL.revokeObjectURL(url);
 
 
     } catch (error) {
+      setLoading(false)
       console.error('Error downloading file:', error);
+      setopenaierror(true);
     }
   };
 
@@ -58,7 +77,7 @@ function Complete() {
     <>
       <div className='w-full mb-6 px-10 flex justify-between items-center'>
         <button onClick={() => handleStep('')} className={`' bg-white text-black py-2 px-4 rounded-full font-semibold cursor-pointer ${currentStep == 1 ? ' bg-opacity-50 cursor-not-allowed' : 'hover:bg-[#ababab] transition duration-300 ease-in-out active:bg-[#454545] active:text-white'} `}>Back</button>
-        <button disabled={disabled} onClick={() => handleSubmit()} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
+        <button disabled={disabled} onClick={() => handleSubmit(sliceData)} className='bg-[#66A947] text-white py-2 px-4 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Submit</button>
       </div>
 
       <motion.div
@@ -249,12 +268,21 @@ function Complete() {
               }
             </table>
           </div>
-
-
-
-
         </div>
       </motion.div>
+
+      <div className='absolute top-0 w-full'>
+        {loading && <Loading/>}
+      </div>
+
+      <div className='absolute top-0 w-full'>
+        {openaierror && <Aierror handleSubmit={()=>handleSubmit(sliceData)}/>}
+      </div>
+
+      <div className='absolute top-0 w-full'>
+        {download && <Download handleDownload = {handleDownload}/>}
+      </div>
+
     </>
 
   )

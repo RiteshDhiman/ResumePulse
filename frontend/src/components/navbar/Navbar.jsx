@@ -39,13 +39,13 @@ const Navbar = ({loginClick, whetherLogin}) => {
           {/* Hidden Hamburger Menu */}
           <div className="flex md:hidden h-full items-center justify-end gap-6">
             <div className="centering rounded-full bg-[#66A947] w-[150px] h-3/5 text-lg font-medium hover:cursor-pointer text-white" onClick={handleClick}>Log in/Signup</div>
-            <RiMenuLine className="text-white text-2xl" onClick={handleMenu}/>
+            <RiMenuLine className="text-white text-2xl cursor-pointer" onClick={handleMenu}/>
           </div>
         </div>
 
       </div>
       {menu && 
-      <div className="h-[60px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute">
+      <div className="md:hidden h-[60px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute">
         <div className="w-full justify-around py-5 text-center flex gap-3">
           <a href="/"><div className="font-krona text-white">Home</div></a>
           <a href="about"><div className="font-krona text-white">About</div></a>
