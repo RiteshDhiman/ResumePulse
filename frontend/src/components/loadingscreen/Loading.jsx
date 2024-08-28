@@ -1,28 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "../loadingscreen/loading.scss";
-import fetchQuotes from "./fetchQuotes";
-import { BackgroundGradientAnimation } from "./background-gradient-animation";
 
 const Loading = () => {
 
-  const [randomquote, setQuote] = useState('');
-
-  useEffect(()=>{
-
-    const fetchQuotesInMain = async() =>{
-      const fetching = await fetchQuotes();
-      setQuote(fetching.quote);
-    }
-    fetchQuotesInMain();
-  },[]
-)
-
   return (
-    <div className="w-full h-screen bg-opacity-30 flex items-center justify-center">
+    <div className="w-full h-screen bg-black bg-opacity-10 backdrop-blur-sm flex items-center justify-center">
       <div className="w-4/5 md:w-2/5 p-4 md:p-10 rounded-xl flex flex-col bg-black h-[40vh]">
-      {/* <BackgroundGradientAnimation > */}
           <div className="monitor relative w-full h-full flex justify-center items-center">
-            <img src="/images/document.png" alt="" className="absolute mx-auto scale-50 grayscale"/>
+            <img src="/images/document.png" className="absolute mx-auto scale-50 opacity-65"/>
             <svg
               version="1.1"
               id="Layer_1"
@@ -33,7 +18,7 @@ const Loading = () => {
               viewBox="0 0 500 200"
               style={{ enableBackground: "new 0 0 500 200" }}
               xmlSpace="preserve"
-              className="absolute"
+              className="absolute bg-opacity-50"
             >
               <g>
                 <polyline
@@ -46,22 +31,9 @@ const Loading = () => {
           </div>
 
         <div className="text-white font-krona text-sm md:text-2xl mx-auto">Loading ....</div>
-        {/* <div className="text-white font-poppins text-xs md:text-lg text-center mx-auto">{randomquote}</div> */}
-
-      {/* </BackgroundGradientAnimation> */}
       </div>
     </div>
   );
-
-  // return (
-  //   <BackgroundGradientAnimation>
-  //     <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl">
-  //       <p className="bg-clip-text text-transparent drop-shadow-2xl bg-gradient-to-b from-white/80 to-white/20">
-  //         Gradients X Animations
-  //       </p>
-  //     </div>
-  //   </BackgroundGradientAnimation>
-  // );
 };
 
 export default Loading;
