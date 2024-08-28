@@ -8,8 +8,8 @@ export const personalDetailsSchema = yup.object().shape({
     name: yup.string().min(2, "Please enter name").required("Required"),
     email: yup.string().email("Please enter valid email").required("Required"),
     phone: yup.string().matches(phone,'Please enter 10 digit phone no.').required("Required"),
-    github: yup.string().matches(reg,'URL is not valid').required("Required"),
-    linkedin: yup.string().matches(reg,'URL is not valid').required("Required"),
+    github: yup.string().matches(reg,'URL is not valid'),
+    linkedin: yup.string().matches(reg,'URL is not valid'),
     portfolio: yup.string().matches(reg,'URL is not valid'),
     location: yup.string().min(5),
     role : yup.string().min(2, "Please enter valid role").required("Required"),
@@ -29,7 +29,7 @@ export const academicsSchema = yup.object().shape({
 
 export const projectSchema = yup.object().shape({
     name: yup.string().min(2, "Please enter valid project name").required("Required"),
-    link: yup.string().matches(reg,'URL is not valid').required("Required"),
+    link: yup.string().matches(reg,'URL is not valid'),
     description: yup.string().min(2, "Please enter valid description").required("Required"),
 })
 
