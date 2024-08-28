@@ -117,6 +117,24 @@ function Complete() {
 
 
 
+          <div className="academics w-full flex flex-col justify-start items-baseline">
+            <div className='text-white underline text-2xl mb-4 mr-5'>Skills</div>
+            <div className='flex justify-start items-center'>
+              
+              {
+                academicsData.skills.map((skill, index) => {
+                                
+                  return (
+                    (index != academicsData.skills.length - 1) ? <div key={index} className='text-white inline-block text-md md:text-xl mr-2'>{skill},</div>
+                    : <div key={index} className='text-white inline-block text-md md:text-xl mr-2'>{skill}</div>
+                    
+                  )
+                })
+              }
+              </div>
+          </div>
+
+
 
           <div className="academics w-full flex flex-col justify-start">
             <div className='text-white underline text-2xl mb-4'>Academics</div>
@@ -137,28 +155,6 @@ function Complete() {
                       <td className='py-4 max-w-1/3'>{edu.school_college}</td>
                       <td className='py-4 w-1/6'>{edu.percentage_cgpa}</td>
                       <td className='py-4 w-1/6'>{edu.year}</td>
-                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td> */}
-                    </tr>
-                  )
-                })
-              }
-            </table>
-          </div>
-
-
-          <div className="academics w-full flex flex-col justify-start">
-            <div className='text-white underline text-2xl mb-4'>Skills</div>
-
-            <table className='text-white w-1/4 bg-slate-950 rounded-xl'>
-              <tr className='h-[50px] border-b-[1px] border-white'>
-                <th className='w-1/2'>Skill</th>
-              </tr>
-
-              {
-                academicsData.skills.map((skill, index) => {
-                  return (
-                    <tr key={index} className='text-center w-full text-sm'>
-                      <td className='py-4 w-1/6'>{skill}</td>
                       {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td> */}
                     </tr>
                   )
