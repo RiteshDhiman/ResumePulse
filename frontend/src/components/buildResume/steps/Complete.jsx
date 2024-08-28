@@ -93,25 +93,36 @@ function Complete() {
               <div className='text-white text-md md:text-xl mr-5'>Phone number:</div>
               <div className='text-white text-md md:text-xl'>{personalData.phone}</div>
 
-              <div className='text-white text-md md:text-xl mr-5'>Location:</div>
-              <div className='text-white text-md md:text-xl'>{personalData.location}</div>
+              <div className='text-white text-md md:text-xl mr-5'>Role:</div>
+              <div className='text-white text-md md:text-xl'>{personalData.role}</div>
+
             </div>
 
 
             <div className='grid grid-cols-4 w-full mb-4'>
 
               <div className='text-white text-md md:text-xl mr-5'>Github:</div>
-              <div className='text-white text-md md:text-xl'>{personalData.github}</div>
+              {(personalData.github) ? <div className='text-white text-md md:text-xl'>{personalData.github}</div>
+              : <div className='text-white text-md md:text-xl'>-</div>}
+              
 
               <div className='text-white text-md md:text-xl mr-5'>Linkedin:</div>
-              <div className='text-white text-md md:text-xl'>{personalData.linkedin}</div>
+              {(personalData.linkedin) ? <div className='text-white text-md md:text-xl'>{personalData.linkedin}</div>
+              : <div className='text-white text-md md:text-xl'>-</div>}
 
             </div>
 
 
-            <div className='grid grid-cols-2 w-1/2 mb-4'>
+            <div className='grid grid-cols-4 w-full mb-4'>
               <div className='text-white text-md md:text-xl mr-5'>Portfolio:</div>
-              <div className='text-white text-md md:text-xl'>{personalData.portfolio}</div>
+              {(personalData.portfolio) ? <div className='text-white text-md md:text-xl'>{personalData.portfolio}</div>
+              : <div className='text-white text-md md:text-xl'>-</div>}
+
+              <div className='text-white text-md md:text-xl mr-5'>Location:</div>
+              {(personalData.portfolio) ? <div className='text-white text-md md:text-xl'>{personalData.location}</div>
+              : <div className='text-white text-md md:text-xl'>-</div>}
+
+              
             </div>
           </div>
 

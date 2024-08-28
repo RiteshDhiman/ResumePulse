@@ -212,7 +212,7 @@ function Experience() {
                             End date
                         </label>
                     </div>
-                    <button type='submit' className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
+                    <button type='submit' className='bg-[#66A947] md:col-start-1 md:col-span-2 md:mt-3 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
                 </form>
 
                 <div className='row p-5 w-full flex justify-center items-center'>
