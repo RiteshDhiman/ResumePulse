@@ -3,6 +3,7 @@ import { easeInOut, motion } from "framer-motion"
 import { StepBarContext } from '../contexts/StepBarContext'
 import { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import Loading from '../../loadingscreen/Loading'
 
 import axios from 'axios';
 
@@ -15,18 +16,22 @@ function Complete() {
   const expData = sliceData.experience;
   const projectsData = sliceData.projects;
   const [disabled, setDisabled] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async () => {
     console.log(sliceData);
     setDisabled(true)
 
     try {
+      setLoading(true)
       const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route/0', sliceData, {
         // responseType: 'blob', // Set response type to blob to handle binary data
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      })
+
+      setLoading(false)
 
       console.log(response)
       // let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
@@ -248,6 +253,9 @@ function Complete() {
 
         </div>
       </motion.div>
+
+      {loading && <Loading/>}
+
     </>
 
   )
