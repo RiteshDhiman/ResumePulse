@@ -43,6 +43,8 @@ function Complete() {
       link.parentNode.removeChild(link);
       // Revoke the object URL to free up memory
       window.URL.revokeObjectURL(url); 
+
+      setdownload(false)
   }
 
   const handleSubmit = async (sliceData) => {
