@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import '../navbar/navbarcss.scss';
 import { RiMenuLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import {AnimatePresence, motion} from 'framer-motion'
 
 const Navbar = ({loginClick, whetherLogin}) => {
 
@@ -44,15 +45,23 @@ const Navbar = ({loginClick, whetherLogin}) => {
         </div>
 
       </div>
-      {menu && 
-      <div className="md:hidden h-[60px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute">
-        <div className="w-full justify-around py-5 text-center flex gap-3">
-          <a href="/"><div className="font-krona text-white">Home</div></a>
-          <a href="about"><div className="font-krona text-white">About</div></a>
-          <a href="templates"><div className="font-krona text-white">Templates</div></a>
-        </div>
-      </div>
-      }
+      <AnimatePresence>
+        {menu && 
+          <motion.div
+            className="md:hidden h-[60px] bg-[#000726] border-b-[1px] border-t-[1px] border-white w-full absolute"
+            initial={{ opacity: 0, y:-20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="w-full justify-around py-5 text-center flex gap-3">
+              <Link to={'/'}><div className="font-krona text-white">Home</div></Link>
+              <Link to={'about'}><div className="font-krona text-white">About Us</div></Link>
+              <Link to={'build'}><div className="font-krona text-white">Create</div></Link>
+            </div>
+          </motion.div>
+        }
+      </AnimatePresence>
     </>
   );
 };

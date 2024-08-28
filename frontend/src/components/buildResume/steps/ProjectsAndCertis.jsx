@@ -140,33 +140,38 @@ function ProjectsAndCertis() {
           <button type='submit' className='bg-[#66A947] md:col-start-1 md:col-span-2 md:my-4 text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
         </form>
 
-        {/* <div className='row p-5 w-full flex justify-center items-center'>
-          <button onClick={handleProjectsAdd} className='bg-[#66A947] text-white py-2 px-8 rounded-full font-semibold cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] '>Add</button>
-        </div> */}
 
 
         {/* TABLE */}
 
         <table className='text-white w-full mt-5 bg-slate-950 rounded-xl'>
-          <tr className='h-[50px] border-b-[1px] border-white'>
-            <th className='w-1/4'>Project Name</th>
-            <th className='w-1/3'>Description</th>
-            <th className='w-1/4'>Project Link</th>
-            <th className='w-1/6'>Action</th>
-          </tr>
+          <thead>
+            <tr className='h-[50px] border-b-[1px] border-white'>
+              <th className='w-1/4'>Project Name</th>
+              <th className='w-1/3'>Description</th>
+              <th className='w-1/4'>Project Link</th>
+              <th className='w-1/6'>Action</th>
+            </tr>
+          </thead>
 
-          {
-            projectsData.projects.map((project, index) => {
-              return (
-                <tr key={index} className='text-center w-full text-sm'>
-                  <td className='py-4 w-1/4'>{project.name}</td>
-                  <td className='py-4 max-w-1/3'>{project.description}</td>
-                  <td className='py-4 w-1/4'>{project.link}</td>
-                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteProjects(index)}>Delete</button></td>
-                </tr>
-              )
-            })
-          }
+          <tbody>
+            {projectsData.projects.length > 0 ?
+              projectsData.projects.map((project, index) => {
+                return (
+                  <tr key={index} className='text-center w-full text-sm'>
+                    <td className='py-4 w-1/4'>{project.name}</td>
+                    <td className='py-4 max-w-1/3'>{project.description}</td>
+                    <td className='py-4 w-1/4'>{project.link}</td>
+                    <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteProjects(index)}>Delete</button></td>
+                  </tr>
+                )
+              })
+              :
+              <tr className='text-center h-[50px]'>
+                <td colSpan={5}>No projects data available.</td>
+              </tr>
+            }
+          </tbody>
         </table>
 
       </motion.div>

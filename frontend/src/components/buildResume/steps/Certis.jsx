@@ -128,25 +128,33 @@ function Certis(props) {
       {/* TABLE */}
 
       <table className='text-white w-full mt-5 bg-slate-950 rounded-xl'>
-        <tr className='h-[50px] border-b-[1px] border-white'>
-          <th className='w-1/4'>Name</th>
-          <th className='w-1/3'>Organization</th>
-          <th className='w-1/6'>Date</th>
-          <th className='w-1/6'>Action</th>
-        </tr>
+        <thead>
+          <tr className='h-[50px] border-b-[1px] border-white'>
+            <th className='w-1/4'>Name</th>
+            <th className='w-1/3'>Organization</th>
+            <th className='w-1/6'>Date</th>
+            <th className='w-1/6'>Action</th>
+          </tr>
+        </thead>
 
-        {
-          projectsData.certifications.map((certi, index) => {
-            return (
-              <tr key={index} className='text-center w-full text-sm'>
-                <td className='py-4 w-1/4'>{certi.cert_name}</td>
-                <td className='py-4 w-1/3'>{certi.cert_organization}</td>
-                <td className='py-4 w-1/6'>{certi.cert_date}</td>
-                <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteCerti(index)}>Delete</button></td>
-              </tr>
-            )
-          })
-        }
+        <tbody>
+          {projectsData.certifications.length > 0 ?
+            projectsData.certifications.map((certi, index) => {
+              return (
+                <tr key={index} className='text-center w-full text-sm'>
+                  <td className='py-4 w-1/4'>{certi.cert_name}</td>
+                  <td className='py-4 w-1/3'>{certi.cert_organization}</td>
+                  <td className='py-4 w-1/6'>{certi.cert_date}</td>
+                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteCerti(index)}>Delete</button></td>
+                </tr>
+              )
+            })
+            :
+            <tr className='text-center h-[50px]'>
+              <td colSpan={5}>No certification data available.</td>
+            </tr>
+          }
+        </tbody>
       </table>
 
       {/* <div className='row px-6 w-full rounded-t-2xl border-b-[1.5px] border-white bg-slate-700 bg-opacity-45 flex justify-between items-center'>

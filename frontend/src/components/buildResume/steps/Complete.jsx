@@ -179,7 +179,7 @@ function Complete() {
                 <th className='w-1/4'>Year</th>
               </tr>
 
-              {
+              {academicsData.education.length > 0 ?
                 academicsData.education.map((edu, index) => {
                   return (
                     <tr key={index} className='text-center w-full text-sm'>
@@ -187,10 +187,14 @@ function Complete() {
                       <td className='py-4 max-w-1/3'>{edu.school_college}</td>
                       <td className='py-4 w-1/6'>{edu.percentage_cgpa}</td>
                       <td className='py-4 w-1/6'>{edu.year}</td>
-                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td> */}
+                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteEducation(index)}>Delete</button></td> */}
                     </tr>
                   )
                 })
+                :
+                <tr className='text-center h-[50px]'>
+                  <td colSpan={5}>No education data available.</td>
+                </tr>
               }
             </table>
           </div>
@@ -206,16 +210,21 @@ function Complete() {
                 <th className='w-1/4'>Project Link</th>
               </tr>
 
-              {
+              {projectsData.projects.length > 0 ?
                 projectsData.projects.map((project, index) => {
                   return (
                     <tr key={index} className='text-center w-full text-sm'>
                       <td className='py-4 w-1/4'>{project.name}</td>
                       <td className='py-4 max-w-1/3'>{project.description}</td>
                       <td className='py-4 w-1/4'>{project.link}</td>
+                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteProjects(index)}>Delete</button></td> */}
                     </tr>
                   )
                 })
+                :
+                <tr className='text-center h-[50px]'>
+                  <td colSpan={5}>No projects data available.</td>
+                </tr>
               }
             </table>
           </div>
@@ -230,16 +239,21 @@ function Complete() {
                 <th className='w-1/6'>Date</th>
               </tr>
 
-              {
+              {projectsData.certifications.length > 0 ?
                 projectsData.certifications.map((certi, index) => {
                   return (
                     <tr key={index} className='text-center w-full text-sm'>
                       <td className='py-4 w-1/4'>{certi.cert_name}</td>
                       <td className='py-4 w-1/3'>{certi.cert_organization}</td>
                       <td className='py-4 w-1/6'>{certi.cert_date}</td>
+                      {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteCerti(index)}>Delete</button></td> */}
                     </tr>
                   )
                 })
+                :
+                <tr className='text-center h-[50px]'>
+                  <td colSpan={5}>No certification data available.</td>
+                </tr>
               }
             </table>
 
@@ -256,17 +270,22 @@ function Complete() {
                 <th className='w-1/3'>Date</th>
               </tr>
 
-              {
+              {expData.experience.length > 0 ?
                 expData.experience.map((exp, index) => {
-                  return (
-                    <tr key={index} className='text-center w-full text-sm'>
-                      <td className='py-4 w-1/4'>{exp.company_name}</td>
-                      <td className='py-4 w-1/4'>{exp.role}</td>
-                      {/* <td className='py-4 w-1/4'>{exp.description}</td> */}
-                      <td className='py-4 w-1/4'>{exp.duration}</td>
-                    </tr>
-                  )
+                    return (
+                        <tr key={index} className='text-center w-full text-sm'>
+                            <td className='py-4 w-1/4'>{exp.company_name}</td>
+                            <td className='py-4 w-1/4'>{exp.role}</td>
+                            {/* <td className='py-4 w-1/4'>{exp.description}</td> */}
+                            <td className='py-4 w-1/4'>{exp.duration}</td>
+                            {/* <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteExperience(index)}>Delete</button></td> */}
+                        </tr>
+                    )
                 })
+                :
+                <tr className='text-center h-[50px]'>
+                    <td colSpan={5}>No experience data available.</td>
+                </tr>
               }
             </table>
           </div>

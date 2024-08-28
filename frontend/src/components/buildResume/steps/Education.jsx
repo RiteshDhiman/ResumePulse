@@ -257,21 +257,29 @@ function Education() {
 
         {/* TABLE */}
         <table className='text-white w-full bg-slate-950 rounded-xl'>
-          <tr className='h-[50px] border-b-[1px] border-white'>
-            <th className='w-1/2'>Skill</th>
-            <th className='w-1/2'>Action</th>
-          </tr>
+          <thead>
+            <tr className='h-[50px] border-b-[1px] border-white'>
+              <th className='w-1/2'>Skill</th>
+              <th className='w-1/2'>Action</th>
+            </tr>
+          </thead>
 
-          {
-            academicsData.skills.map((skill, index) => {
-              return (
-                <tr key={index} className='text-center w-full text-sm'>
-                  <td className='py-4 w-1/6'>{skill}</td>
-                  <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td>
-                </tr>
-              )
-            })
-          }
+          <tbody>
+            {academicsData.skills.length > 0 ? 
+              academicsData.skills.map((skill, index) => {
+                return (
+                  <tr key={index} className='text-center w-full text-sm'>
+                    <td className='py-4 w-1/6'>{skill}</td>
+                    <td className='py-4 w-1/6'><button className='bg-red-600 p-2 rounded-lg text-sm' onClick={() => deleteSkill(index)}>Delete</button></td>
+                  </tr>
+                )
+              })
+              :
+              <tr className='text-center h-[50px]'>
+                <td colSpan={5}>No skills data available.</td>
+              </tr>
+            }
+          </tbody>
         </table>
 
       </motion.div>

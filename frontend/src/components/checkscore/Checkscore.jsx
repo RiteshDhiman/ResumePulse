@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './checkscore.scss';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Loading from '../loadingscreen/Loading'
 
 function CheckScore() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [jobDescription, setJobDescription] = useState('');
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -27,15 +29,13 @@ function CheckScore() {
     formData.append('jd_text', jobDescription);
 
     try {
+      setLoading(true)
       const response = await axios.post('http://127.0.0.1:5000/api/check_score_route/0', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // console.log(response.data.request_id)
-      // const finalResponse = await axios.get(`http://127.0.0.1:5000/api/check_score_route/${response.data.request_id}`)
-      // console.log(finalResponse)
-      // navigate('/result', { state: { finalData: finalResponse.data } });
+      setLoading(false)
 
       const requestId = response.data.request_id;
       navigate('/result', { state: { requestId } });
@@ -43,11 +43,6 @@ function CheckScore() {
     catch (error) {
       console.error('Error uploading file:', error);
     }
-
-    
-    
-    // navigate(`/${asdhffjh}`)
-    // navigate('/result')
   };
 
   const handleBuild = () => {
@@ -80,7 +75,7 @@ function CheckScore() {
                 <svg className='w-8 h-8 mb-4 text-[#66A947]' aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
                   <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
                 </svg>
-                <p className='mb-2 text-sm text-[#66A947]'><span className='font-semibold'>PDF and DOC formats, up to 50MB</span></p>
+                <p className='mb-2 text-sm text-[#66A947]'><span className='font-semibold'>PDF and DOC formats</span></p>
               </div>
               <input id="dropzone-file" type="file" onChange={handleFileChange} />
             </label>
@@ -109,6 +104,11 @@ function CheckScore() {
         </div>
       </div>
       <button onClick={()=>handleCheckScore()} className='px-6 py-2 text-white rounded-xl bg-[#66A947] cursor-pointer hover:bg-[#3f6c2a] transition duration-300 ease-in-out active:bg-[#264d14] mt-5'>Check Score</button>
+
+      <div className='w-full absolute top-0'>
+        {loading && <Loading/>}
+      </div>
+
     </div>
   );
 }
