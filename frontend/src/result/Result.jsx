@@ -9,6 +9,7 @@ const Result = () => {
   const [finalData, setFinalData] = useState(null);
 
   const [chartData, setChartData] = useState(null)
+  // const [score, setScore] = useState(0)
 
 
 
@@ -18,24 +19,41 @@ const Result = () => {
         try {
           const finalResponse = await axios.get(`http://127.0.0.1:5000/api/check_score_route/${requestId}`);
           setFinalData(finalResponse.data);
+          // setScore(finalResponse.data.similarityScore)
+          console.log((finalResponse.data.similarityScore))
+
+          setChartData({
+            labels: ["Score", "not Score"],
+            datasets: [{
+              label: "Score",
+              data: [finalResponse.data.similarityScore, 100 - finalResponse.data.similarityScore],
+              backgroundColor: ['#16a34a', '#ededed'],
+              cutout: `${finalResponse.data.similarityScore}%`,
+              radius: 180
+      
+            }]
+          })
+
         } catch (error) {
           console.error('Error fetching result:', error);
         }
       };
       fetchResult();
 
+      // let secondScore = 100 - score
 
-      setChartData({
-        labels: ["Score", "not Score"],
-        datasets: [{
-          label: "Score",
-          data: [70, 30],
-          backgroundColor: ['#16a34a', '#ededed'],
-          cutout: "70%",
-          radius: 180
+
+      // setChartData({
+      //   labels: ["Score", "not Score"],
+      //   datasets: [{
+      //     label: "Score",
+      //     data: [score, secondScore],
+      //     backgroundColor: ['#16a34a', '#ededed'],
+      //     cutout: `${score}%`,
+      //     radius: 180
   
-        }]
-      })
+      //   }]
+      // })
 
      
     }
@@ -86,9 +104,9 @@ const Result = () => {
 
       {/* RIGHT */}
       <div className=' grid grid-rows-3 col-start-5 col-end-7 px-2'>
-        {chartData ? <div className=' bg-purple-400 relative w-full flex justify-start items-start'>
+        {chartData ? <div className=' relative w-full flex justify-start items-start'>
           <DonutChart chartData={chartData} />
-          <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-7xl font-bold'>70%</div>
+          <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-7xl font-bold'>{chartData.datasets[0].data[0]}%</div>
         </div>
           : <div className=' w-full text-white flex justify-center items-center'>Loading Score...</div>}
 
