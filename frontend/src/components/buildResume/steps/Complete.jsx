@@ -24,7 +24,12 @@ function Complete() {
   const [file, setFile] = useState('')
 
   const handleDownload = async() => {
-    const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`)
+    const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`,{
+      responseType: 'blob', // Set response type to blob to handle binary data
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     let filename = `${sliceData.personal.name}_Resume.docx`; // Default filename if not found
 
       // Create a URL for the blob

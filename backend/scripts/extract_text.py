@@ -20,6 +20,9 @@ def extract_text_from_file(file_path):
     if not extracted_text:
         extracted_text = extract_text_from_scanned_pdf(file_path)
         
+    if not extracted_text or len(extracted_text) < 10:
+        raise Exception("Text extraction failed")
+        
     return extracted_text
 # --------------------------------------------------------------------------#
     
@@ -28,8 +31,12 @@ def extract_text_from_file(file_path):
 def extract_text_from_pdf(file_path): 
     pdf_document = pymupdf.open(file_path)
     text = ''
+    count=0
     for page in pdf_document:
+        if count >= 2:
+            break
         text += page.get_text()
+        count+=1
     return text
 # --------------------------------------------------------------------------#
 

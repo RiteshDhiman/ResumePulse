@@ -21,6 +21,7 @@ const Result = () => {
           setFinalData(finalResponse.data);
           // setScore(finalResponse.data.similarityScore)
           console.log((finalResponse.data.similarityScore))
+          console.log((finalResponse.data))
 
           setChartData({
             labels: ["Score", "not Score"],
@@ -69,7 +70,8 @@ const Result = () => {
       <div className=' col-start-1 col-span-4 grid grid-rows-[repeat(4,auto)] px-2 border-r-2 border-white'>
         <div className="header p-5 border-b-2 border-white row-span-1">
           <div className='text-white font-semibold text-3xl'>Resume Report</div>
-          <div className='text-white text-xl'>We believe that the best resumes are simple & elegant</div>
+          {/* <div className='text-white text-xl'>We believe that the best resumes are simple & elegant</div> */}
+          <div className='text-white text-xl'>{finalData.thought}</div>
         </div>
 
         <div className="best p-5 border-b-2 border-white bg-green-500/80">
@@ -114,16 +116,16 @@ const Result = () => {
         <div className="p-5 border-b-2 border-white">
           <div className='text-white font-medium text-xl'>Skills Required</div>
           <ul className='list-disc p-5 text-white'>
-            {finalData.matchingAreas.poorlyMatched.map((item, index) => (
+            {finalData.skillsRequired.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
         </div>
 
         <div className="p-5">
-          <div className='text-white font-medium text-xl'>Libraries Suggested</div>
+          <div className='text-white font-medium text-xl'>Books to Read</div>
           <ul className='list-disc p-5'>
-            {finalData.matchingAreas.poorlyMatched.map((item, index) => (
+            {finalData.booksToRead.map((item, index) => (
               <li className='text-white' key={index}>{item}</li>
             ))}
           </ul>
