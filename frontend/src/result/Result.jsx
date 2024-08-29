@@ -9,7 +9,6 @@ const Result = () => {
   const [finalData, setFinalData] = useState(null);
 
   const [chartData, setChartData] = useState(null)
-  const [scoreText, setScoreText] = useState(null);
 
 
 
@@ -87,7 +86,7 @@ const Result = () => {
 
       {/* RIGHT */}
       <div className=' grid grid-rows-3 col-start-5 col-end-7 px-2'>
-        {(chartData && scoreText) ? <div className=' bg-purple-400 relative w-full flex justify-start items-start'>
+        {chartData ? <div className=' bg-purple-400 relative w-full flex justify-start items-start'>
           <DonutChart chartData={chartData} />
           <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-7xl font-bold'>70%</div>
         </div>
