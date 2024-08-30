@@ -19,15 +19,19 @@ const Navbar = ({loginClick, whetherLogin}) => {
 
   return (
     <>
-      <div className="h-[70px] bg-[#000726] md:flex justify-center items-center ">
+      <div className="h-[80px] bg-[#000726] md:flex justify-center items-center ">
         <div className="h-full mx-auto w-11/12 flex justify-between md:justify-center items-center ">
 
-          <div className="w-1/3 md:w-2/12 h-full text-white flex justify-center items-center">
-            <a className = 'h-full' href="/"><img className="h-full" src="/images/signup/google.png" alt="" /></a>
-            <div className="flex flex-col font-poppins">
-            <div>Resume</div>
-            <div>Pulse</div>
+          <div className="w-1/3 md:w-2/12 h-full text-white flex items-center justify-center">
+            <div className="w-1/3 h-full flex">
+              <Link to={'/'}>
+                <img src="/images/resume__logo.png" className="h-full w-full" />
+              </Link>
             </div>
+              <div className="font-krona ">
+                <span className="text-md">Resume</span>
+                <span className="text-[#80d459]">Pulse</span>
+              </div>
           </div>
 
           <div className="w-10/12 h-full text-white font-semibold hidden md:flex justify-around items-center font-poppins md:text-xl">
