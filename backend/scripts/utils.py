@@ -2,6 +2,9 @@ import json
 from io import BytesIO, StringIO
 from base64 import b64encode
 from PIL import Image
+from time import sleep, time
+from os import remove
+from uuid import uuid4
 
 # --------------------------------------------------------------------------#
 def convert_to_png(image):
@@ -43,5 +46,19 @@ def to_json_formatted(response_string):
 # --------------------------------------------------------------------------#
 
 
-def preprocess_for_fe():
-    pass
+# --------------------------------------------------------------------------#
+# Delayed file removal function to remove files after a delay
+def delayed_file_removal(file_path, delay=5):
+    sleep(delay)
+    try:
+        remove(file_path)
+        print(f"File {file_path} removed successfully.")
+    except Exception as e:
+        print(f"Error removing file: {str(e)}") 
+# --------------------------------------------------------------------------#
+        
+        
+# --------------------------------------------------------------------------#
+def get_unique_file_name():
+    return f"{round(time(), 3)}_{uuid4().hex[:8]}"
+# --------------------------------------------------------------------------#

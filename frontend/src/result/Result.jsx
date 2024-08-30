@@ -21,16 +21,17 @@ const Result = () => {
           setFinalData(finalResponse.data);
           // setScore(finalResponse.data.similarityScore)
           console.log((finalResponse.data.similarityScore))
+          console.log((finalResponse.data))
 
           setChartData({
-            labels: ["Score", "not Score"],
+            labels: ["Score", "Can be improved"],
             datasets: [{
               label: "Score",
               data: [finalResponse.data.similarityScore, 100 - finalResponse.data.similarityScore],
               backgroundColor: ['#16a34a', '#ededed'],
-              cutout: `${finalResponse.data.similarityScore}%`,
-              radius: 180
-      
+              cutout: `65%`,
+              radius: 130
+
             }]
           })
 
@@ -51,11 +52,11 @@ const Result = () => {
       //     backgroundColor: ['#16a34a', '#ededed'],
       //     cutout: `${score}%`,
       //     radius: 180
-  
+
       //   }]
       // })
 
-     
+
     }
   }, [requestId]);
 
@@ -65,82 +66,92 @@ const Result = () => {
   }
 
   return (
-    <div className='grid grid-cols-6 w-2/3 m-auto px-2 mt-10'>
-      <div className=' col-start-1 col-span-4 grid grid-rows-[repeat(4,auto)] px-2 border-r-2 border-white'>
-        <div className="header p-5 border-b-2 border-white row-span-1">
-          <div className='text-white font-semibold text-3xl'>Resume Report</div>
-          <div className='text-white text-xl'>We believe that the best resumes are simple & elegant</div>
+    <div className='w-full flex justify-center items-center'>
+      <div className='grid md:grid-cols-6 md:w-full lg:w-5/6 w-screen px-2 mt-10'>
+        <div className=' col-start-1 md:col-span-4 col-span-6 mb-10 md:mb-0 flex justify-start items-center flex-col px-5 md:border-r-2 border-white'>
+          <div className="header p-5 mb-10 border-b-2 border-white row-span-1">
+            <div className='text-white font-semibold text-3xl mb-5'>Resume Report</div>
+            {/* <div className='text-white text-xl'>We believe that the best resumes are simple & elegant</div> */}
+            <div className='text-white text-xl'>{finalData.thought}</div>
+          </div>
+
+          {chartData ? <div className=' mb-5 flex sm:hidden relative w-5/6 md:w-full justify-start items-start'>
+            <DonutChart chartData={chartData} />
+            <div className='sm:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold'>{chartData.datasets[0].data[0]}%</div>
+          </div>
+            : <div className='sm:hidden flex w-full text-white justify-center items-center'>Loading Score...</div>}
+
+
+          <div className="best p-5 mb-10 bg-green-500/80 w-full rounded-xl overflow-hidden">
+            <div className='text-white font-medium text-xl'>Best Matched</div>
+            <ul className='list-disc p-5'>
+              {finalData.matchingAreas.bestMatched.map((item, index) => (
+                <li className='text-white' key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="best p-5 mb-10 bg-yellow-500/80 w-full rounded-xl overflow-hidden">
+            <div className='text-white font-medium text-xl'>Partially Matched</div>
+            <ul className='list-disc p-5 text-white'>
+              {finalData.matchingAreas.partiallyMatched.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+
+          <div className="best p-5 mb-10 bg-red-500/80 w-full rounded-xl overflow-hidden">
+            <div className='text-white font-medium text-xl'>Poorly Matched</div>
+            <ul className='list-disc p-5 text-white'>
+              {finalData.matchingAreas.poorlyMatched.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
         </div>
 
-        <div className="best p-5 border-b-2 border-white bg-green-500/80">
-          <div className='text-white font-medium text-xl'>Best Matched</div>
-          <ul className='list-disc p-5'>
-            {finalData.matchingAreas.bestMatched.map((item, index) => (
-              <li className='text-white' key={index}>{item}</li>
-            ))}
-          </ul>
+        {/* RIGHT */}
+        <div className=' grid-rows-3 h-fit md:col-start-5 md:col-end-7 col-span-6 px-2 flex justify-start items-center flex-col'>
+          {chartData ? <div className=' hidden sm:flex relative w-full h-96 justify-center items-center'>
+            <DonutChart chartData={chartData} />
+            <div className='hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-5xl font-bold'>{chartData.datasets[0].data[0]}%</div>
+          </div>
+            : <div className='hidden sm:flex w-full text-white justify-center items-center'>Loading Score...</div>}
+
+
+          <div className="p-5 border-b-2 border-white w-full mb-10">
+            <div className='text-white font-medium text-xl'>Skills Required</div>
+            <ul className='list-disc p-5 text-white'>
+              {finalData.skillsRequired.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="p-5 w-full">
+            <div className='text-white font-medium text-xl'>Books to Read</div>
+            <ul className='list-disc p-5'>
+              {finalData.booksToRead.map((item, index) => (
+                <li className='text-white' key={index}>{item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
-        <div className="best p-5 border-b-2 border-white bg-yellow-500/80">
-          <div className='text-white font-medium text-xl'>Partially Matched</div>
-          <ul className='list-disc p-5 text-white'>
-            {finalData.matchingAreas.partiallyMatched.map((item, index) => (
+        {/* BOTTOM */}
+        <div className=' w-full p-5 mt-2 border-t-2 border-white col-start-1 col-end-7'>
+          <div className='text-white font-medium text-xl'>Improvements/ Suggestions</div>
+          <ul className='text-white list-disc p-5'>
+            {finalData.improvementSuggestions.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
-        </div>
 
-
-        <div className="best p-5 bg-red-500/80">
-          <div className='text-white font-medium text-xl'>Poorly Matched</div>
-          <ul className='list-disc p-5 text-white'>
-            {finalData.matchingAreas.poorlyMatched.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-      </div>
-
-      {/* RIGHT */}
-      <div className=' grid grid-rows-3 col-start-5 col-end-7 px-2'>
-        {chartData ? <div className=' relative w-full flex justify-start items-start'>
-          <DonutChart chartData={chartData} />
-          <div className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white text-7xl font-bold'>{chartData.datasets[0].data[0]}%</div>
-        </div>
-          : <div className=' w-full text-white flex justify-center items-center'>Loading Score...</div>}
-
-
-        <div className="p-5 border-b-2 border-white">
-          <div className='text-white font-medium text-xl'>Skills Required</div>
-          <ul className='list-disc p-5 text-white'>
-            {finalData.matchingAreas.poorlyMatched.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="p-5">
-          <div className='text-white font-medium text-xl'>Libraries Suggested</div>
-          <ul className='list-disc p-5'>
-            {finalData.matchingAreas.poorlyMatched.map((item, index) => (
-              <li className='text-white' key={index}>{item}</li>
-            ))}
-          </ul>
         </div>
       </div>
-
-      {/* BOTTOM */}
-      <div className=' w-full p-5 mt-2 border-t-2 border-white col-start-1 col-end-7'>
-        <div className='text-white font-medium text-xl'>Improvements/ Suggestions</div>
-        <ul className='text-white list-disc p-5'>
-          {finalData.improvementSuggestions.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-        
       </div>
-    </div>
 
 
 
@@ -179,4 +190,4 @@ const Result = () => {
   );
 };
 
-export default Result;
+          export default Result;

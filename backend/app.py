@@ -1,14 +1,14 @@
-from flask import Flask, request, jsonify, send_file, send_from_directory
+from flask import Flask, request, jsonify, send_file, after_this_request
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from scripts.extract_text import extract_text_from_file
 from scripts.communicate_with_gpt import get_cv_analysis
-from scripts.utils import to_json_formatted
+from scripts.utils import to_json_formatted, delayed_file_removal, get_unique_file_name
 from scripts.build_resume import build_resume
 import os
-import time
-import uuid
+import threading
 import json
+
 
 app = Flask(__name__)
 # origins=["http://localhost:5173","http://trustedwebsite.com"]
@@ -31,7 +31,13 @@ def check_score_route(filename):
         if os.path.exists(file_path):
             with open(file_path, "r") as f:
                 result = json.load(f)
-            os.remove(file_path)
+                
+            @after_this_request
+            def remove_file(response):
+                # Start a thread to remove the file after a delay
+                threading.Thread(target=delayed_file_removal, args=(file_path,)).start()
+                return response
+            
             return jsonify(result), 200
         else:
             return jsonify({'error': 'Result not found'}), 404
@@ -60,10 +66,10 @@ def check_score_route(filename):
             return jsonify({'error': str(e)}), 500
 
         result_json = check_score(file_path,text)
-        result_file_name = f"result_{round(time.time(), 3)}_{uuid.uuid4().hex[:8]}"
+        result_file_name = f"result_{get_unique_file_name()}"
         
         try:
-            os.remove(file_path)
+            threading.Thread(target=delayed_file_removal, args=(file_path,10)).start()
         except Exception as e:
             return jsonify({'error': f'Error deleting file: {str(e)}'}), 500
         
@@ -93,6 +99,13 @@ def build_resume_route(resume):
     if request.method == 'GET':
         file_path = os.path.join(exported_resume_dir, f"{resume}.docx")
         if os.path.exists(file_path):
+            
+            @after_this_request
+            def remove_file(response):
+                # Start a thread to remove the file after a delay
+                threading.Thread(target=delayed_file_removal, args=(file_path,)).start()
+                return response
+            
             return send_file(file_path, as_attachment=True)
         else:
             return jsonify({'error': 'Resume not found'}), 404
@@ -106,7 +119,7 @@ def build_resume_route(resume):
             return jsonify({"building error": str(e)}), 500
         
         try:
-            resume_name = f"resume_{round(time.time(), 3)}_{uuid.uuid4().hex[:8]}"
+            resume_name = f"resume_{get_unique_file_name()}"
             resume_path = os.path.join(exported_resume_dir, f"{resume_name}.docx")
             resume.save(resume_path)
         except Exception as e:
@@ -120,8 +133,8 @@ def build_resume_route(resume):
             return jsonify({" sending resume success error": str(e)}), 500
     
     else:
-        return jsonify({'error': 'Method not allowed'}), 405    
-    
+        return jsonify({'error': 'Method not allowed'}), 405   
+     
 @app.route("/", methods=["GET"])
 def hello():
     return "Hello World from flask!"
