@@ -24,8 +24,8 @@ function Complete() {
   const [file, setFile] = useState('')
 
   const handleDownload = async() => {
-    // const response = await axios.get(`https://saransh21csu461.pythonanywhere.com/api/build_resume_route/${file}`,{
-    const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`,{
+    const response = await axios.get(`https://saransh21csu461.pythonanywhere.com/api/build_resume_route/${file}`,{
+    // const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`,{
       responseType: 'blob', // Set response type to blob to handle binary data
       headers: {
         'Content-Type': 'application/json',
