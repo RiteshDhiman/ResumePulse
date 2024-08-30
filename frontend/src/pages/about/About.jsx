@@ -26,7 +26,7 @@ const AboutUs = () => {
               in the fields of data analytics, financial data modelling,
               artificial intelligence, and machine learning.
             </p>
-            <p>Add contact details ⚠️</p>
+            <p>Registered Office : World Trade Center, Level 9 ,2nd Floor, Kharadi, Pune–– 411014, M.H.</p>
           </div>
         </div>
       </div>
