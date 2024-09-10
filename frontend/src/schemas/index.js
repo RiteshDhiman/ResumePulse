@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
-const reg = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm
+const reg = /^(?:([a-zA-Z][a-zA-Z\d+\-.]*):\/\/)?(?:www\.)?([a-zA-Z\d\-\.]+)\.([a-zA-Z]{2,})(?:\/[^\s]*)?(\?[^\s]*)?$/
+const reg2 = /^[0-9/%-.]+$/
 const phone = /^[0-9]{10}$/
 
 
@@ -16,7 +17,7 @@ export const personalDetailsSchema = yup.object().shape({
 })
 
 export const academicsSchema = yup.object().shape({
-    percentage_cgpa: yup.number("Please enter valid percentage/CGPA").required("Required"),
+    percentage_cgpa: yup.string().matches(reg2,"Please enter valid percentage/CGPA").required("Required"),
     school_college: yup.string().min(5, "Please enter a valid School/College name").required("Required"),
     year: yup.string()
     .required()
