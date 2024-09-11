@@ -1,6 +1,8 @@
 import React from 'react'
+import {useLockBodyScroll} from "@uidotdev/usehooks";
 
 const Aierror = ({handleSubmit}) => {
+  useLockBodyScroll();
   return (
     <div className='w-full h-screen bg-black bg-opacity-20 backdrop-blur-sm flex justify-center items-center'>
       <div className='w-1/2 bg-black h-1/2 rounded-2xl flex flex-col gap-5 justify-center items-center'>

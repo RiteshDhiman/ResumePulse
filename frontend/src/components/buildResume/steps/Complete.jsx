@@ -24,7 +24,7 @@ function Complete() {
   const [file, setFile] = useState('')
 
   const handleDownload = async() => {
-    // const response = await axios.get(`https://saransh21csu461.pythonanywhere.com/api/build_resume_route/${file}`,{
+    // const response = await axios.get(`https://ResumePulse.pythonanywhere.com/api/build_resume_route/${file}`,{
     const response = await axios.get(`http://127.0.0.1:5000/api/build_resume_route/${file}`,{
       responseType: 'blob', // Set response type to blob to handle binary data
       headers: {
@@ -60,7 +60,7 @@ function Complete() {
     try {
       setLoading(true)
       
-      // const response = await axios.post('https://saransh21csu461.pythonanywhere.com/api/build_resume_route/0', sliceData, {
+      // const response = await axios.post('https://ResumePulse.pythonanywhere.com/api/build_resume_route/0', sliceData, {
         const response = await axios.post('http://127.0.0.1:5000/api/build_resume_route/0', sliceData, {
         // responseType: 'blob', // Set response type to blob to handle binary data
         headers: {

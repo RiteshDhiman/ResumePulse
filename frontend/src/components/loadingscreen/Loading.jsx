@@ -1,8 +1,10 @@
 import React from "react";
+import {useLockBodyScroll} from "@uidotdev/usehooks";
 import "../loadingscreen/loading.scss";
 
 const Loading = () => {
 
+  useLockBodyScroll();
   return (
     <div className="w-full h-screen bg-black bg-opacity-10 backdrop-blur-sm flex items-center justify-center">
       <div className="w-4/5 md:w-2/5 p-4 md:p-10 rounded-xl flex flex-col bg-black h-[40vh]">
