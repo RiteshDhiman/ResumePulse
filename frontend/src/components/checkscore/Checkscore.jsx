@@ -30,8 +30,8 @@ function CheckScore() {
 
     try {
       setLoading(true)
-      const response = await axios.post('http://127.0.0.1:5000/api/check_score_route/0', formData, {
-      // const response = await axios.post('ResumePulse.pythonanywhere.com/api/check_score_route/0', formData, {
+      // const response = await axios.post('http://127.0.0.1:5000/api/check_score_route/0', formData, {
+      const response = await axios.post('https://ResumePulse.pythonanywhere.com/api/check_score_route/0', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -17,8 +17,8 @@ const Result = () => {
     if (requestId) {
       const fetchResult = async () => {
         try {
-          const finalResponse = await axios.get(`http://127.0.0.1:5000/api/check_score_route/${requestId}`);
-          // const finalResponse = await axios.get(`ResumePulse.pythonanywhere.com/api/check_score_route/${requestId}`);
+          // const finalResponse = await axios.get(`http://127.0.0.1:5000/api/check_score_route/${requestId}`);
+          const finalResponse = await axios.get(`https://ResumePulse.pythonanywhere.com/api/check_score_route/${requestId}`);
           setFinalData(finalResponse.data);
           // setScore(finalResponse.data.similarityScore)
           console.log((finalResponse.data.similarityScore))
